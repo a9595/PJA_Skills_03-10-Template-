@@ -18,7 +18,7 @@ namespace PJA_Skills_032
             vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Page 2", PageType = typeof(Page2) });
             vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Page 3", PageType = typeof(Page3) });
             vm.MenuItems.Add(new MenuItem { Icon = "I", Title = "Page777", PageType = typeof(Page777)});
-
+            //
             // select the first menu item
             vm.SelectedMenuItem = vm.MenuItems.First();
 
