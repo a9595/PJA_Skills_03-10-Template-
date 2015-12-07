@@ -13,11 +13,11 @@ namespace PJA_Skills_032
             this.InitializeComponent();
 
             var vm = new ShellViewModel();
-            vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Welcome", PageType = typeof(WelcomePage) });
-            vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Page 1", PageType = typeof(Page1) });
-            vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Page 2", PageType = typeof(Page2) });
-            vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Page 3", PageType = typeof(Page3) });
-            vm.MenuItems.Add(new MenuItem { Icon = "I", Title = "Page777", PageType = typeof(Page777)});
+            vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Home", PageType = typeof(HomePage) });
+            vm.MenuItems.Add(new MenuItem { Icon = "", Title = "My Profile", PageType = typeof(MyProfilePage) });
+            vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Offers", PageType = typeof(Offers) });
+            vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Search", PageType = typeof(SearchPage) });
+            vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Settings", PageType = typeof(SettingsPage) });
             //
             // select the first menu item
             vm.SelectedMenuItem = vm.MenuItems.First();
