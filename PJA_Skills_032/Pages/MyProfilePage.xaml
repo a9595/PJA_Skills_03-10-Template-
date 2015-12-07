@@ -4,15 +4,58 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PJA_Skills_032.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" >
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
-            <StackPanel>
-                <TextBlock Text="My Profile" Style="{StaticResource TitleTextBlockStyle}" />
-                
-            </StackPanel>
+    <StackPanel Background="#FFFFCDD2">
+        <ScrollViewer Style="{StaticResource PageScrollViewerStyle}" Grid.RowSpan="2">
+
+            <Grid Height="595">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="6*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="UserName" Text="Andrii Kovalchuk" Style="{StaticResource TitleTextBlockStyle}" Margin="10,10,5,0" Height="30" VerticalAlignment="Top" FontWeight="Bold" />
+                <Image x:Name="image" Grid.Column="1" Margin="10" Source="ms-appx:///Assets/LockScreenLogo.png" d:LayoutOverrides="TopPosition, BottomPosition"/>
+                <TextBlock x:Name="Faculty" Text="Informatyka" Style="{StaticResource TitleTextBlockStyle}" Margin="10,0,5,10" Height="30" VerticalAlignment="Bottom" FontSize="12"  />
+
+                <!--SOCIAL-->
+                <StackPanel x:Name="StackPanelSocial" Height="50" Margin="10,10,10,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Style="{StaticResource ProfileCard}" Orientation="Horizontal" >
+                    <Button x:Name="FacebookBtn" Content="F" HorizontalAlignment="Left" Margin="10,5,0,5" VerticalAlignment="Stretch" Width="57" Background="#FF3B5998" Foreground="White"/>
+                    <Button x:Name="GplusBtn" Content="G+" HorizontalAlignment="Left" Margin="10,5,0,5" VerticalAlignment="Stretch" Width="61" Background="#FFDD4B39" Foreground="White"/>
+                    <Button x:Name="SkypeBtn" Content="S" HorizontalAlignment="Left" Margin="10,5,0,5" VerticalAlignment="Stretch" Width="61" Background="#FF12A5F4" Foreground="White"/>
+                    <Button x:Name="button_Copy2" Content="F" HorizontalAlignment="Left" Margin="10,6,0,6" VerticalAlignment="Stretch" Width="55" Background="#FF3B5998" Foreground="White"/>
+                </StackPanel>
+
+                <!--TO LEARN-->
+                <StackPanel x:Name="StackPanelToLearn" Height="125" Margin="10,80,10,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Style="{StaticResource ProfileCard}" >
+                    <TextBlock x:Name="textBlock2" Style="{StaticResource FlyoutPickerTitleTextBlockStyle}" TextWrapping="Wrap" Margin="9,0" Height="21">
+                    	<Run Text="Want to learn:"/>
+                    	<LineBreak/>
+                    	<Run/>
+                    </TextBlock>
+                    <GridView Width="290" Height="98">
+                        
+                        <GridViewItem Content="PRM" Background="#FFFDB3BB"/>
+                        <GridViewItem Content="PPJ"/>
+                        <GridViewItem Content="PPJ" Margin="0,0,0,4"/>
+                        <GridViewItem Content="PPJ" Margin="0,0,0,4"/>
+                        <GridViewItem Content="PRM" Margin="0,0,0,4"/>
+                        <GridViewItem Content="PRM" Margin="0,0,0,4"/>
+                        <GridViewItem Content="PRM" Margin="0"/>
+                        <GridViewItem Content="PPJ" Margin="0"/>
+
+                    </GridView>
+                </StackPanel>
+
+            </Grid>
+
         </ScrollViewer>
-    </Grid>
+    </StackPanel>
 </Page>

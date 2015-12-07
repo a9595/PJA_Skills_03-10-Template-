@@ -12,9 +12,17 @@
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
 
+        <Style x:Key="ProfileCard" TargetType="StackPanel">
+            <Setter Property="CornerRadius" Value="1" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="{StaticResource primary_light}" />
+            <Setter Property="Background" Value="{StaticResource primary_light}" />
+        </Style>
+        
         <Style x:Key="TitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
             <Setter Property="Margin" Value="0,1,0,18" />
         </Style>
+        
 
         <Style x:Key="ParagraphTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
             <Setter Property="Margin" Value="0,1,0,34" />
@@ -42,10 +50,22 @@
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
 
+        <!--SCROLL-->
         <Style x:Key="PageScrollViewerStyle" TargetType="ScrollViewer">
             <Setter Property="Padding" Value="24,20,24,24" />
+            <Setter Property="Background" Value="{StaticResource accent}" />
         </Style>
 
         <presentation:ObjectToMenuItemConverter x:Key="ObjectToMenuItemConverter"/>
+
+        <!--COLORS-->
+        <Color x:Key="primary">#F44336</Color>
+        <Color x:Key="primary_dark">#D32F2F</Color>
+        <Color x:Key="primary_light">#FFCDD2</Color>
+        <Color x:Key="accent">#FFFFFF</Color>
+        <Color x:Key="primary_text">#212121</Color>
+        <Color x:Key="secondary_text">#727272</Color>
+        <Color x:Key="icons">#FFFFFF</Color>
+        <Color x:Key="divider">#B6B6B6</Color>
     </Application.Resources>
 </Application>
