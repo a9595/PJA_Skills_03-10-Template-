@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PJA_Skills_032.Model;
+using System;
 using Windows.UI.Xaml.Controls;
 
 namespace PJA_Skills_032.Pages
@@ -11,6 +12,8 @@ namespace PJA_Skills_032.Pages
         public HomePage()
         {
             this.InitializeComponent();
+            ContactsCVS.Source = Contact.GetContactsGrouped(250);
+
         }
     }
 }
