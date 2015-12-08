@@ -8,7 +8,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" >
     <Page.BottomAppBar >
-        <CommandBar Background="#F44336" Foreground="White">
+        <CommandBar Foreground="White">
+            <CommandBar.Background>
+                <SolidColorBrush Color="{StaticResource app_bar_red}"/>
+            </CommandBar.Background>
             <AppBarButton x:Name="AppBarButtonEdit" Label="Edit" Icon="Edit" Foreground="White" />
         </CommandBar>
     </Page.BottomAppBar>
@@ -18,23 +21,27 @@
     <ScrollViewer Style="{StaticResource PageScrollViewerStyle}" Grid.RowSpan="2">
         <Grid Height="630" Margin="0" Padding="0,0,0,50">
             <Grid.RowDefinitions>
-                <RowDefinition Height="87*"/>
-                <RowDefinition Height="72*"/>
-                <RowDefinition Height="158*"/>
-                <RowDefinition Height="158*"/>
-                <RowDefinition Height="158*"/>
+                <RowDefinition Height="80*"/>
+                <RowDefinition Height="66*"/>
+                <RowDefinition Height="167*"/>
+                <RowDefinition Height="168*"/>
+                <RowDefinition Height="168*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
 
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock x:Name="UserName" Text="Andrii Kovalchuk" Style="{StaticResource TitleTextBlockStyle}" Margin="10,10,5,0" Height="30" VerticalAlignment="Top" FontWeight="Bold" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" />
-            <Image x:Name="image" Grid.Column="1" Margin="10" Source="ms-appx:///Assets/LockScreenLogo.png" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition"/>
-            <TextBlock x:Name="Faculty" Text="Informatyka" Style="{StaticResource TitleTextBlockStyle}" Margin="10,0,5,10" Height="30" VerticalAlignment="Bottom" FontSize="12" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin" FontStyle="Italic"  />
+            <TextBlock x:Name="UserName" Text="Andrii Kovalchuk" Style="{StaticResource TitleTextBlockStyle}" Margin="15,10,0,0" Height="30" VerticalAlignment="Top" FontWeight="Bold" />
+            <Image x:Name="image" Grid.Column="1" Margin="10" Source="ms-appx:///Assets/LockScreenLogo.png"/>
+            <TextBlock x:Name="Faculty" Text="Informatyka" Style="{StaticResource TitleTextBlockStyle}" Margin="15,0,0,10.333" Height="30" VerticalAlignment="Bottom" FontSize="12" FontStyle="Italic"  >
+                <TextBlock.Foreground>
+                    <SolidColorBrush Color="{StaticResource app_bar_red}"/>
+                </TextBlock.Foreground>
+            </TextBlock>
 
             <!--SOCIAL-->
-            <StackPanel x:Name="StackPanelSocial" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ProfileCard}" Orientation="Horizontal" d:LayoutOverrides="LeftMargin, RightMargin, TopPosition, BottomPosition" >
+            <StackPanel x:Name="StackPanelSocial" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ProfileCard}" Orientation="Horizontal" Margin="0,0,10,15" >
                 <Button x:Name="FacebookBtn" Content="F" HorizontalAlignment="Left" Margin="10,5,0,5" VerticalAlignment="Stretch" Width="57" Background="#FF3B5998" Foreground="White"/>
                 <Button x:Name="GplusBtn" Content="G+" HorizontalAlignment="Left" Margin="10,5,0,5" VerticalAlignment="Stretch" Width="61" Background="#FFDD4B39" Foreground="White"/>
                 <Button x:Name="SkypeBtn" Content="S" HorizontalAlignment="Left" Margin="10,5,0,5" VerticalAlignment="Stretch" Width="61" Background="#FF12A5F4" Foreground="White"/>
@@ -42,7 +49,7 @@
             </StackPanel>
 
             <!--TO LEARN-->
-            <StackPanel x:Name="StackPanelToLearn"  Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ProfileCard}" d:LayoutOverrides="Height, LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" >
+            <StackPanel x:Name="StackPanelToLearn"  Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ProfileCard}" >
                 <TextBlock x:Name="textBlock2" Style="{StaticResource FlyoutPickerTitleTextBlockStyle}" TextWrapping="Wrap" Text="Want to learn:" Margin="9,3,9,0" Height="21" />
                 <GridView ItemContainerStyle="{StaticResource GridViewItemSkillStyle}">
 
@@ -59,7 +66,7 @@
             </StackPanel>
 
             <!--TEACH-->
-            <StackPanel x:Name="StackPanelToTeach"  Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ProfileCard}" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, TopPosition, BottomPosition" >
+            <StackPanel x:Name="StackPanelToTeach"  Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ProfileCard}" >
                 <TextBlock x:Name="textBlock1" Style="{StaticResource FlyoutPickerTitleTextBlockStyle}" TextWrapping="Wrap" Text="Want to teach:" Margin="9,3,9,0" Height="21" />
                 <GridView ItemContainerStyle="{StaticResource GridViewItemSkillStyle}">
 
@@ -76,7 +83,7 @@
             </StackPanel>
 
             <!--KORKING-->
-            <StackPanel x:Name="StackPanelToKorking"  Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ProfileCard}" d:LayoutOverrides="Height, LeftMargin, RightMargin, TopPosition, BottomPosition" >
+            <StackPanel x:Name="StackPanelToKorking"  Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ProfileCard}" >
                 <TextBlock x:Name="textBlock3" Style="{StaticResource FlyoutPickerTitleTextBlockStyle}" TextWrapping="Wrap" Text="Want to provide korking:" Margin="9,3,9,0" Height="21" />
                 <GridView ItemContainerStyle="{StaticResource GridViewItemSkillStyle}">
 
