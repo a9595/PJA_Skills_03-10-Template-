@@ -17,14 +17,18 @@
         <!--#region DataTemplate-->
         <!-- When using x:Bind, you need to set x:DataType -->
         <DataTemplate x:Name="ContactGridViewTemplate" x:DataType="data:Contact">
+            
             <StackPanel Orientation="Vertical">
                 <Ellipse x:Name="Ellipse" 
                              Width ="140"
                              Height="140"
                              VerticalAlignment="Center"
                              HorizontalAlignment="Center"
-                             Fill="LightGray"
-                             Margin="4,4,4,4"/>
+                             Margin="4,4,4,4">
+                    <Ellipse.Fill>
+                        <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/LockScreenLogo.png"/>
+                    </Ellipse.Fill>
+                </Ellipse>
                 <!-- Phase 2: TextBlock with contact name-->
                 <TextBlock x:Name="ContactName" 
                                Margin="4,4,0,4"
@@ -53,6 +57,14 @@
 
             <GridView ItemsSource="{x:Bind ContactsCVS.View}"
                   ItemTemplate="{StaticResource ContactGridViewTemplate}">
+                <!--<GridView.Items>
+                    <data:Contact FirstName="sdfsdf">
+                        
+                    </data:Contact>
+                    <data:Contact FirstName="sdfsdf">
+
+                    </data:Contact>
+                </GridView.Items>-->
                 <GridView.GroupStyle>
                     <GroupStyle >
                         <GroupStyle.HeaderTemplate>

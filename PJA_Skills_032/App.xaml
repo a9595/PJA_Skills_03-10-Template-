@@ -7,7 +7,11 @@
     RequestedTheme="Light">
 
     <Application.Resources>
-
+        <!--<ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>-->
         <!--SCROLL-->
         <Style x:Key="PageScrollViewerStyle" TargetType="ScrollViewer">
             <Setter Property="Padding" Value="24,20,24,24" />
@@ -31,7 +35,8 @@
         <Style x:Key="GridViewItemSkillStyle" TargetType="GridViewItem">
             <Setter Property="Background" Value="#FFF44336"/>
             <Setter Property="Margin" Value="6" />
-            
+            <Setter Property="Foreground" Value="White" />
+
         </Style>
 
         <!--PROFILE CARD SKILL-->

@@ -12,7 +12,7 @@ namespace PJA_Skills_032.Pages
         public HomePage()
         {
             this.InitializeComponent();
-            ContactsCVS.Source = Contact.GetContactsGrouped(250);
+            ContactsCVS.Source = Contact.GetContactsGrouped(50);
 
         }
     }
