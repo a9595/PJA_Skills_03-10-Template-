@@ -122,6 +122,14 @@
         <!--#endregion-->
     </Page.Resources>
 
+    <Page.BottomAppBar >
+        <CommandBar Foreground="White">
+            <CommandBar.Background>
+                <SolidColorBrush Color="{StaticResource app_bar_red}"/>
+            </CommandBar.Background>
+            <AppBarButton x:Name="AppBarButtonEdit" Label="Find" Icon="Find" Foreground="White" />
+        </CommandBar>
+    </Page.BottomAppBar>
 
     <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
         <StackPanel Orientation="Vertical">
