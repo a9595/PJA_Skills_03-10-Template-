@@ -14,7 +14,7 @@ namespace PJA_Skills_032.Pages
             this.InitializeComponent();
 
 
-            ContactsCVS.Source = Contact.GetContactsGrouped(50);
+            ContactsCVS.Source = Contact.GetContactsGrouped(30);
 
         }
     }

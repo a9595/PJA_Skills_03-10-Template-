@@ -48,7 +48,7 @@
             </StackPanel>-->
 
 
-            <RelativePanel>
+            <RelativePanel Margin="0,10, 0, 20">
                 <Image x:Name="userImage" Height="100" Width="100" Source="ms-appx:///Assets/LockScreenLogo.png"/>
                 <TextBlock x:Name="userName" RelativePanel.RightOf="userImage"
                                Margin="4,4,0,4"
@@ -57,7 +57,7 @@
                                Style="{ThemeResource BodyTextBlockStyle}"/>
                 <TextBlock x:Name="userPosition" 
                                Text="{x:Bind Position}"  
-                              
+                               Margin="4,4,0,4"
                         
                                Style="{ThemeResource BodyTextBlockStyle}"
                                FontSize="12"
@@ -65,8 +65,12 @@
               RelativePanel.AlignLeftWith="userName"
                            RelativePanel.Below="userName"/>
 
-                <!--HORIZONTAL LIST VIEW-->
-                <ListBox x:Name="SkillsWantToLearn" RelativePanel.Below="userImage" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden"  ScrollViewer.IsHorizontalRailEnabled="True"
+                <TextBlock x:Name="iconToLearn" 
+                               Text="&#xE8AB;"  Margin="10,20,5,0"
+                               RelativePanel.Below="userImage" FontFamily="Segoe MDL2 Assets"/>
+
+                <!--HORIZONTAL LIST VIEW LEARN-->
+                <ListBox x:Name="SkillsWantToLearn" RelativePanel.RightOf="iconToLearn" RelativePanel.AlignTopWith="iconToLearn" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden"  ScrollViewer.IsHorizontalRailEnabled="True"
         ScrollViewer.VerticalScrollMode="Disabled" ItemContainerStyle="{StaticResource HomeUserSkillHorizontallPanel}">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -85,8 +89,14 @@
                     <ListBoxItem>PPJ</ListBoxItem>
                 </ListBox>
 
-                <ListBox x:Name="SkillsWantToTeach" Margin="0,3" RelativePanel.Below="SkillsWantToLearn" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden"  ScrollViewer.IsHorizontalRailEnabled="True"
-        ScrollViewer.VerticalScrollMode="Disabled" ItemContainerStyle="{StaticResource HomeUserSkillHorizontallPanel}">
+
+                <TextBlock x:Name="iconToTeach" 
+                               Text="&#xE899;"  Margin="10,20,5,0"
+                               RelativePanel.Below="iconToLearn" FontFamily="Segoe MDL2 Assets"/>
+                <ListBox x:Name="SkillsWantToTeach" RelativePanel.RightOf="iconToTeach" 
+                         RelativePanel.AlignTopWith="iconToTeach"
+                         ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden"  ScrollViewer.IsHorizontalRailEnabled="True"
+        ScrollViewer.VerticalScrollMode="Disabled" ItemContainerStyle="{StaticResource HomeUserSkillHorizontallPanel}" Margin="0,10,0,0" >
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal" />
@@ -103,7 +113,6 @@
                     <ListBoxItem>PPJ</ListBoxItem>
                     <ListBoxItem>PPJ</ListBoxItem>
                 </ListBox>
-                
             </RelativePanel>
 
 
