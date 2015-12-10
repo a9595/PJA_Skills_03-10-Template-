@@ -53,7 +53,7 @@
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
 
-        
+
 
         <Style x:Key="TitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
             <Setter Property="Margin" Value="0,1,0,18" />
@@ -85,27 +85,22 @@
         <Style x:Key="MenuTitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
-        
-        <Style x:Key="HomeUserSkillTemplate" TargetType="GridViewItem">
-            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
-            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+        <Style x:Key="HomeUserSkillHorizontallPanel" TargetType="ListBoxItem">
             <Setter Property="Background" Value="Red"/>
-            <Setter Property="Foreground" Value="White"/>
             <Setter Property="TabNavigation" Value="Local"/>
-            <Setter Property="IsHoldingEnabled" Value="True"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="0,0,4,4"/>
-            <Setter Property="MinWidth" Value="{ThemeResource GridViewItemMinWidth}"/>
-            <Setter Property="MinHeight" Value="{ThemeResource GridViewItemMinHeight}"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="GridViewItem">
-                        <ListViewItemPresenter CheckBrush="{ThemeResource SystemControlForegroundBaseMediumHighBrush}" ContentMargin="{TemplateBinding Padding}" CheckMode="Overlay" ContentTransitions="{TemplateBinding ContentTransitions}" CheckBoxBrush="{ThemeResource SystemControlBackgroundChromeMediumBrush}" DragForeground="{ThemeResource ListViewItemDragForegroundThemeBrush}" DragOpacity="{ThemeResource ListViewItemDragThemeOpacity}" DragBackground="{ThemeResource ListViewItemDragBackgroundThemeBrush}" DisabledOpacity="{ThemeResource ListViewItemDisabledThemeOpacity}" FocusBorderBrush="{ThemeResource SystemControlForegroundAltHighBrush}" FocusSecondaryBorderBrush="{ThemeResource SystemControlForegroundBaseHighBrush}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" PointerOverForeground="{ThemeResource SystemControlForegroundBaseHighBrush}" PressedBackground="{ThemeResource SystemControlHighlightListMediumBrush}" PlaceholderBackground="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" PointerOverBackground="{ThemeResource SystemControlHighlightListLowBrush}" ReorderHintOffset="{ThemeResource GridViewItemReorderHintThemeOffset}" SelectedPressedBackground="{ThemeResource SystemControlHighlightListAccentHighBrush}" SelectionCheckMarkVisualEnabled="True" SelectedForeground="{ThemeResource SystemControlForegroundBaseHighBrush}" SelectedPointerOverBackground="{ThemeResource SystemControlHighlightListAccentMediumBrush}" SelectedBackground="{ThemeResource SystemControlHighlightAccentBrush}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="Foreground" Value="White" />
+            
+            <Setter Property="Margin" Value="1,0,1,0" />
+            
+            <Setter Property="Height" Value="40" />
+            <Setter Property="FontSize" Value="1" />
+            
+            <Setter Property="Padding" Value="12,11,12,13"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="UseSystemFocusVisuals" Value="True"/>
+
         </Style>
+
 
 
     </Application.Resources>

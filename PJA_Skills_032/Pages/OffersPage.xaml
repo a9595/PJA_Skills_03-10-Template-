@@ -55,61 +55,29 @@
               RelativePanel.AlignLeftWith="userName"
                            RelativePanel.Below="userName"/>
 
-                
+                <!--HORIZONTAL LIST VIEW-->
+                <ListBox x:Name="SkillsWantToLearn" RelativePanel.Below="userImage" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden"  ScrollViewer.IsHorizontalRailEnabled="True"
+        ScrollViewer.VerticalScrollMode="Disabled" ItemContainerStyle="{StaticResource HomeUserSkillHorizontallPanel}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                </ListBox>
             </RelativePanel>
-            <!--TO LEARN-->
+           
             
-            
-            <StackPanel x:Name="StackPanelToLearn"  Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ProfileCard}" >
-                <TextBlock x:Name="textBlock2" Style="{StaticResource FlyoutPickerTitleTextBlockStyle}" TextWrapping="Wrap" Text="Want to learn:" Margin="9,3,9,0" Height="21" />
-
-                <GridView>
-
-                    <GridViewItem Content="PRM" />
-                    <GridViewItem Content="PPJ"/>
-                    <GridViewItem Content="PPJ"/>
-                    <GridViewItem Content="PPJ"/>
-                    <GridViewItem Content="PRM"/>
-                    <GridViewItem Content="PRM"/>
-                    <GridViewItem Content="PRM"/>
-                    <GridViewItem Content="PPJ"/>
-
-                </GridView>
-            </StackPanel>
-            <ListView x:Name="listView" Height="40" ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                      ScrollViewer.HorizontalScrollMode="Enabled"
-                      ScrollViewer.VerticalScrollMode="Disabled">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" Background="Gray" ></StackPanel>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListViewItem Content="PPJ" Background="#FFBE2121" Foreground="#FF642929"/>
-                <ListViewItem Content="WDK"/>
-                <ListViewItem Content="ASP"/>
-                <ListViewItem Content="ASP"/>
-                <ListViewItem Content="ASP"/>
-            </ListView>
-
-            <ListBox ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.IsHorizontalRailEnabled="True"
-                     
-                     ScrollViewer.VerticalScrollMode="Disabled">
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBoxItem>listbox item 1</ListBoxItem>
-                <ListBoxItem>listbox item 2</ListBoxItem>
-                <ListBoxItem>listbox item 3</ListBoxItem>
-                <ListBoxItem>listbox item 4</ListBoxItem>
-                <ListBoxItem>listbox item 5</ListBoxItem>
-                <ListBoxItem>listbox item 1</ListBoxItem>
-                <ListBoxItem>listbox item 2</ListBoxItem>
-                <ListBoxItem>listbox item 3</ListBoxItem>
-                <ListBoxItem>listbox item 4</ListBoxItem>
-                <ListBoxItem>listbox item 5</ListBoxItem>
-            </ListBox>
+           
         </StackPanel>
 
 
