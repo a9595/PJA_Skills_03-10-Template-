@@ -18,7 +18,7 @@
         <!-- When using x:Bind, you need to set x:DataType -->
         <DataTemplate x:Name="ContactGridViewTemplate" x:DataType="data:Contact">
             
-            <StackPanel Orientation="Vertical">
+            <!--<StackPanel Orientation="Vertical">
                 <Ellipse x:Name="Ellipse" 
                              Width ="140"
                              Height="140"
@@ -29,14 +29,14 @@
                         <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/LockScreenLogo.png"/>
                     </Ellipse.Fill>
                 </Ellipse>
-                <!-- Phase 2: TextBlock with contact name-->
+                --><!-- Phase 2: TextBlock with contact name--><!--
                 <TextBlock x:Name="ContactName" 
                                Margin="4,4,0,4"
                                Text="{x:Bind Name}" 
                                x:Phase="2" 
                                Style="{ThemeResource BodyTextBlockStyle}" 
                                HorizontalAlignment="Center"/>
-                <!-- Phase 3: TextBlock with contact job title-->
+                --><!-- Phase 3: TextBlock with contact job title--><!--
                 <TextBlock x:Name="Position" 
                                Text="{x:Bind Position}" 
                                Margin="4,4,0,4"
@@ -45,7 +45,70 @@
                                FontSize="12"
                                Foreground="Gray"
                                HorizontalAlignment="Center"/>
-            </StackPanel>
+            </StackPanel>-->
+
+
+            <RelativePanel>
+                <Image x:Name="userImage" Height="100" Width="100" Source="ms-appx:///Assets/LockScreenLogo.png"/>
+                <TextBlock x:Name="userName" RelativePanel.RightOf="userImage"
+                               Margin="4,4,0,4"
+                               Text="{x:Bind Name}" 
+                        
+                               Style="{ThemeResource BodyTextBlockStyle}"/>
+                <TextBlock x:Name="userPosition" 
+                               Text="{x:Bind Position}"  
+                              
+                        
+                               Style="{ThemeResource BodyTextBlockStyle}"
+                               FontSize="12"
+                               Foreground="Gray"
+              RelativePanel.AlignLeftWith="userName"
+                           RelativePanel.Below="userName"/>
+
+                <!--HORIZONTAL LIST VIEW-->
+                <ListBox x:Name="SkillsWantToLearn" RelativePanel.Below="userImage" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden"  ScrollViewer.IsHorizontalRailEnabled="True"
+        ScrollViewer.VerticalScrollMode="Disabled" ItemContainerStyle="{StaticResource HomeUserSkillHorizontallPanel}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                </ListBox>
+
+                <ListBox x:Name="SkillsWantToTeach" Margin="0,3" RelativePanel.Below="SkillsWantToLearn" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden"  ScrollViewer.IsHorizontalRailEnabled="True"
+        ScrollViewer.VerticalScrollMode="Disabled" ItemContainerStyle="{StaticResource HomeUserSkillHorizontallPanel}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                </ListBox>
+                
+            </RelativePanel>
+
+
+
+
         </DataTemplate>
         <!--#endregion-->
     </Page.Resources>

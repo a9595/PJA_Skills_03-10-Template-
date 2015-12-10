@@ -47,7 +47,7 @@
                                Style="{ThemeResource BodyTextBlockStyle}"/>
                 <TextBlock x:Name="userPosition" 
                                Text="Informatyka"  
-                              
+                               Margin="4,4,0,4"
                         
                                Style="{ThemeResource BodyTextBlockStyle}"
                                FontSize="12"
@@ -57,6 +57,25 @@
 
                 <!--HORIZONTAL LIST VIEW-->
                 <ListBox x:Name="SkillsWantToLearn" RelativePanel.Below="userImage" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden"  ScrollViewer.IsHorizontalRailEnabled="True"
+        ScrollViewer.VerticalScrollMode="Disabled" ItemContainerStyle="{StaticResource HomeUserSkillHorizontallPanel}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem>PPJ</ListBoxItem>
+                </ListBox>
+
+                <ListBox x:Name="SkillsWantToTeach" Margin="0,3" RelativePanel.Below="SkillsWantToLearn" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden"  ScrollViewer.IsHorizontalRailEnabled="True"
         ScrollViewer.VerticalScrollMode="Disabled" ItemContainerStyle="{StaticResource HomeUserSkillHorizontallPanel}">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
