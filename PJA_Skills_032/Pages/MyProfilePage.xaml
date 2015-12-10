@@ -32,16 +32,16 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock x:Name="UserName" Text="Andrii Kovalchuk" Style="{StaticResource TitleTextBlockStyle}" Margin="15,10,0,0" Height="30" VerticalAlignment="Top" FontWeight="Bold" />
+            <TextBlock x:Name="UserName" Text="Andrii Kovalchuk" Style="{StaticResource TitleTextBlockStyle}" Margin="15,0,0,31.333" Height="30" VerticalAlignment="Bottom" FontWeight="Bold" />
             <Image x:Name="image" Grid.Column="1" Margin="10" Source="ms-appx:///Assets/LockScreenLogo.png"/>
-            <TextBlock x:Name="Faculty" Text="Informatyka" Style="{StaticResource TitleTextBlockStyle}" Margin="15,0,0,10.333" Height="30" VerticalAlignment="Bottom" FontSize="12" FontStyle="Italic"  >
+            <TextBlock x:Name="Faculty" Text="Informatyka" Style="{StaticResource TitleTextBlockStyle}" Margin="15,40,0,0" Height="30" VerticalAlignment="Top" FontSize="12" FontStyle="Italic"  >
                 <TextBlock.Foreground>
                     <SolidColorBrush Color="{StaticResource app_bar_red}"/>
                 </TextBlock.Foreground>
             </TextBlock>
 
             <!--SOCIAL-->
-            <StackPanel x:Name="StackPanelSocial" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ProfileCard}" Orientation="Horizontal" Margin="0,0,10,15" >
+            <StackPanel x:Name="StackPanelSocial" Grid.ColumnSpan="2" Style="{StaticResource ProfileCard}" Orientation="Horizontal" Margin="4,71,6,15.333" Grid.RowSpan="2" >
                 <Button x:Name="FacebookBtn" Content="F" HorizontalAlignment="Left" Margin="10,5,0,5" VerticalAlignment="Stretch" Width="57" Background="#FF3B5998" Foreground="White"/>
                 <Button x:Name="GplusBtn" Content="G+" HorizontalAlignment="Left" Margin="10,5,0,5" VerticalAlignment="Stretch" Width="61" Background="#FFDD4B39" Foreground="White"/>
                 <Button x:Name="SkypeBtn" Content="S" HorizontalAlignment="Left" Margin="10,5,0,5" VerticalAlignment="Stretch" Width="61" Background="#FF12A5F4" Foreground="White"/>

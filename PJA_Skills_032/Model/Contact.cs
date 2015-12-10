@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace PJA_Skills_032.Model
 {
-    class Contact
+    public class Contact
     {
         private static Random random = new Random();
 
         #region Properties
-        private string initials;
+        private string initials = string.Empty;
         public string Initials
         {
             get
             {
-                if (initials == string.Empty && FirstName != string.Empty && LastName != string.Empty)
+                if (string.IsNullOrEmpty(initials) && FirstName != string.Empty && LastName != string.Empty)
                 {
                     initials = FirstName[0].ToString() + LastName[0].ToString();
                 }
@@ -29,7 +29,7 @@ namespace PJA_Skills_032.Model
         {
             get
             {
-                if (name == string.Empty && FirstName != string.Empty && LastName != string.Empty)
+                if (string.IsNullOrEmpty(name) && FirstName != string.Empty && LastName != string.Empty)
                 {
                     name = FirstName + " " + LastName;
                 }
@@ -68,6 +68,17 @@ namespace PJA_Skills_032.Model
         public string PhoneNumber { get; set; }
         public string Biography { get; set; }
         #endregion
+
+        public Contact(string lastName, string firstName, string position, string phoneNumber, string biography)
+        {
+            this.initials = initials;
+            this.name = name;
+            this.lastName = lastName;
+            this.firstName = firstName;
+            Position = position;
+            PhoneNumber = phoneNumber;
+            Biography = biography;
+        }
 
         public Contact()
         {
