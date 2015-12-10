@@ -6,13 +6,112 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+   
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
-            <StackPanel>
-                <TextBlock Text="Offers" Style="{StaticResource TitleTextBlockStyle}" />
-               
+    <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
+        <StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Ellipse x:Name="Ellipse" 
+                             Width ="140"
+                             Height="140"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             Margin="4,4,4,4">
+                    <Ellipse.Fill>
+                        <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/LockScreenLogo.png"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <!-- Phase 2: TextBlock with contact name-->
+                <TextBlock x:Name="ContactName" 
+                               Margin="4,4,0,4"
+                               Text="Andrii Kovalchuk" 
+                               
+                               Style="{ThemeResource BodyTextBlockStyle}" 
+                               HorizontalAlignment="Center"/>
+                <!-- Phase 3: TextBlock with contact job title-->
+                <TextBlock x:Name="Position" 
+                               Text="Informatyka" 
+                               Margin="4,4,0,4"
+                            
+                               Style="{ThemeResource BodyTextBlockStyle}"
+                               FontSize="12"
+                               Foreground="Gray"
+                               HorizontalAlignment="Center"/>
             </StackPanel>
-        </ScrollViewer>
-    </Grid>
+            <RelativePanel>
+                <Image x:Name="userImage" Height="100" Width="100" Source="ms-appx:///Assets/LockScreenLogo.png"/>
+                <TextBlock x:Name="userName" RelativePanel.RightOf="userImage"
+                               Margin="4,4,0,4"
+                               Text="Andrii Kovalchuk" 
+                        
+                               Style="{ThemeResource BodyTextBlockStyle}"/>
+                <TextBlock x:Name="userPosition" 
+                               Text="Informatyka"  
+                              
+                        
+                               Style="{ThemeResource BodyTextBlockStyle}"
+                               FontSize="12"
+                               Foreground="Gray"
+              RelativePanel.AlignLeftWith="userName"
+                           RelativePanel.Below="userName"/>
+
+                
+            </RelativePanel>
+            <!--TO LEARN-->
+            
+            
+            <StackPanel x:Name="StackPanelToLearn"  Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ProfileCard}" >
+                <TextBlock x:Name="textBlock2" Style="{StaticResource FlyoutPickerTitleTextBlockStyle}" TextWrapping="Wrap" Text="Want to learn:" Margin="9,3,9,0" Height="21" />
+
+                <GridView>
+
+                    <GridViewItem Content="PRM" />
+                    <GridViewItem Content="PPJ"/>
+                    <GridViewItem Content="PPJ"/>
+                    <GridViewItem Content="PPJ"/>
+                    <GridViewItem Content="PRM"/>
+                    <GridViewItem Content="PRM"/>
+                    <GridViewItem Content="PRM"/>
+                    <GridViewItem Content="PPJ"/>
+
+                </GridView>
+            </StackPanel>
+            <ListView x:Name="listView" Height="40" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollMode="Enabled"
+                      ScrollViewer.VerticalScrollMode="Disabled">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" Background="Gray" ></StackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListViewItem Content="PPJ" Background="#FFBE2121" Foreground="#FF642929"/>
+                <ListViewItem Content="WDK"/>
+                <ListViewItem Content="ASP"/>
+                <ListViewItem Content="ASP"/>
+                <ListViewItem Content="ASP"/>
+            </ListView>
+
+            <ListBox ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.IsHorizontalRailEnabled="True"
+                     
+                     ScrollViewer.VerticalScrollMode="Disabled">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBoxItem>listbox item 1</ListBoxItem>
+                <ListBoxItem>listbox item 2</ListBoxItem>
+                <ListBoxItem>listbox item 3</ListBoxItem>
+                <ListBoxItem>listbox item 4</ListBoxItem>
+                <ListBoxItem>listbox item 5</ListBoxItem>
+                <ListBoxItem>listbox item 1</ListBoxItem>
+                <ListBoxItem>listbox item 2</ListBoxItem>
+                <ListBoxItem>listbox item 3</ListBoxItem>
+                <ListBoxItem>listbox item 4</ListBoxItem>
+                <ListBoxItem>listbox item 5</ListBoxItem>
+            </ListBox>
+        </StackPanel>
+
+
+    </ScrollViewer>
 </Page>
