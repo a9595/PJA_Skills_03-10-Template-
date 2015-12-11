@@ -40,7 +40,7 @@
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
                     <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
+                    <ListBoxItem Height="39" Width="44" FontSize="9.333">PPJ</ListBoxItem>
                     <ListBoxItem>PPJ</ListBoxItem>
                     <ListBoxItem>PPJ</ListBoxItem>
                     <ListBoxItem>PPJ</ListBoxItem>
