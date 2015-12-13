@@ -1,35 +1,37 @@
-﻿<Page
-    x:Class="PJA_Skills_032.Pages.HomePage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:PJA_Skills_032"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
-    xmlns:icore="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:imedia="using:Microsoft.Xaml.Interactions.Media"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:data="using:PJA_Skills_032.Model"
-    mc:Ignorable="d">
+﻿<Page x:Class="PJA_Skills_032.Pages.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:data="using:PJA_Skills_032.Model"
+      xmlns:i="using:Microsoft.Xaml.Interactivity"
+      xmlns:icore="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:imedia="using:Microsoft.Xaml.Interactions.Media"
+      xmlns:local="using:PJA_Skills_032"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      Loaded="HomePage_OnLoaded"
+      mc:Ignorable="d">
 
 
     <Page.Resources>
-        <!-- Use a collection view source for content that presents itself as a list of items that can be grouped or sorted.  Otherwise, you can use x:Bind
-        directly on the GridView's item source to for further optimization. Please see the AppUIBasics sample for an example of how to do this.  -->
-        <CollectionViewSource x:Name="ContactsCVS"  IsSourceGrouped="True" />
+        <!--
+            Use a collection view source for content that presents itself as a list of items that can be grouped or sorted.  Otherwise, you can use x:Bind
+            directly on the GridView's item source to for further optimization. Please see the AppUIBasics sample for an example of how to do this.
+        -->
+        <CollectionViewSource x:Name="ContactsCVS" IsSourceGrouped="True" />
 
-        <!--ANIMATION-->
+        <!--  ANIMATION  -->
         <Storyboard x:Name="RotationStoryboard" RepeatBehavior="Forever">
-            <DoubleAnimation Storyboard.TargetName="RefreshBtnIcon"                                Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)" To="360">
-
-            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="RefreshBtnIcon"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                             To="360" />
         </Storyboard>
-        
-        <!--#region DataTemplate-->
-        <!-- When using x:Bind, you need to set x:DataType -->
+
+        <!--  #region DataTemplate  -->
+        <!--  When using x:Bind, you need to set x:DataType  -->
         <DataTemplate x:Name="ContactGridViewTemplate" x:DataType="data:Contact">
-            
+
             <!--<StackPanel Orientation="Vertical">
-                <Ellipse x:Name="Ellipse" 
+                <Ellipse x:Name="Ellipse"
                              Width ="140"
                              Height="140"
                              VerticalAlignment="Center"
@@ -39,18 +41,22 @@
                         <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/LockScreenLogo.png"/>
                     </Ellipse.Fill>
                 </Ellipse>
-                --><!-- Phase 2: TextBlock with contact name--><!--
-                <TextBlock x:Name="ContactName" 
+            -->
+            <!--  Phase 2: TextBlock with contact name  -->
+            <!--
+                <TextBlock x:Name="ContactName"
                                Margin="4,4,0,4"
-                               Text="{x:Bind Name}" 
-                               x:Phase="2" 
-                               Style="{ThemeResource BodyTextBlockStyle}" 
+                               Text="{x:Bind Name}"
+                               x:Phase="2"
+                               Style="{ThemeResource BodyTextBlockStyle}"
                                HorizontalAlignment="Center"/>
-                --><!-- Phase 3: TextBlock with contact job title--><!--
-                <TextBlock x:Name="Position" 
-                               Text="{x:Bind Position}" 
+            -->
+            <!--  Phase 3: TextBlock with contact job title  -->
+            <!--
+                <TextBlock x:Name="Position"
+                               Text="{x:Bind Position}"
                                Margin="4,4,0,4"
-                               x:Phase="3" 
+                               x:Phase="3"
                                Style="{ThemeResource BodyTextBlockStyle}"
                                FontSize="12"
                                Foreground="Gray"
@@ -59,29 +65,39 @@
 
 
             <RelativePanel Margin="0,10, 0, 20">
-                <Image x:Name="userImage" Height="100" Width="100" Source="ms-appx:///Assets/LockScreenLogo.png"/>
-                <TextBlock x:Name="userName" RelativePanel.RightOf="userImage"
-                               Margin="4,4,0,4"
-                               Text="{x:Bind Name}" 
-                        
-                               Style="{ThemeResource BodyTextBlockStyle}"/>
-                <TextBlock x:Name="userPosition" 
-                               Text="{x:Bind Position}"  
-                               Margin="4,4,0,4"
-                        
-                               Style="{ThemeResource BodyTextBlockStyle}"
-                               FontSize="12"
-                               Foreground="Gray"
-              RelativePanel.AlignLeftWith="userName"
-                           RelativePanel.Below="userName"/>
+                <Image x:Name="userImage"
+                       Width="100"
+                       Height="100"
+                       Source="ms-appx:///Assets/LockScreenLogo.png" />
+                <TextBlock x:Name="userName"
+                           Margin="4,4,0,4"
+                           RelativePanel.RightOf="userImage"
+                           Style="{ThemeResource BodyTextBlockStyle}"
+                           Text="{x:Bind Name}" />
+                <TextBlock x:Name="userPosition"
+                           Margin="4,4,0,4"
+                           FontSize="12"
+                           Foreground="Gray"
+                           RelativePanel.AlignLeftWith="userName"
+                           RelativePanel.Below="userName"
+                           Style="{ThemeResource BodyTextBlockStyle}"
+                           Text="{x:Bind Position}" />
 
-                <TextBlock x:Name="iconToLearn" 
-                               Text="&#xE8AB;"  Margin="10,20,5,0"
-                               RelativePanel.Below="userImage" FontFamily="Segoe MDL2 Assets"/>
+                <TextBlock x:Name="iconToLearn"
+                           Margin="10,20,5,0"
+                           FontFamily="Segoe MDL2 Assets"
+                           RelativePanel.Below="userImage"
+                           Text="&#xE8AB;" />
 
-                <!--HORIZONTAL LIST VIEW LEARN-->
-                <ListBox x:Name="SkillsWantToLearn" RelativePanel.RightOf="iconToLearn" RelativePanel.AlignTopWith="iconToLearn" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden"  ScrollViewer.IsHorizontalRailEnabled="True"
-        ScrollViewer.VerticalScrollMode="Disabled" ItemContainerStyle="{StaticResource HomeUserSkillHorizontallPanel}">
+                <!--  HORIZONTAL LIST VIEW LEARN  -->
+                <ListBox x:Name="SkillsWantToLearn"
+                         ItemContainerStyle="{StaticResource HomeUserSkillHorizontallPanel}"
+                         RelativePanel.AlignTopWith="iconToLearn"
+                         RelativePanel.RightOf="iconToLearn"
+                         ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                         ScrollViewer.HorizontalScrollMode="Enabled"
+                         ScrollViewer.IsHorizontalRailEnabled="True"
+                         ScrollViewer.VerticalScrollMode="Disabled">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal" />
@@ -100,13 +116,20 @@
                 </ListBox>
 
 
-                <TextBlock x:Name="iconToTeach" 
-                               Text="&#xE899;"  Margin="10,20,5,0"
-                               RelativePanel.Below="iconToLearn" FontFamily="Segoe MDL2 Assets"/>
-                <ListBox x:Name="SkillsWantToTeach" RelativePanel.RightOf="iconToTeach" 
+                <TextBlock x:Name="iconToTeach"
+                           Margin="10,20,5,0"
+                           FontFamily="Segoe MDL2 Assets"
+                           RelativePanel.Below="iconToLearn"
+                           Text="&#xE899;" />
+                <ListBox x:Name="SkillsWantToTeach"
+                         Margin="0,10,0,0"
+                         ItemContainerStyle="{StaticResource HomeUserSkillHorizontallPanel}"
                          RelativePanel.AlignTopWith="iconToTeach"
-                         ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden"  ScrollViewer.IsHorizontalRailEnabled="True"
-        ScrollViewer.VerticalScrollMode="Disabled" ItemContainerStyle="{StaticResource HomeUserSkillHorizontallPanel}" Margin="0,10,0,0" >
+                         RelativePanel.RightOf="iconToTeach"
+                         ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                         ScrollViewer.HorizontalScrollMode="Enabled"
+                         ScrollViewer.IsHorizontalRailEnabled="True"
+                         ScrollViewer.VerticalScrollMode="Disabled">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal" />
@@ -129,36 +152,39 @@
 
 
         </DataTemplate>
-        <!--#endregion-->
+        <!--  #endregion  -->
     </Page.Resources>
 
-    <Page.BottomAppBar >
-        <!--TODO: STYLE OVERRIDE-->
+    <Page.BottomAppBar>
+        <!--  TODO: STYLE OVERRIDE  -->
         <CommandBar Foreground="White">
             <CommandBar.Background>
-                <SolidColorBrush Color="{StaticResource app_bar_red}"/>
+                <SolidColorBrush Color="{StaticResource app_bar_red}" />
             </CommandBar.Background>
-            <AppBarButton x:Name="AppBarButtonEdit" Label="Find" Icon="Find" Foreground="White" />
-            <AppBarButton x:Name="RefreshBtn" Label="Refresh"
-                          Foreground="White">
+            <AppBarButton x:Name="AppBarButtonEdit"
+                          Foreground="White"
+                          Icon="Find"
+                          Label="Find" />
+            <AppBarButton x:Name="RefreshBtn"
+                          Foreground="White"
+                          Label="Refresh">
                 <AppBarButton.Icon>
-                    <SymbolIcon x:Name="RefreshBtnIcon" Symbol="Sync" 
-                                RenderTransformOrigin="0.5,0.5">
-                        
+                    <SymbolIcon x:Name="RefreshBtnIcon"
+                                RenderTransformOrigin="0.5,0.5"
+                                Symbol="Sync">
+
                         <SymbolIcon.RenderTransform>
                             <RotateTransform />
                         </SymbolIcon.RenderTransform>
-                        
-                        
-                        
+
+
+
                     </SymbolIcon>
                 </AppBarButton.Icon>
 
                 <i:Interaction.Behaviors>
                     <icore:EventTriggerBehavior EventName="Click">
-                        <imedia:ControlStoryboardAction Storyboard="{StaticResource RotationStoryboard}"        ControlStoryboardOption="TogglePlayPause">
-                            
-                        </imedia:ControlStoryboardAction>
+                        <imedia:ControlStoryboardAction ControlStoryboardOption="TogglePlayPause" Storyboard="{StaticResource RotationStoryboard}" />
                     </icore:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
 
@@ -168,24 +194,22 @@
 
     <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="Home Page" Style="{StaticResource TitleTextBlockStyle}" />
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Home Page" />
 
-            <GridView ItemsSource="{x:Bind ContactsCVS.View}"
-                  ItemTemplate="{StaticResource ContactGridViewTemplate}">
+            <GridView ItemTemplate="{StaticResource ContactGridViewTemplate}" ItemsSource="{x:Bind ContactsCVS.View}">
                 <!--<GridView.Items>
                     <data:Contact FirstName="sdfsdf">
-                        
+
                     </data:Contact>
                     <data:Contact FirstName="sdfsdf">
 
                     </data:Contact>
                 </GridView.Items>-->
                 <GridView.GroupStyle>
-                    <GroupStyle >
+                    <GroupStyle>
                         <GroupStyle.HeaderTemplate>
                             <DataTemplate x:DataType="data:GroupInfoList">
-                                <TextBlock Text="{x:Bind Key}" 
-                                       Style="{ThemeResource TitleTextBlockStyle}"/>
+                                <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="{x:Bind Key}" />
                             </DataTemplate>
                         </GroupStyle.HeaderTemplate>
                     </GroupStyle>

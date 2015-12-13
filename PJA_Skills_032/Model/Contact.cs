@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Parse;
 
 namespace PJA_Skills_032.Model
 {
@@ -41,16 +42,22 @@ namespace PJA_Skills_032.Model
         {
             get
             {
-                return lastName;
+                //return lastName;
+                return BackingObject.ContainsKey("FirstName") ? BackingObject.Get<string>("FirstName") : null;
+
             }
             set
             {
-                lastName = value;
-                initials = string.Empty; // force to recalculate the value 
-                name = string.Empty; // force to recalculate the value 
+                //lastName = value;
+                //initials = string.Empty; // force to recalculate the value 
+                //name = string.Empty; // force to recalculate the value 
+                BackingObject["FirstName"] = value;
             }
         }
         private string firstName;
+        private ParseObject item;
+        private readonly ParseObject BackingObject;
+
         public string FirstName
         {
             get
@@ -64,7 +71,21 @@ namespace PJA_Skills_032.Model
                 name = string.Empty; // force to recalculate the value 
             }
         }
-        public string Position { get; set; }
+
+        public string Position
+        {
+            get
+            {
+                return BackingObject.ContainsKey("Faculty") ? BackingObject.Get<string>("Faculty") : null;
+
+            }
+            set
+            {
+                BackingObject["Faculty"] = value;
+
+            }
+        }
+
         public string PhoneNumber { get; set; }
         public string Biography { get; set; }
         #endregion
@@ -80,6 +101,13 @@ namespace PJA_Skills_032.Model
             Biography = biography;
         }
 
+        //Skills constructor:
+        public Contact(string lastName, string position)
+        {
+            this.lastName = lastName;
+            Position = position;
+        }
+
         public Contact()
         {
             // default values for each property.
@@ -90,6 +118,15 @@ namespace PJA_Skills_032.Model
             Position = string.Empty;
             PhoneNumber = string.Empty;
             Biography = string.Empty;
+        }
+
+        public Contact(ParseObject backingObject)
+        {
+            //if (backingObject.ClassName != ClassName)
+            //{
+            //    throw new ArgumentException("Must create TodoItems with the proper ClassName");
+            //}
+            this.BackingObject = backingObject;
         }
 
         #region Public Methods
@@ -136,6 +173,8 @@ namespace PJA_Skills_032.Model
 
             return groups;
         }
+
+
         #endregion
 
         #region Helpers

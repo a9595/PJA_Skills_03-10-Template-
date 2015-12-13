@@ -6,6 +6,7 @@ using Windows.Phone.UI.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+using Parse;
 
 namespace PJA_Skills_032
 {
@@ -14,6 +15,7 @@ namespace PJA_Skills_032
     /// </summary>
     sealed partial class App : Application
     {
+        private string _api_key_parse = "api_key";
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -22,6 +24,10 @@ namespace PJA_Skills_032
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            // Parse.com: 
+            ParseClient.Initialize("URh5AXPg6WxCoJxcb73ILKsj7QNlQK528u00lANx", "tZ3qNCJsCzMn7Zpd0XI7ztSq1NjCOyQK2gLLPPQm");
+
         }
 
         /// <summary>
@@ -43,7 +49,8 @@ namespace PJA_Skills_032
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
-            if (shell == null) {
+            if (shell == null)
+            {
                 // Create a Shell which navigates to the first page
                 shell = new Shell();
 
@@ -51,7 +58,8 @@ namespace PJA_Skills_032
                 shell.RootFrame.NavigationFailed += OnNavigationFailed;
                 shell.RootFrame.Navigated += OnNavigated;
 
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated) {
+                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                {
                     //TODO: Load state from previously suspended application
                 }
 
@@ -61,7 +69,8 @@ namespace PJA_Skills_032
                 // listen for back button clicks (both soft- and hardware)
                 SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
 
-                if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons")) {
+                if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+                {
                     HardwareButtons.BackPressed += OnBackPressed;
                 }
 
@@ -76,7 +85,8 @@ namespace PJA_Skills_032
         void OnBackPressed(object sender, BackPressedEventArgs e)
         {
             var shell = (Shell)Window.Current.Content;
-            if (shell.RootFrame.CanGoBack) {
+            if (shell.RootFrame.CanGoBack)
+            {
                 e.Handled = true;
                 shell.RootFrame.GoBack();
             }
@@ -86,7 +96,8 @@ namespace PJA_Skills_032
         void OnBackRequested(object sender, BackRequestedEventArgs e)
         {
             var shell = (Shell)Window.Current.Content;
-            if (shell.RootFrame.CanGoBack) {
+            if (shell.RootFrame.CanGoBack)
+            {
                 e.Handled = true;
                 shell.RootFrame.GoBack();
             }
@@ -126,7 +137,8 @@ namespace PJA_Skills_032
             var shell = (Shell)Window.Current.Content;
 
             var visibility = AppViewBackButtonVisibility.Collapsed;
-            if (shell.RootFrame.CanGoBack) {
+            if (shell.RootFrame.CanGoBack)
+            {
                 visibility = AppViewBackButtonVisibility.Visible;
             }
 
