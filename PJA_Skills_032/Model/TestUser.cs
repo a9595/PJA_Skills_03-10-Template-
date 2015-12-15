@@ -11,7 +11,7 @@ namespace PJA_Skills_032.Model
     {
         #region property
         private readonly ParseObject _backingObject;
-        public List<Skill> SkillWantToLearn { get; set; }
+        public List<Skill> SkillsWantToLearn { get; set; }
 
         public string Name
         {
@@ -39,6 +39,11 @@ namespace PJA_Skills_032.Model
         public TestUser(ParseObject backingParseObject)
         {
             this._backingObject = backingParseObject;
+
+            //TODO: mock
+            this.SkillsWantToLearn = new List<Skill>();
+            this.SkillsWantToLearn.Add(new Skill("WKD"));
+            this.SkillsWantToLearn.Add(new Skill("PRM"));
         }
 
 

@@ -59,6 +59,7 @@
                 <!--  HORIZONTAL LIST VIEW LEARN  -->
                 <ListBox x:Name="SkillsWantToLearn"
                          ItemContainerStyle="{StaticResource HomeUserSkillHorizontallPanel}"
+                         ItemsSource="{x:Bind SkillsWantToLearn}"
                          RelativePanel.AlignTopWith="iconToLearn"
                          RelativePanel.RightOf="iconToLearn"
                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
@@ -166,25 +167,7 @@
 
             <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Home Page" />
 
-            <GridView ItemTemplate="{StaticResource ContactGridViewTemplate}" ItemsSource="{x:Bind ViewModel.Users}">
-                <!--<GridView.Items>
-                    <data:Contact FirstName="sdfsdf">
-
-                    </data:Contact>
-                    <data:Contact FirstName="sdfsdf">
-
-                    </data:Contact>
-                </GridView.Items>-->
-                <!--<GridView.GroupStyle>
-                    <GroupStyle>
-                        <GroupStyle.HeaderTemplate>
-                            <DataTemplate x:DataType="data:GroupInfoList">
-                                <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="{x:Bind Key}" />
-                            </DataTemplate>
-                        </GroupStyle.HeaderTemplate>
-                    </GroupStyle>
-                </GridView.GroupStyle>-->
-            </GridView>
+            <GridView ItemTemplate="{StaticResource ContactGridViewTemplate}" ItemsSource="{x:Bind ViewModel.Users}" />
 
         </StackPanel>
     </ScrollViewer>
