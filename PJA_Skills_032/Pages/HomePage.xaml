@@ -8,7 +8,9 @@
       xmlns:imedia="using:Microsoft.Xaml.Interactions.Media"
       xmlns:local="using:PJA_Skills_032"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:pages="using:PJA_Skills_032.Pages"
       Loaded="HomePage_OnLoaded"
+      d:DataContext="{d:DesignInstance pages:HomePage}"
       mc:Ignorable="d">
 
 
@@ -17,7 +19,7 @@
             Use a collection view source for content that presents itself as a list of items that can be grouped or sorted.  Otherwise, you can use x:Bind
             directly on the GridView's item source to for further optimization. Please see the AppUIBasics sample for an example of how to do this.
         -->
-        <CollectionViewSource x:Name="ContactsCVS" IsSourceGrouped="True" />
+        <!--<CollectionViewSource x:Name="ContactsCVS" IsSourceGrouped="True" />-->
 
         <!--  ANIMATION  -->
         <Storyboard x:Name="RotationStoryboard" RepeatBehavior="Forever">
@@ -159,6 +161,9 @@
 
     <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
         <StackPanel Orientation="Vertical">
+
+            <pages:HomeUserCard Label="Width:" Value="{x:Bind ViewModel.Width}" />
+
             <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Home Page" />
 
             <GridView ItemTemplate="{StaticResource ContactGridViewTemplate}" ItemsSource="{x:Bind ViewModel.Users}">

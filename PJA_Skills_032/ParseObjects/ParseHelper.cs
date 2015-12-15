@@ -9,6 +9,9 @@ namespace PJA_Skills_032.ParseObjects
 {
     class ParseHelper
     {
+        public static readonly string OBJECT_TEST_USER = "TestUser";
+
+
         private async Task GetGameScore()
         {
             ParseQuery<ParseObject> query = ParseObject.GetQuery("GameScore");

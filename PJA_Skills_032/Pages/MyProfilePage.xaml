@@ -1,100 +1,178 @@
-﻿<Page
-    x:Class="PJA_Skills_032.Pages.MyProfilePage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:PJA_Skills_032.Pages"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Loaded="OnLoaded" >
-    <Page.BottomAppBar >
+﻿<Page x:Class="PJA_Skills_032.Pages.MyProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:PJA_Skills_032.Pages"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      Loaded="OnLoaded"
+      mc:Ignorable="d">
+    <Page.BottomAppBar>
         <CommandBar Foreground="White">
             <CommandBar.Background>
-                <SolidColorBrush Color="{StaticResource app_bar_red}"/>
+                <SolidColorBrush Color="{StaticResource app_bar_red}" />
             </CommandBar.Background>
-            <AppBarButton x:Name="AppBarButtonEdit" Label="Edit" Icon="Edit" Foreground="White" />
+            <AppBarButton x:Name="AppBarButtonEdit"
+                          Foreground="White"
+                          Icon="Edit"
+                          Label="Edit" />
         </CommandBar>
     </Page.BottomAppBar>
 
 
 
-    <ScrollViewer Style="{StaticResource PageScrollViewerStyle}" Grid.RowSpan="2">
-        <Grid Height="630" Margin="0" Padding="0,0,0,50">
+    <ScrollViewer Grid.RowSpan="2" Style="{StaticResource PageScrollViewerStyle}">
+
+        <Grid Height="630"
+              Margin="0"
+              Padding="0,0,0,50">
             <Grid.RowDefinitions>
-                <RowDefinition Height="80*"/>
-                <RowDefinition Height="66*"/>
-                <RowDefinition Height="167*"/>
-                <RowDefinition Height="168*"/>
-                <RowDefinition Height="168*"/>
+                <RowDefinition Height="80*" />
+                <RowDefinition Height="66*" />
+                <RowDefinition Height="167*" />
+                <RowDefinition Height="168*" />
+                <RowDefinition Height="168*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
 
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <TextBlock x:Name="UserName" Text="Andrii Kovalchuk" Style="{StaticResource TitleTextBlockStyle}" Margin="15,0,0,31.333" Height="30" VerticalAlignment="Bottom" FontWeight="Bold" />
-            <Image x:Name="image" Grid.Column="1" Margin="10" Source="ms-appx:///Assets/LockScreenLogo.png"/>
-            <TextBlock x:Name="UserFaculty" Text="Informatyka" Style="{StaticResource TitleTextBlockStyle}" Margin="15,40,0,0" Height="30" VerticalAlignment="Top" FontSize="12" FontStyle="Italic"  >
+            <TextBlock x:Name="UserName"
+                       Height="30"
+                       Margin="15,0,0,31.333"
+                       VerticalAlignment="Bottom"
+                       FontWeight="Bold"
+                       Style="{StaticResource TitleTextBlockStyle}"
+                       Text="Andrii Kovalchuk" />
+            <TextBlock x:Name="UserFaculty"
+                       Height="30"
+                       Margin="15,40,0,0"
+                       VerticalAlignment="Top"
+                       FontSize="12"
+                       FontStyle="Italic"
+                       Style="{StaticResource TitleTextBlockStyle}"
+                       Text="Informatyka">
                 <TextBlock.Foreground>
-                    <SolidColorBrush Color="{StaticResource app_bar_red}"/>
+                    <SolidColorBrush Color="{StaticResource app_bar_red}" />
                 </TextBlock.Foreground>
             </TextBlock>
 
-            <!--SOCIAL-->
-            <StackPanel x:Name="StackPanelSocial" Grid.ColumnSpan="2" Style="{StaticResource ProfileCard}" Orientation="Horizontal" Margin="4,71,6,15.333" Grid.RowSpan="2" >
-                <Button x:Name="FacebookBtn" Content="F" HorizontalAlignment="Left" Margin="10,5,0,5" VerticalAlignment="Stretch" Width="57" Background="#FF3B5998" Foreground="White"/>
-                <Button x:Name="GplusBtn" Content="G+" HorizontalAlignment="Left" Margin="10,5,0,5" VerticalAlignment="Stretch" Width="61" Background="#FFDD4B39" Foreground="White"/>
-                <Button x:Name="SkypeBtn" Content="S" HorizontalAlignment="Left" Margin="10,5,0,5" VerticalAlignment="Stretch" Width="61" Background="#FF12A5F4" Foreground="White"/>
-                <Button x:Name="button_Copy2" Content="F" HorizontalAlignment="Left" Margin="10,6,0,6" VerticalAlignment="Stretch" Width="55" Background="#FF3B5998" Foreground="White"/>
+            <!--  SOCIAL  -->
+            <StackPanel x:Name="StackPanelSocial"
+                        Grid.RowSpan="2"
+                        Grid.ColumnSpan="2"
+                        Margin="4,71,6,15.333"
+                        Orientation="Horizontal"
+                        Style="{StaticResource ProfileCard}">
+                <Button x:Name="FacebookBtn"
+                        Width="57"
+                        Margin="10,5,0,5"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Stretch"
+                        Background="#FF3B5998"
+                        Content="F"
+                        Foreground="White" />
+                <Button x:Name="GplusBtn"
+                        Width="61"
+                        Margin="10,5,0,5"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Stretch"
+                        Background="#FFDD4B39"
+                        Content="G+"
+                        Foreground="White" />
+                <Button x:Name="SkypeBtn"
+                        Width="61"
+                        Margin="10,5,0,5"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Stretch"
+                        Background="#FF12A5F4"
+                        Content="S"
+                        Foreground="White" />
+                <Button x:Name="button_Copy2"
+                        Width="55"
+                        Margin="10,6,0,6"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Stretch"
+                        Background="#FF3B5998"
+                        Content="F"
+                        Foreground="White" />
             </StackPanel>
+            <Image x:Name="image"
+                   Grid.Column="1"
+                   Margin="10"
+                   Source="ms-appx:///Assets/LockScreenLogo.png" />
 
-            <!--TO LEARN-->
-            <StackPanel x:Name="StackPanelToLearn"  Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ProfileCard}" >
-                <TextBlock x:Name="textBlock2" Style="{StaticResource FlyoutPickerTitleTextBlockStyle}" TextWrapping="Wrap" Text="Want to learn:" Margin="9,3,9,0" Height="21" />
+            <!--  TO LEARN  -->
+            <StackPanel x:Name="StackPanelToLearn"
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        Style="{StaticResource ProfileCard}">
+                <TextBlock x:Name="textBlock2"
+                           Height="21"
+                           Margin="9,3,9,0"
+                           Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
+                           Text="Want to learn:"
+                           TextWrapping="Wrap" />
                 <GridView ItemContainerStyle="{StaticResource GridViewItemSkillStyle}">
 
                     <GridViewItem Content="PRM" />
-                    <GridViewItem Content="PPJ"/>
-                    <GridViewItem Content="PPJ"/>
-                    <GridViewItem Content="PPJ"/>
-                    <GridViewItem Content="PRM"/>
-                    <GridViewItem Content="PRM"/>
-                    <GridViewItem Content="PRM"/>
-                    <GridViewItem Content="PPJ"/>
+                    <GridViewItem Content="PPJ" />
+                    <GridViewItem Content="PPJ" />
+                    <GridViewItem Content="PPJ" />
+                    <GridViewItem Content="PRM" />
+                    <GridViewItem Content="PRM" />
+                    <GridViewItem Content="PRM" />
+                    <GridViewItem Content="PPJ" />
 
                 </GridView>
             </StackPanel>
 
-            <!--TEACH-->
-            <StackPanel x:Name="StackPanelToTeach"  Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ProfileCard}" >
-                <TextBlock x:Name="textBlock1" Style="{StaticResource FlyoutPickerTitleTextBlockStyle}" TextWrapping="Wrap" Text="Want to teach:" Margin="9,3,9,0" Height="21" />
+            <!--  TEACH  -->
+            <StackPanel x:Name="StackPanelToTeach"
+                        Grid.Row="3"
+                        Grid.ColumnSpan="2"
+                        Style="{StaticResource ProfileCard}">
+                <TextBlock x:Name="textBlock1"
+                           Height="21"
+                           Margin="9,3,9,0"
+                           Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
+                           Text="Want to teach:"
+                           TextWrapping="Wrap" />
                 <GridView ItemContainerStyle="{StaticResource GridViewItemSkillStyle}">
 
-                    <GridViewItem Content="PRM"/>
-                    <GridViewItem Content="PPJ"/>
-                    <GridViewItem Content="PPJ"/>
-                    <GridViewItem Content="PPJ"/>
-                    <GridViewItem Content="PRM"/>
-                    <GridViewItem Content="PRM"/>
-                    <GridViewItem Content="PRM"/>
-                    <GridViewItem Content="PPJ"/>
+                    <GridViewItem Content="PRM" />
+                    <GridViewItem Content="PPJ" />
+                    <GridViewItem Content="PPJ" />
+                    <GridViewItem Content="PPJ" />
+                    <GridViewItem Content="PRM" />
+                    <GridViewItem Content="PRM" />
+                    <GridViewItem Content="PRM" />
+                    <GridViewItem Content="PPJ" />
 
                 </GridView>
             </StackPanel>
 
-            <!--KORKING-->
-            <StackPanel x:Name="StackPanelToKorking"  Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ProfileCard}" >
-                <TextBlock x:Name="textBlock3" Style="{StaticResource FlyoutPickerTitleTextBlockStyle}" TextWrapping="Wrap" Text="Want to provide korking:" Margin="9,3,9,0" Height="21" />
+            <!--  KORKING  -->
+            <StackPanel x:Name="StackPanelToKorking"
+                        Grid.Row="4"
+                        Grid.ColumnSpan="2"
+                        Style="{StaticResource ProfileCard}">
+                <TextBlock x:Name="textBlock3"
+                           Height="21"
+                           Margin="9,3,9,0"
+                           Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
+                           Text="Want to provide korking:"
+                           TextWrapping="Wrap" />
                 <GridView ItemContainerStyle="{StaticResource GridViewItemSkillStyle}">
 
-                    <GridViewItem Content="PRM"/>
-                    <GridViewItem Content="PPJ"/>
-                    <GridViewItem Content="PPJ"/>
-                    <GridViewItem Content="PPJ"/>
-                    <GridViewItem Content="PRM"/>
-                    <GridViewItem Content="PRM"/>
-                    <GridViewItem Content="PRM"/>
-                    <GridViewItem Content="PPJ"/>
+                    <GridViewItem Content="PRM" />
+                    <GridViewItem Content="PPJ" />
+                    <GridViewItem Content="PPJ" />
+                    <GridViewItem Content="PPJ" />
+                    <GridViewItem Content="PRM" />
+                    <GridViewItem Content="PRM" />
+                    <GridViewItem Content="PRM" />
+                    <GridViewItem Content="PPJ" />
 
                 </GridView>
             </StackPanel>

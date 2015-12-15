@@ -11,6 +11,7 @@ namespace PJA_Skills_032.Model
     {
         #region property
         private readonly ParseObject _backingObject;
+        public List<Skill> SkillWantToLearn { get; set; }
 
         public string Name
         {
