@@ -56,7 +56,7 @@ namespace PJA_Skills_032.Model
         }
         private string firstName;
         private ParseObject item;
-        private readonly ParseObject BackingObject;
+        private readonly PasreObject BackingObject;
 
         public string FirstName
         {

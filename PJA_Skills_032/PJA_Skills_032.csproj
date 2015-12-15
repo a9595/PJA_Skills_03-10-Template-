@@ -96,9 +96,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Contact.cs" />
-    <Compile Include="Model\Contacts.cs" />
-    <Compile Include="Model\GroupInfoList.cs" />
+    <Compile Include="Model\TestUser.cs" />
     <Compile Include="Pages\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
@@ -127,6 +125,7 @@
     <Compile Include="Presentation\NotifyPropertyChanged.cs" />
     <Compile Include="Presentation\ObjectToMenuItemConverter.cs" />
     <Compile Include="Presentation\ShellViewModel.cs" />
+    <Compile Include="ViewModel\HomeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

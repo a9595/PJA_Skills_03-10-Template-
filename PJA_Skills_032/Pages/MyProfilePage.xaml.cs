@@ -15,7 +15,7 @@ namespace PJA_Skills_032.Pages
         {
             this.InitializeComponent();
 
-            Contacts.GetAllContacts();
+            //Contacts.GetAllContacts();
         }
 
         private async Task GetGameScore()
