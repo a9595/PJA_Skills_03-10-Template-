@@ -9,7 +9,16 @@ namespace PJA_Skills_032.ParseObjects
 {
     class ParseHelper
     {
+        //USER:
         public static readonly string OBJECT_TEST_USER = "TestUser";
+        public static readonly string OBJECT_TEST_USER_SKILLS_WANT_TO_LEARN = "SkillsWantToLearn2";
+        //SKILL:
+        public static readonly string OBJECT_SKILL_NAME = "Name";
+        public static readonly string OBJECT_SKILL = "Skill";
+
+        // General:
+        public static readonly string OBJECT_ID = "ObjectId";
+
 
 
         private async Task GetGameScore()

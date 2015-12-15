@@ -1,9 +1,13 @@
 ﻿using PJA_Skills_032.Model;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Parse;
+using PJA_Skills_032.ParseObjects;
 using PJA_Skills_032.ViewModel;
 
 namespace PJA_Skills_032.Pages
@@ -24,31 +28,79 @@ namespace PJA_Skills_032.Pages
 
         private static async System.Threading.Tasks.Task CreatePost()
         {
-            // Create the post
-            var myPost = new ParseObject("Post")
-                {
-                    { "title", "I'm Hungry" },
-                    { "content", "Where should we go for lunch?" }
-                };
+            //// Create the post
+            //var myPost = new ParseObject("Post")
+            //    {
+            //        { "title", "I'm Hungry" },
+            //        { "content", "Where should we go for lunch?" }
+            //    };
 
             // Create the comment
+
+
             var myComment = new ParseObject("Comment")
                 {
-                    { "content", "Let's do Sushirrito." }
+                    { "content2", "Let's do Sushirrito.2" }
                 };
 
             // Add a relation between the Post and Comment
-            myComment["parent"] = myPost;
+            myComment["parent"] = ParseObject.CreateWithoutData("Post", "2dNK5eAIRG");
 
             // This will save both myPost and myComment
             await myComment.SaveAsync();
+        }
+
+        private async Task GetAnia()
+        {
+            // Get Ania Object:
+            var query = ParseObject.GetQuery(ParseHelper.OBJECT_TEST_USER);
+
+            ParseObject aniaParseObject = await query.GetAsync("W6kqOxRH85");
+            TestUser aniaUserObject = new TestUser(aniaParseObject);
+
+
+
+            //// Create a skill:
+            //var aniaSkillEnglish = new ParseObject(ParseHelper.OBJECT_SKILL)
+            //{
+            //    { ParseHelper.OBJECT_SKILL_NAME, "English" }
+            //};
+            //var aniaSkillHTA = new ParseObject(ParseHelper.OBJECT_SKILL)
+            //{
+            //    { ParseHelper.OBJECT_SKILL_NAME, "HTA" }
+            //};
+
+            // Get skills:
+            //ParseObject skillHTA = await ParseObject.GetQuery(ParseHelper.OBJECT_SKILL).WhereEqualTo(ParseHelper.OBJECT_ID, "mP0HQcXTIj").FirstAsync();
+            //ParseObject skillEnglish = await ParseObject.GetQuery(ParseHelper.OBJECT_SKILL).WhereEqualTo(ParseHelper.OBJECT_ID, "NampQ2zYFo").FirstAsync();
+            ParseObject skillEnglish = await ParseObject.GetQuery(ParseHelper.OBJECT_SKILL).GetAsync("NampQ2zYFo");
+            ParseObject skillHTA = await ParseObject.GetQuery(ParseHelper.OBJECT_SKILL).GetAsync("mP0HQcXTIj");
+
+            // Get SkillWantToLearn realation:
+            ParseRelation<ParseObject> relation = aniaParseObject.GetRelation<ParseObject>("SkillsWantToLearn2");
+            IEnumerable<ParseObject> aniaSkills = await relation.Query.FindAsync();
+
+            //// Save skills to parse:
+            //await skillEnglish.SaveAsync();
+            //await skillHTA.SaveAsync();
+
+            // Add skills to Ania:
+            relation.Add(skillEnglish);
+            relation.Add(skillHTA);
+
+            // Save Ania
+            //await aniaParseObject.FetchAsync();
+            await aniaParseObject.SaveAsync();
+
         }
 
         private async void HomePage_OnLoaded(object sender, RoutedEventArgs e)
         {
             await ViewModel.AddDownloadedUsers(); // set downloaded users to viewModel
 
-            await CreatePost();
+            //await CreatePost();
+
+            await GetAnia();
         }
     }
 }

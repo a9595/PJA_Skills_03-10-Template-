@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Parse;
+using PJA_Skills_032.ParseObjects;
 
 namespace PJA_Skills_032.Model
 {
@@ -11,7 +12,16 @@ namespace PJA_Skills_032.Model
     {
         #region property
         private readonly ParseObject _backingObject;
-        public List<Skill> SkillsWantToLearn { get; set; }
+        public List<Skill> SkillsWantToLearn
+        {
+            get
+            {
+                return _backingObject != null && _backingObject.ContainsKey(ParseHelper.OBJECT_TEST_USER_SKILLS_WANT_TO_LEARN)
+                    ? _backingObject.Get<List<Skill>>(ParseHelper.OBJECT_TEST_USER_SKILLS_WANT_TO_LEARN)
+                    : null;
+            }
+            set { if (_backingObject != null) _backingObject[ParseHelper.OBJECT_TEST_USER_SKILLS_WANT_TO_LEARN] = value; }
+        }
 
         public string Name
         {
