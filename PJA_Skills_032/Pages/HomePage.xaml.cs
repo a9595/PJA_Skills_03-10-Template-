@@ -19,6 +19,9 @@ namespace PJA_Skills_032.Pages
     {
         //private ObservableCollection<GroupInfoList> source;
         public HomeViewModel ViewModel { get; set; }
+
+        #region page events
+
         public HomePage()
         {
             this.InitializeComponent();
@@ -26,7 +29,22 @@ namespace PJA_Skills_032.Pages
 
         }
 
-        private static async System.Threading.Tasks.Task CreatePost()
+        private async void HomePage_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            await ViewModel.AddDownloadedUsers(); // set downloaded users to viewModel
+
+            //await CreatePost();
+
+            //await GetAnia();
+
+            await CreateBook();
+        }
+
+        #endregion
+
+        #region methods
+
+        private static async Task CreatePost()
         {
             //// Create the post
             //var myPost = new ParseObject("Post")
@@ -39,15 +57,40 @@ namespace PJA_Skills_032.Pages
 
 
             var myComment = new ParseObject("Comment")
-                {
-                    { "content2", "Let's do Sushirrito.2" }
-                };
+            {
+                {"content2", "Let's do Sushirrito.2"}
+            };
 
             // Add a relation between the Post and Comment
             myComment["parent"] = ParseObject.CreateWithoutData("Post", "2dNK5eAIRG");
 
             // This will save both myPost and myComment
             await myComment.SaveAsync();
+
+        }
+
+        private async Task CreateBook()
+        {
+
+            // now we create a book object
+            //var book = new ParseObject("Book");
+            var bookQuery = ParseObject.GetQuery("TestUser");
+            var book = await bookQuery.GetAsync("AX1ADmYAMy"); // get bill gates object (TestUser)
+
+            //ParseObject skillEnglish = await ParseObject.GetQuery(ParseHelper.OBJECT_SKILL).GetAsync("NampQ2zYFo");
+            //ParseObject skillHTA = await ParseObject.GetQuery(ParseHelper.OBJECT_SKILL).GetAsync("mP0HQcXTIj");
+            ParseObject skillWriting = await ParseObject.GetQuery(ParseHelper.OBJECT_SKILL).GetAsync("Y5Y7vXHbdz");
+
+            // now let’s associate the authors with the book
+            // remember, we created a "authors" relation on Book
+            var relation = book.GetRelation<ParseObject>("SkillsWantToLearn2");
+            //relation.Add(skillEnglish);
+            //relation.Add(skillHTA);
+            relation.Add(skillWriting);
+            //relation.Add(authorThree;)
+
+            // now save the book object
+            await book.SaveAsync();
         }
 
         private async Task GetAnia()
@@ -94,13 +137,9 @@ namespace PJA_Skills_032.Pages
 
         }
 
-        private async void HomePage_OnLoaded(object sender, RoutedEventArgs e)
-        {
-            await ViewModel.AddDownloadedUsers(); // set downloaded users to viewModel
+        #endregion
 
-            //await CreatePost();
 
-            await GetAnia();
-        }
+
     }
 }
