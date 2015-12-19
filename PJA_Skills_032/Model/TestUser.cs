@@ -52,7 +52,7 @@ namespace PJA_Skills_032.Model
 
             //TODO: mock
             this.SkillsWantToLearn = new List<Skill>();
-            this.SkillsWantToLearn.Add(new Skill("WKD"));
+            //this.SkillsWantToLearn.Add(new Skill("WKD"));
             //this.SkillsWantToLearn.Add(new Skill("PRM"));
         }
 

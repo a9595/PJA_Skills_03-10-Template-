@@ -65,15 +65,22 @@ namespace PJA_Skills_032.ViewModel
             var downloadedUsers = await GetAllContacts();
             foreach (var user in downloadedUsers)
             {
+                await user.GetSkillsL();
                 Users.Add(user);
 
             }
 
-            // Get relations
+            //// Get relations
             //foreach (TestUser user in Users)
             //{
             //    await user.GetSkillsL();
             //}
+
+            //TestUser billGates = Users.First();
+            //List<Skill> skillsWantToLearn = billGates.SkillsWantToLearn;
+            //await billGates.GetSkillsL();
+            //List<Skill> skillsWantToLearnDownloaded = billGates.SkillsWantToLearn;
+
         }
 
 

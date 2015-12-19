@@ -32,7 +32,7 @@
         <!--  When using x:Bind, you need to set x:DataType  -->
         <DataTemplate x:Key="SkillLearnListViewTemplate" x:DataType="data:Skill">
             <StackPanel>
-                <TextBlock Text="{x:Bind Name}"></TextBlock>
+                <TextBlock Text="{x:Bind Name}" />
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Name="ContactGridViewTemplate" x:DataType="data:TestUser">
@@ -45,7 +45,7 @@
                            Margin="4,4,0,4"
                            RelativePanel.RightOf="userImage"
                            Style="{ThemeResource BodyTextBlockStyle}"
-                           Text="{x:Bind Name}" />
+                           Text="{x:Bind Name, Mode=OneWay}" />
                 <TextBlock x:Name="userPosition"
                            Margin="4,4,0,4"
                            FontSize="12"
@@ -53,7 +53,7 @@
                            RelativePanel.AlignLeftWith="userName"
                            RelativePanel.Below="userName"
                            Style="{ThemeResource BodyTextBlockStyle}"
-                           Text="{x:Bind Faculty}" />
+                           Text="{x:Bind Faculty, Mode=OneWay}" />
 
                 <TextBlock x:Name="iconToLearn"
                            Margin="10,20,5,0"
@@ -64,8 +64,8 @@
                 <!--  HORIZONTAL LIST VIEW LEARN  -->
                 <ListBox x:Name="SkillsWantToLearn"
                          ItemContainerStyle="{StaticResource HomeUserSkillHorizontallPanel}"
-                         ItemsSource="{x:Bind SkillsWantToLearn}"
                          ItemTemplate="{StaticResource SkillLearnListViewTemplate}"
+                         ItemsSource="{x:Bind SkillsWantToLearn}"
                          RelativePanel.AlignTopWith="iconToLearn"
                          RelativePanel.RightOf="iconToLearn"
                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
@@ -89,7 +89,7 @@
                     <ListBoxItem>PPJ</ListBoxItem>
                 </ListBox>
 
-
+                <!--  TEACH  -->
                 <TextBlock x:Name="iconToTeach"
                            Margin="10,20,5,0"
                            FontFamily="Segoe MDL2 Assets"

@@ -7,15 +7,15 @@ namespace PJA_Skills_032.Model
     {
         private ParseObject _backingObject;
 
-        //public string Name
-        //{
-        //    get
-        //    {
-        //        return _backingObject != null && _backingObject.ContainsKey("Name") ? _backingObject.Get<string>("Name") : null;
-        //    }
-        //    set { if (_backingObject != null) _backingObject["Name"] = value; }
-        //}
-        public string Name { get; set; }
+        public string Name
+        {
+            get
+            {
+                return _backingObject != null && _backingObject.ContainsKey("Name") ? _backingObject.Get<string>("Name") : null;
+            }
+            set { if (_backingObject != null) _backingObject["Name"] = value; }
+        }
+        //public string Name { get; set; }
 
 
         public Skill(ParseObject backingParseObject)
