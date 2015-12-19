@@ -9,30 +9,27 @@ namespace PJA_Skills_032.ParseObjects
 {
     class ParseHelper
     {
+
+        #region filed
+
         //USER:
         public static readonly string OBJECT_TEST_USER = "TestUser";
         public static readonly string OBJECT_TEST_USER_NAME = "Name";
+        public static readonly string OBJECT_TEST_USER_FACULTY = "Faculty";
         public static readonly string OBJECT_TEST_USER_SKILLS_WANT_TO_LEARN = "SkillsWantToLearn2";
+
 
         //SKILL:
         public static readonly string OBJECT_SKILL_NAME = "Name";
         public static readonly string OBJECT_SKILL = "Skill";
 
         // General:
+
+
         public static readonly string OBJECT_ID = "ObjectId";
+        #endregion
 
-
-
-        private async Task GetGameScore()
-        {
-            ParseQuery<ParseObject> query = ParseObject.GetQuery("GameScore");
-            ParseObject gameScore = await query.GetAsync("6VzYvXc73i");
-
-            int score = gameScore.Get<int>("score");
-            string playerName = gameScore.Get<string>("playerName");
-            //bool cheatMode = gameScore.Get<bool>("cheatMode");
-        }
-
+        #region method
         public static string GetParseObject(string parseObjectKey, ParseObject backingObject)
         {
             return backingObject != null
@@ -46,5 +43,6 @@ namespace PJA_Skills_032.ParseObjects
                    && backingObject.ContainsKey(parseObjectKey))
                 backingObject[parseObjectKey] = value;
         }
+        #endregion
     }
 }

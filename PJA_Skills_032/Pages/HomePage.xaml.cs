@@ -32,7 +32,7 @@ namespace PJA_Skills_032.Pages
 
         private async void HomePage_OnLoaded(object sender, RoutedEventArgs e)
         {
-            await ViewModel.AddDownloadedUsers(); // set downloaded users to viewModel
+            await ViewModel.DownloadUsers(); // set downloaded users to viewModel
 
             //await CreatePost();
 

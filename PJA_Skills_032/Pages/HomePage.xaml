@@ -31,7 +31,7 @@
         <!--  #region DataTemplate  -->
         <!--  When using x:Bind, you need to set x:DataType  -->
         <DataTemplate x:Key="SkillLearnListViewTemplate" x:DataType="data:Skill">
-            <StackPanel>
+            <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{x:Bind Name}" />
             </StackPanel>
         </DataTemplate>
@@ -98,6 +98,7 @@
                 <ListBox x:Name="SkillsWantToTeach"
                          Margin="0,10,0,0"
                          ItemContainerStyle="{StaticResource HomeUserSkillHorizontallPanel}"
+                         ItemsSource="{x:Bind SkillsWantToTeach}"
                          RelativePanel.AlignTopWith="iconToTeach"
                          RelativePanel.RightOf="iconToTeach"
                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"

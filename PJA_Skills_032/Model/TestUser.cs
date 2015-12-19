@@ -14,6 +14,7 @@ namespace PJA_Skills_032.Model
         #region property
         private readonly ParseObject _backingObject;
         public List<Skill> SkillsWantToLearn { get; set; }
+        public List<Skill> SkillsWantToTeach { get; set; }
 
         public string Name
         {
@@ -37,8 +38,14 @@ namespace PJA_Skills_032.Model
 
         public string Faculty
         {
-            get { return BackingObject != null && BackingObject.ContainsKey("Faculty") ? BackingObject.Get<string>("Faculty") : null; }
-            set { if (BackingObject != null) BackingObject["Faculty"] = value; }
+            get
+            {
+                return ParseHelper.GetParseObject(ParseHelper.OBJECT_TEST_USER_FACULTY, _backingObject);
+            }
+            set
+            {
+                ParseHelper.SetParseObject(ParseHelper.OBJECT_TEST_USER_FACULTY, _backingObject, value);
+            }
             //get; set;
         }
 

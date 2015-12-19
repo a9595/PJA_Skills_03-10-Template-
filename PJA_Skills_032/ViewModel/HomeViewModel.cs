@@ -34,40 +34,44 @@ namespace PJA_Skills_032.ViewModel
         }
 
         #region methods
-        public async Task<ObservableCollection<TestUser>> GetAllContacts()
+        //public async Task<ObservableCollection<TestUser>> GetAllUsers()
+        //{
+        //    var allItems = await GetUsersParseObject();
+        //    var itemList = new ObservableCollection<TestUser>(allItems);
+
+        //    return itemList;
+        //}
+
+
+        /// <summary>
+        /// download ParseObject of all users
+        /// </summary>
+        /// <returns></returns>
+        private async Task<ObservableCollection<TestUser>> GetAllUsers()
         {
-            var allItems = await GetUsersParseObject();
+            ParseQuery<ParseObject> query = from item in ParseObject.GetQuery(ParseHelper.OBJECT_TEST_USER)
+                                            orderby item.CreatedAt
+                                            select item;
+
+            IEnumerable<TestUser> allItems = from item in await query.FindAsync()
+                                             select new TestUser(item);
+
             var itemList = new ObservableCollection<TestUser>(allItems);
-
-
             return itemList;
         }
 
-        private async Task<IEnumerable<TestUser>> GetUsersParseObject()
+
+        /// <summary>
+        /// Add users to list after downloading
+        /// </summary>
+        /// <returns></returns>
+        public async Task DownloadUsers()
         {
-            ParseQuery<ParseObject> query2 = ParseObject.GetQuery(ParseHelper.OBJECT_TEST_USER);
-            var findAsync = query2.FindAsync();
-            //ParseQuery<ParseObject> whereExists = query2.WhereExists("objectId");
-
-            var query = from item in ParseObject.GetQuery(ParseHelper.OBJECT_TEST_USER)
-                        orderby item.CreatedAt
-                        select item;
-
-
-            var allItems = from item in await query.FindAsync()
-                           select new TestUser(item);
-            return allItems;
-        }
-
-
-        public async Task AddDownloadedUsers()
-        {
-            var downloadedUsers = await GetAllContacts();
+            var downloadedUsers = await GetAllUsers();
             foreach (var user in downloadedUsers)
             {
-                await user.GetSkillsL();
+                await user.GetSkillsL(); // get skills relationship items
                 Users.Add(user);
-
             }
         }
 
