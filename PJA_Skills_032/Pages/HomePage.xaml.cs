@@ -1,5 +1,6 @@
 ﻿using PJA_Skills_032.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -37,12 +38,53 @@ namespace PJA_Skills_032.Pages
 
             //await GetAnia();
 
-            await CreateBook();
+            //await CreateBook();
+
+            //foreach (TestUser testUser in ViewModel.Users)
+            //{
+            //    // Get each user
+            //    var user = testUser;
+            //    var skillWantToLearn = user.SkillsWantToLearn;
+            //    var relation = user.BackingObject.GetRelation<ParseObject>(ParseHelper.OBJECT_TEST_USER_SKILLS_WANT_TO_LEARN);
+            //    var querySkills = relation.Query;
+
+            //    var queryLinq = from item in await querySkills.FindAsync()
+            //                    select new Skill(item);
+            //    // Get Skills want to learn 
+            //    var skillsCollection = new ObservableCollection<Skill>(queryLinq);
+
+            //    int count = skillsCollection.Count;
+            //}
+
+
         }
 
         #endregion
 
         #region methods
+        private async Task CreateBook()
+        {
+
+            // now we create a book object
+            //var book = new ParseObject("Book");
+            var bookQuery = ParseObject.GetQuery("TestUser");
+            var book = await bookQuery.GetAsync("AX1ADmYAMy"); // get bill gates object (TestUser)
+
+            //ParseObject skillEnglish = await ParseObject.GetQuery(ParseHelper.OBJECT_SKILL).GetAsync("NampQ2zYFo");
+            //ParseObject skillHTA = await ParseObject.GetQuery(ParseHelper.OBJECT_SKILL).GetAsync("mP0HQcXTIj");
+            ParseObject skillWriting = await ParseObject.GetQuery(ParseHelper.OBJECT_SKILL).GetAsync("Y5Y7vXHbdz");
+
+            // now let’s associate the authors with the book
+            // remember, we created a "authors" relation on Book
+            var relation = book.GetRelation<ParseObject>("SkillsWantToLearn2");
+            //relation.Add(skillEnglish);
+            //relation.Add(skillHTA);
+            relation.Add(skillWriting);
+            //relation.Add(authorThree;)
+
+            // now save the book object
+            await book.SaveAsync();
+        }
 
         private static async Task CreatePost()
         {
@@ -69,29 +111,6 @@ namespace PJA_Skills_032.Pages
 
         }
 
-        private async Task CreateBook()
-        {
-
-            // now we create a book object
-            //var book = new ParseObject("Book");
-            var bookQuery = ParseObject.GetQuery("TestUser");
-            var book = await bookQuery.GetAsync("AX1ADmYAMy"); // get bill gates object (TestUser)
-
-            //ParseObject skillEnglish = await ParseObject.GetQuery(ParseHelper.OBJECT_SKILL).GetAsync("NampQ2zYFo");
-            //ParseObject skillHTA = await ParseObject.GetQuery(ParseHelper.OBJECT_SKILL).GetAsync("mP0HQcXTIj");
-            ParseObject skillWriting = await ParseObject.GetQuery(ParseHelper.OBJECT_SKILL).GetAsync("Y5Y7vXHbdz");
-
-            // now let’s associate the authors with the book
-            // remember, we created a "authors" relation on Book
-            var relation = book.GetRelation<ParseObject>("SkillsWantToLearn2");
-            //relation.Add(skillEnglish);
-            //relation.Add(skillHTA);
-            relation.Add(skillWriting);
-            //relation.Add(authorThree;)
-
-            // now save the book object
-            await book.SaveAsync();
-        }
 
         private async Task GetAnia()
         {

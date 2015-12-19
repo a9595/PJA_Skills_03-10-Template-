@@ -66,9 +66,17 @@ namespace PJA_Skills_032.ViewModel
             foreach (var user in downloadedUsers)
             {
                 Users.Add(user);
+
             }
 
+            // Get relations
+            //foreach (TestUser user in Users)
+            //{
+            //    await user.GetSkillsL();
+            //}
         }
+
+
 
         #endregion
 

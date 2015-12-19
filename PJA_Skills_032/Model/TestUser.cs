@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,33 +13,32 @@ namespace PJA_Skills_032.Model
     {
         #region property
         private readonly ParseObject _backingObject;
-        public List<Skill> SkillsWantToLearn
-        {
-            get
-            {
-                return _backingObject != null && _backingObject.ContainsKey(ParseHelper.OBJECT_TEST_USER_SKILLS_WANT_TO_LEARN)
-                    ? _backingObject.Get<List<Skill>>(ParseHelper.OBJECT_TEST_USER_SKILLS_WANT_TO_LEARN)
-                    : null;
-            }
-            set { if (_backingObject != null) _backingObject[ParseHelper.OBJECT_TEST_USER_SKILLS_WANT_TO_LEARN] = value; }
-        }
+        public List<Skill> SkillsWantToLearn { get; set; }
 
         public string Name
         {
             get
             {
-                return _backingObject != null && _backingObject.ContainsKey("Name") ? _backingObject.Get<string>("Name") : null;
+                return BackingObject != null && BackingObject.ContainsKey("Name") ? BackingObject.Get<string>("Name") : null;
             }
-            set { if (_backingObject != null) _backingObject["Name"] = value; }
+            set { if (BackingObject != null) BackingObject["Name"] = value; }
             //get; set;
         }
 
 
         public string Faculty
         {
-            get { return _backingObject != null && _backingObject.ContainsKey("Faculty") ? _backingObject.Get<string>("Faculty") : null; }
-            set { if (_backingObject != null) _backingObject["Faculty"] = value; }
+            get { return BackingObject != null && BackingObject.ContainsKey("Faculty") ? BackingObject.Get<string>("Faculty") : null; }
+            set { if (BackingObject != null) BackingObject["Faculty"] = value; }
             //get; set;
+        }
+
+        public ParseObject BackingObject
+        {
+            get
+            {
+                return _backingObject;
+            }
         }
 
         #endregion
@@ -53,7 +53,7 @@ namespace PJA_Skills_032.Model
             //TODO: mock
             this.SkillsWantToLearn = new List<Skill>();
             this.SkillsWantToLearn.Add(new Skill("WKD"));
-            this.SkillsWantToLearn.Add(new Skill("PRM"));
+            //this.SkillsWantToLearn.Add(new Skill("PRM"));
         }
 
 
@@ -62,8 +62,25 @@ namespace PJA_Skills_032.Model
             this.Name = name;
             this.Faculty = faculty;
         }
+        #endregion
+
+
+        #region methods
+
+        public async Task GetSkillsL()
+        {
+            var relation = _backingObject.GetRelation<ParseObject>(ParseHelper.OBJECT_TEST_USER_SKILLS_WANT_TO_LEARN);
+            var querySkills = relation.Query;
+
+            var queryLinq = from item in await querySkills.FindAsync()
+                            select new Skill(item);
+            // Get Skills want to learn 
+            var skillsCollection = new List<Skill>(queryLinq);
+            SkillsWantToLearn = skillsCollection;
+        }
 
         #endregion
+
 
     }
 }
