@@ -12,20 +12,13 @@ namespace PJA_Skills_032.Model
         {
             get
             {
-                return _backingObject != null
-                    && _backingObject.ContainsKey(ParseHelper.OBJECT_SKILL_NAME)
-                    ? _backingObject.Get<string>(ParseHelper.OBJECT_SKILL_NAME)
-                    : null;
+                return ParseHelper.GetParseObject(ParseHelper.OBJECT_SKILL_NAME, _backingObject);
             }
             private set
             {
-                if (_backingObject != null
-                    && _backingObject.ContainsKey(ParseHelper.OBJECT_SKILL_NAME))
-                    _backingObject[ParseHelper.OBJECT_SKILL_NAME] = value;
+                ParseHelper.SetParseObject(ParseHelper.OBJECT_SKILL_NAME, _backingObject, value);
             }
         }
-        //public string Name { get; set; }
-
 
         public Skill(ParseObject backingParseObject)
         {

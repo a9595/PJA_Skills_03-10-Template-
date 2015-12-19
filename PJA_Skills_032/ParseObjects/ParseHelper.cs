@@ -24,9 +24,12 @@ namespace PJA_Skills_032.ParseObjects
         public static readonly string OBJECT_SKILL = "Skill";
 
         // General:
-
-
         public static readonly string OBJECT_ID = "ObjectId";
+
+        // Default dummy data
+        public static readonly string DEFAULT_LOGIN = "tieorange";
+        public static readonly string DEFAULT_PASSWORD = "admin";
+
         #endregion
 
         #region method

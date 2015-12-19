@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Parse;
 using PJA_Skills_032.Model;
+using PJA_Skills_032.ParseObjects;
 
 namespace PJA_Skills_032.Pages
 {
@@ -14,36 +15,43 @@ namespace PJA_Skills_032.Pages
         public MyProfilePage()
         {
             this.InitializeComponent();
-
-            //Contacts.GetAllContacts();
         }
 
-        private async Task GetGameScore()
-        {
-            ParseQuery<ParseObject> query = ParseObject.GetQuery("GameScore");
-            ParseObject gameScore = await query.GetAsync("6VzYvXc73i");
-
-            int score = gameScore.Get<int>("score");
-            string playerName = gameScore.Get<string>("playerName");
-            //bool cheatMode = gameScore.Get<bool>("cheatMode");
-
-            UserName.Text = playerName;
-            UserFaculty.Text = score.ToString();
-        }
 
         private async void OnLoaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            // await AddParseObject();
-            //await GetGameScore();
+            await ParseUserCreate();  // TODO: login user my Profile
+
         }
 
-        private static async Task AddParseObject()
+        private async Task ParseUserCreate()
         {
-            ParseObject gameScore = new ParseObject("GameScore");
-            gameScore["score"] = 1337;
+            // Test SignUp
+            await SignUpUser();
 
-            gameScore["playerName"] = "Sean Plott";
-            await gameScore.SaveAsync();
+            // Login
+            await TestUser.Login();
+            ParseUser currentUser = Parse.ParseUser.CurrentUser;
+            string Name = currentUser.Get<string>(ParseHelper.OBJECT_TEST_USER_NAME);
+
+
         }
+
+        private async Task SignUpUser()
+        {
+            var user = new ParseUser()
+            {
+                Username = "my name",
+                Password = "my pass",
+                Email = "email@example.com"
+            };
+
+            // other fields can be set just like with ParseObject
+            //user["phone"] = "415-392-0202";
+
+            await user.SignUpAsync();
+        }
+
+
     }
 }

@@ -28,14 +28,6 @@ namespace PJA_Skills_032.Model
             }
         }
 
-        //public string getName(string parseObjectKey)
-        //{
-        //    return _backingObject != null
-        //            && _backingObject.ContainsKey(parseObjectKey)
-        //            ? BackingObject.Get<string>(parseObjectKey)
-        //            : null;
-        //}
-
         public string Faculty
         {
             get
@@ -46,7 +38,6 @@ namespace PJA_Skills_032.Model
             {
                 ParseHelper.SetParseObject(ParseHelper.OBJECT_TEST_USER_FACULTY, _backingObject, value);
             }
-            //get; set;
         }
 
         public ParseObject BackingObject
@@ -67,7 +58,7 @@ namespace PJA_Skills_032.Model
             this._backingObject = backingParseObject;
 
             //TODO: mock
-            this.SkillsWantToLearn = new List<Skill>();
+            //this.SkillsWantToLearn = new List<Skill>();
             //this.SkillsWantToLearn.Add(new Skill("WKD"));
             //this.SkillsWantToLearn.Add(new Skill("PRM"));
         }
@@ -95,6 +86,18 @@ namespace PJA_Skills_032.Model
             SkillsWantToLearn = skillsCollection;
         }
 
+        public static async Task Login()
+        {
+            try
+            {
+                await ParseUser.LogInAsync(ParseHelper.DEFAULT_LOGIN, ParseHelper.DEFAULT_PASSWORD);
+                // Login was successful.
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
         #endregion
 
 

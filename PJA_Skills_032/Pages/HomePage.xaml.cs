@@ -33,35 +33,16 @@ namespace PJA_Skills_032.Pages
         private async void HomePage_OnLoaded(object sender, RoutedEventArgs e)
         {
             await ViewModel.DownloadUsers(); // set downloaded users to viewModel
-
-            //await CreatePost();
-
-            //await GetAnia();
-
-            //await CreateBook();
-
-            //foreach (TestUser testUser in ViewModel.Users)
-            //{
-            //    // Get each user
-            //    var user = testUser;
-            //    var skillWantToLearn = user.SkillsWantToLearn;
-            //    var relation = user.BackingObject.GetRelation<ParseObject>(ParseHelper.OBJECT_TEST_USER_SKILLS_WANT_TO_LEARN);
-            //    var querySkills = relation.Query;
-
-            //    var queryLinq = from item in await querySkills.FindAsync()
-            //                    select new Skill(item);
-            //    // Get Skills want to learn 
-            //    var skillsCollection = new ObservableCollection<Skill>(queryLinq);
-
-            //    int count = skillsCollection.Count;
-            //}
-
-
+            
         }
 
         #endregion
 
         #region methods
+
+    
+
+
         private async Task CreateBook()
         {
 

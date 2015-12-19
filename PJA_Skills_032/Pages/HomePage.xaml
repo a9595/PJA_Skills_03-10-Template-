@@ -61,7 +61,7 @@
                            RelativePanel.Below="userImage"
                            Text="&#xE8AB;" />
 
-                <!--  HORIZONTAL LIST VIEW LEARN  -->
+                <!--  LEARN  -->
                 <ListBox x:Name="SkillsWantToLearn"
                          ItemContainerStyle="{StaticResource HomeUserSkillHorizontallPanel}"
                          ItemTemplate="{StaticResource SkillLearnListViewTemplate}"
@@ -71,24 +71,7 @@
                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                          ScrollViewer.HorizontalScrollMode="Enabled"
                          ScrollViewer.IsHorizontalRailEnabled="True"
-                         ScrollViewer.VerticalScrollMode="Disabled">
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal" />
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                </ListBox>
-
+                         ScrollViewer.VerticalScrollMode="Disabled" />
                 <!--  TEACH  -->
                 <TextBlock x:Name="iconToTeach"
                            Margin="10,20,5,0"
@@ -98,29 +81,14 @@
                 <ListBox x:Name="SkillsWantToTeach"
                          Margin="0,10,0,0"
                          ItemContainerStyle="{StaticResource HomeUserSkillHorizontallPanel}"
+                         ItemTemplate="{StaticResource SkillLearnListViewTemplate}"
                          ItemsSource="{x:Bind SkillsWantToTeach}"
                          RelativePanel.AlignTopWith="iconToTeach"
                          RelativePanel.RightOf="iconToTeach"
                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                          ScrollViewer.HorizontalScrollMode="Enabled"
                          ScrollViewer.IsHorizontalRailEnabled="True"
-                         ScrollViewer.VerticalScrollMode="Disabled">
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal" />
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                </ListBox>
+                         ScrollViewer.VerticalScrollMode="Disabled" />
             </RelativePanel>
 
 
@@ -147,35 +115,25 @@
                     <SymbolIcon x:Name="RefreshBtnIcon"
                                 RenderTransformOrigin="0.5,0.5"
                                 Symbol="Sync">
-
                         <SymbolIcon.RenderTransform>
                             <RotateTransform />
                         </SymbolIcon.RenderTransform>
-
-
-
                     </SymbolIcon>
                 </AppBarButton.Icon>
-
                 <i:Interaction.Behaviors>
                     <icore:EventTriggerBehavior EventName="Click">
                         <imedia:ControlStoryboardAction ControlStoryboardOption="TogglePlayPause" Storyboard="{StaticResource RotationStoryboard}" />
                     </icore:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
-
             </AppBarButton>
         </CommandBar>
     </Page.BottomAppBar>
 
     <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
         <StackPanel Orientation="Vertical">
-
             <pages:HomeUserCard Label="Width:" Value="{x:Bind ViewModel.Width}" />
-
             <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Home Page" />
-
             <GridView ItemTemplate="{StaticResource ContactGridViewTemplate}" ItemsSource="{x:Bind ViewModel.Users}" />
-
         </StackPanel>
     </ScrollViewer>
 
