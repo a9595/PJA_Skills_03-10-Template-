@@ -19,12 +19,21 @@ namespace PJA_Skills_032.Model
         {
             get
             {
-                return BackingObject != null && BackingObject.ContainsKey("Name") ? BackingObject.Get<string>("Name") : null;
+                return ParseHelper.GetParseObject(ParseHelper.OBJECT_TEST_USER_NAME, _backingObject);
             }
-            set { if (BackingObject != null) BackingObject["Name"] = value; }
-            //get; set;
+            set
+            {
+                ParseHelper.SetParseObject(ParseHelper.OBJECT_TEST_USER_NAME, _backingObject, value);
+            }
         }
 
+        //public string getName(string parseObjectKey)
+        //{
+        //    return _backingObject != null
+        //            && _backingObject.ContainsKey(parseObjectKey)
+        //            ? BackingObject.Get<string>(parseObjectKey)
+        //            : null;
+        //}
 
         public string Faculty
         {

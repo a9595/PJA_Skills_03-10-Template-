@@ -69,18 +69,6 @@ namespace PJA_Skills_032.ViewModel
                 Users.Add(user);
 
             }
-
-            //// Get relations
-            //foreach (TestUser user in Users)
-            //{
-            //    await user.GetSkillsL();
-            //}
-
-            //TestUser billGates = Users.First();
-            //List<Skill> skillsWantToLearn = billGates.SkillsWantToLearn;
-            //await billGates.GetSkillsL();
-            //List<Skill> skillsWantToLearnDownloaded = billGates.SkillsWantToLearn;
-
         }
 
 

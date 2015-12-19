@@ -1,19 +1,28 @@
 ﻿using System;
 using Parse;
+using PJA_Skills_032.ParseObjects;
 
 namespace PJA_Skills_032.Model
 {
     public class Skill
     {
-        private ParseObject _backingObject;
+        private readonly ParseObject _backingObject;
 
         public string Name
         {
             get
             {
-                return _backingObject != null && _backingObject.ContainsKey("Name") ? _backingObject.Get<string>("Name") : null;
+                return _backingObject != null
+                    && _backingObject.ContainsKey(ParseHelper.OBJECT_SKILL_NAME)
+                    ? _backingObject.Get<string>(ParseHelper.OBJECT_SKILL_NAME)
+                    : null;
             }
-            set { if (_backingObject != null) _backingObject["Name"] = value; }
+            private set
+            {
+                if (_backingObject != null
+                    && _backingObject.ContainsKey(ParseHelper.OBJECT_SKILL_NAME))
+                    _backingObject[ParseHelper.OBJECT_SKILL_NAME] = value;
+            }
         }
         //public string Name { get; set; }
 

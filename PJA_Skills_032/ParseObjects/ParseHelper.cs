@@ -11,7 +11,9 @@ namespace PJA_Skills_032.ParseObjects
     {
         //USER:
         public static readonly string OBJECT_TEST_USER = "TestUser";
+        public static readonly string OBJECT_TEST_USER_NAME = "Name";
         public static readonly string OBJECT_TEST_USER_SKILLS_WANT_TO_LEARN = "SkillsWantToLearn2";
+
         //SKILL:
         public static readonly string OBJECT_SKILL_NAME = "Name";
         public static readonly string OBJECT_SKILL = "Skill";
@@ -29,6 +31,20 @@ namespace PJA_Skills_032.ParseObjects
             int score = gameScore.Get<int>("score");
             string playerName = gameScore.Get<string>("playerName");
             //bool cheatMode = gameScore.Get<bool>("cheatMode");
+        }
+
+        public static string GetParseObject(string parseObjectKey, ParseObject backingObject)
+        {
+            return backingObject != null
+                    && backingObject.ContainsKey(parseObjectKey)
+                    ? backingObject.Get<string>(parseObjectKey)
+                    : null;
+        }
+        public static void SetParseObject(string parseObjectKey, ParseObject backingObject, string value)
+        {
+            if (backingObject != null
+                   && backingObject.ContainsKey(parseObjectKey))
+                backingObject[parseObjectKey] = value;
         }
     }
 }
