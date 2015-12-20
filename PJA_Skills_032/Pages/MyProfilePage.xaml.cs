@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Controls;
 using Parse;
 using PJA_Skills_032.Model;
 using PJA_Skills_032.ParseObjects;
+using PJA_Skills_032.ViewModel;
 
 namespace PJA_Skills_032.Pages
 {
@@ -12,25 +13,33 @@ namespace PJA_Skills_032.Pages
     /// </summary>
     public sealed partial class MyProfilePage : Page
     {
+        public MyProfileViewModel ViewModel { get; set; }
         public MyProfilePage()
         {
             this.InitializeComponent();
+            ViewModel = new MyProfileViewModel();
         }
 
 
         private async void OnLoaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            await ParseUserCreate();  // TODO: login user my Profile
+            //await ParseUserCreate();  // TODO: login user my Profile
 
+            //await ParseHelper.CreateDummyUsers();
+            //await ParseHelper.GetUsersWithSkill();
+            await ParseHelper.GetSkillsOfUser();
         }
 
         private async Task ParseUserCreate()
         {
+            // TODO: move login user to App.cs and add the login screen
             // Test SignUp
-            await SignUpUser();
+            //await SignUpUser();
 
             // Login
-            await TestUser.Login();
+            if (ParseUser.CurrentUser == null) // check if user sesions is in cache
+                await TestUser.Login();
+
             ParseUser currentUser = Parse.ParseUser.CurrentUser;
             string Name = currentUser.Get<string>(ParseHelper.OBJECT_TEST_USER_NAME);
 

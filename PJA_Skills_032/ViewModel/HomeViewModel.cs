@@ -14,6 +14,7 @@ namespace PJA_Skills_032.ViewModel
 {
     public class HomeViewModel : BindableBase
     {
+        // atom intrusion
         private ObservableCollection<TestUser> _users = new ObservableCollection<TestUser>();
         public string Width { get; set; } = "777";
 
@@ -76,7 +77,7 @@ namespace PJA_Skills_032.ViewModel
                 Users.Add(user);
             }
         }
-        
+
         #endregion
 
     }

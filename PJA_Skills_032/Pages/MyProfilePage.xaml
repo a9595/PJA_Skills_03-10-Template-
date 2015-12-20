@@ -2,10 +2,19 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:data="using:PJA_Skills_032.Model"
       xmlns:local="using:PJA_Skills_032.Pages"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       Loaded="OnLoaded"
       mc:Ignorable="d">
+
+    <Page.Resources>
+        <DataTemplate x:Key="SkillGridViewTemplate" x:DataType="data:Skill">
+            <StackPanel>
+                <TextBlock Text="{x:Bind Name}" />
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
     <Page.BottomAppBar>
         <CommandBar Foreground="White">
             <CommandBar.Background>
@@ -43,7 +52,7 @@
                        VerticalAlignment="Bottom"
                        FontWeight="Bold"
                        Style="{StaticResource TitleTextBlockStyle}"
-                       Text="Andrii Kovalchuk" />
+                       Text="{x:Bind ViewModel.CurrentUser.Name, Mode=OneWay}" />
             <TextBlock x:Name="UserFaculty"
                        Height="30"
                        Margin="15,40,0,0"
@@ -51,7 +60,7 @@
                        FontSize="12"
                        FontStyle="Italic"
                        Style="{StaticResource TitleTextBlockStyle}"
-                       Text="Informatyka">
+                       Text="{x:Bind ViewModel.CurrentUser.Faculty}">
                 <TextBlock.Foreground>
                     <SolidColorBrush Color="{StaticResource app_bar_red}" />
                 </TextBlock.Foreground>
@@ -113,18 +122,9 @@
                            Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
                            Text="Want to learn:"
                            TextWrapping="Wrap" />
-                <GridView ItemContainerStyle="{StaticResource GridViewItemSkillStyle}">
-
-                    <GridViewItem Content="PRM" />
-                    <GridViewItem Content="PPJ" />
-                    <GridViewItem Content="PPJ" />
-                    <GridViewItem Content="PPJ" />
-                    <GridViewItem Content="PRM" />
-                    <GridViewItem Content="PRM" />
-                    <GridViewItem Content="PRM" />
-                    <GridViewItem Content="PPJ" />
-
-                </GridView>
+                <GridView ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
+                          ItemTemplate="{StaticResource SkillGridViewTemplate}"
+                          ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToLearn}" />
             </StackPanel>
 
             <!--  TEACH  -->
@@ -138,21 +138,13 @@
                            Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
                            Text="Want to teach:"
                            TextWrapping="Wrap" />
-                <GridView ItemContainerStyle="{StaticResource GridViewItemSkillStyle}">
-
-                    <GridViewItem Content="PRM" />
-                    <GridViewItem Content="PPJ" />
-                    <GridViewItem Content="PPJ" />
-                    <GridViewItem Content="PPJ" />
-                    <GridViewItem Content="PRM" />
-                    <GridViewItem Content="PRM" />
-                    <GridViewItem Content="PRM" />
-                    <GridViewItem Content="PPJ" />
-
-                </GridView>
+                <GridView ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
+                          ItemTemplate="{StaticResource SkillGridViewTemplate}"
+                          ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToLearn}" />
             </StackPanel>
 
             <!--  KORKING  -->
+            <!--
             <StackPanel x:Name="StackPanelToKorking"
                         Grid.Row="4"
                         Grid.ColumnSpan="2"
@@ -175,7 +167,7 @@
                     <GridViewItem Content="PPJ" />
 
                 </GridView>
-            </StackPanel>
+            </StackPanel>-->
 
         </Grid>
 

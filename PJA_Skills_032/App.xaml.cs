@@ -7,6 +7,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Parse;
+using PJA_Skills_032.Model;
 
 namespace PJA_Skills_032
 {
@@ -35,11 +36,12 @@ namespace PJA_Skills_032
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
 
 #if DEBUG
-            if (System.Diagnostics.Debugger.IsAttached) {
+            if (System.Diagnostics.Debugger.IsAttached)
+            {
                 // disabled, obscures the hamburger button, enable if you need it
                 //this.DebugSettings.EnableFrameRateCounter = true;
             }
@@ -79,6 +81,9 @@ namespace PJA_Skills_032
 
             // Ensure the current window is active
             Window.Current.Activate();
+            // Login
+            if (ParseUser.CurrentUser == null) // check if user sesions is in cache
+                await TestUser.Login();
         }
 
         // handle hardware back button press

@@ -56,6 +56,7 @@ namespace PJA_Skills_032.Model
         public TestUser(ParseObject backingParseObject)
         {
             this._backingObject = backingParseObject;
+            this.SkillsWantToLearn = new List<Skill>();
 
             //TODO: mock
             //this.SkillsWantToLearn = new List<Skill>();
@@ -85,12 +86,36 @@ namespace PJA_Skills_032.Model
             var skillsCollection = new List<Skill>(queryLinq);
             SkillsWantToLearn = skillsCollection;
         }
+        public void GetSkillsLdummy()
+        {
+            // skills
+            Skill skillPRM = new Skill("PRM");
+            Skill skillBSI = new Skill("BSI");
+            Skill skillUKO = new Skill("UKO");
+
+            SkillsWantToLearn.Add(skillPRM);
+            SkillsWantToLearn.Add(skillBSI);
+            SkillsWantToLearn.Add(skillUKO);
+        }
 
         public static async Task Login()
         {
             try
             {
                 await ParseUser.LogInAsync(ParseHelper.DEFAULT_LOGIN, ParseHelper.DEFAULT_PASSWORD);
+                // Login was successful.
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public static async Task Login(string login, string password)
+        {
+            try
+            {
+                if (login != null && password != null)
+                    await ParseUser.LogInAsync(login, password);
                 // Login was successful.
             }
             catch (Exception e)
