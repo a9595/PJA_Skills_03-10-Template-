@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -86,17 +87,17 @@ namespace PJA_Skills_032.Model
             var skillsCollection = new List<Skill>(queryLinq);
             SkillsWantToLearn = skillsCollection;
         }
-        public void GetSkillsLdummy()
-        {
-            // skills
-            Skill skillPRM = new Skill("PRM");
-            Skill skillBSI = new Skill("BSI");
-            Skill skillUKO = new Skill("UKO");
+        //public void GetSkillsLdummy()
+        //{
+        //    // skills
+        //    Skill skillPRM = new Skill("PRM");
+        //    Skill skillBSI = new Skill("BSI");
+        //    Skill skillUKO = new Skill("UKO");
 
-            SkillsWantToLearn.Add(skillPRM);
-            SkillsWantToLearn.Add(skillBSI);
-            SkillsWantToLearn.Add(skillUKO);
-        }
+        //    SkillsWantToLearn.Add(skillPRM);
+        //    SkillsWantToLearn.Add(skillBSI);
+        //    SkillsWantToLearn.Add(skillUKO);
+        //}
 
         public static async Task Login()
         {
@@ -122,6 +123,24 @@ namespace PJA_Skills_032.Model
             {
                 throw e;
             }
+        }
+
+        public async Task GetSkills()
+        {
+            // first we will create a query on the Skill object
+            var querySkillTable = ParseObject.GetQuery("Skill");
+
+            // now we will query the authors relation to see if the author object we have
+            // is contained therein
+            var queryTieorange = querySkillTable.WhereEqualTo("Users", this._backingObject);
+
+            IEnumerable<ParseObject> skillsOfTieorange = await queryTieorange.FindAsync();
+
+            foreach (ParseObject skill in skillsOfTieorange)
+            {
+                this.SkillsWantToLearn.Add(new Skill(skill));
+            }
+
         }
         #endregion
 

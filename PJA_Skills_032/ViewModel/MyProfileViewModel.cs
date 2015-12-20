@@ -24,7 +24,6 @@ namespace PJA_Skills_032.ViewModel
         public MyProfileViewModel()
         {
             _currentUser = new TestUser(ParseUser.CurrentUser);
-            FetchUserData();
         }
 
         #region methods
@@ -32,14 +31,6 @@ namespace PJA_Skills_032.ViewModel
 
 
 
-        /// <summary>
-        /// Get user skills 
-        /// </summary>
-        /// <returns></returns>
-        public void FetchUserData()
-        {
-            _currentUser.GetSkillsLdummy(); // get skills relationship items  
-        }
 
         #endregion
 

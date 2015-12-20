@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Parse;
 using PJA_Skills_032.Model;
@@ -16,19 +18,17 @@ namespace PJA_Skills_032.Pages
         public MyProfileViewModel ViewModel { get; set; }
         public MyProfilePage()
         {
-            this.InitializeComponent();
             ViewModel = new MyProfileViewModel();
+            this.InitializeComponent();
+            //GridViewLearn.ItemsSource = ViewModel.CurrentUser.SkillsWantToLearn;
         }
 
 
-        private async void OnLoaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void MyProfilePage_OnLoading(FrameworkElement sender, object args)
         {
-            //await ParseUserCreate();  // TODO: login user my Profile
-
-            //await ParseHelper.CreateDummyUsers();
-            //await ParseHelper.GetUsersWithSkill();
-            await ParseHelper.GetSkillsOfUser();
+            await ViewModel.CurrentUser.GetSkills();
         }
+
 
         private async Task ParseUserCreate()
         {
@@ -60,6 +60,7 @@ namespace PJA_Skills_032.Pages
 
             await user.SignUpAsync();
         }
+
 
 
     }

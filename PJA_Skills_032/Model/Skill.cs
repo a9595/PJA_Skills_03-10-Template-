@@ -26,11 +26,13 @@ namespace PJA_Skills_032.Model
             this._backingObject = backingParseObject;
         }
 
-        public Skill(string name)
-        {
-            if (name == null) throw new ArgumentNullException(nameof(name));
-            this.Name = name;
-        }
+        /*
+                public Skill(string name)
+                {
+                    if (name == null) throw new ArgumentNullException(nameof(name));
+                    this.Name = name;
+                }
+        */
 
         public override string ToString()
         {

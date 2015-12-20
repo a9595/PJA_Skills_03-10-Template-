@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Parse;
+using PJA_Skills_032.Model;
 
 namespace PJA_Skills_032.ParseObjects
 {
@@ -14,7 +15,7 @@ namespace PJA_Skills_032.ParseObjects
         #region filed
 
         //USER:
-        public static readonly string OBJECT_TEST_USER = "TestUser";
+        public static readonly string OBJECT_TEST_USER = "User";
         public static readonly string OBJECT_TEST_USER_NAME = "Name";
         public static readonly string OBJECT_TEST_USER_FACULTY = "Faculty";
         public static readonly string OBJECT_TEST_USER_SKILLS_WANT_TO_LEARN = "SkillsWantToLearn2";
@@ -119,23 +120,31 @@ namespace PJA_Skills_032.ParseObjects
             // now we will query the authors relation to see if the author object we have
             // is contained therein
             var queryTieorange = querySkillTable.WhereEqualTo("Users", userTieorange);
-            var queryTieorange2 = querySkillTable.WhereEqualTo("Users", userTieorange2);
+
+            ////linq
+            //IEnumerable<Skill> queryTieorangeSkills = from item in await queryTieorange.FindAsync()
+            //                                          where item.Get<ParseRelation<ParseUser>>("Users").Equals(userTieorange)
+            //                                          select new Skill(item);
+
+            //foreach (Skill skill in queryTieorangeSkills)
+            //{
+            //    string skillName = skill.Name;
+            //}
 
             IEnumerable<ParseObject> skillsOfTieorange = await queryTieorange.FindAsync();
+
+            List<Skill> skillsResultList = new List<Skill>();
             foreach (ParseObject skill in skillsOfTieorange)
             {
                 string skillName = skill.Get<string>("Name");
                 Debug.WriteLine("tieorange skill = ", skillName);
+                skillsResultList.Add(new Skill(skill));
             }
 
-            IEnumerable<ParseObject> skillsOfTieorange2 = await queryTieorange2.FindAsync();
-            foreach (ParseObject skill in skillsOfTieorange2)
+            foreach (Skill skill in skillsResultList)
             {
-                string skillName = skill.Get<string>("Name");
-                Debug.WriteLine("tieorange2 skill = ", skillName);
-
+                string name = skill.Name;
             }
-
         }
         #endregion
     }
