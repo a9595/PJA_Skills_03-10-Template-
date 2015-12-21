@@ -22,8 +22,9 @@ namespace PJA_Skills_032.ParseObjects
 
 
         //SKILL:
-        public static readonly string OBJECT_SKILL_NAME = "Name";
         public static readonly string OBJECT_SKILL = "Skill";
+        public static readonly string OBJECT_SKILL_NAME = "Name";
+        public static readonly string OBJECT_SKILL_USERS = "Users";
 
         // General:
         public static readonly string OBJECT_ID = "ObjectId";
@@ -68,13 +69,58 @@ namespace PJA_Skills_032.ParseObjects
 
             // now let’s associate the authors with the book
             // remember, we created a "authors" relation on Book
-            ParseRelation<ParseObject> relation = skill.GetRelation<ParseObject>("Users");
+            ParseRelation<ParseObject> relation = skill.GetRelation<ParseObject>(OBJECT_SKILL_USERS);
             relation.Add(userTieorange);
             relation.Add(userTieorange2);
 
             // now save the book object
             await skill.SaveAsync();
         }
+
+        public static async Task AddSkillToUser(ParseUser user, ParseObject skill)
+        {
+            var skillUsersRelationship = skill.GetRelation<ParseObject>(OBJECT_SKILL_USERS);
+            skillUsersRelationship.Add(user);
+            await skill.SaveAsync();
+        }
+
+        public static async Task AddSkillToUser(string username, string skillName)
+        {
+            ParseUser userParseObject = await GetUserByName(username);
+
+            ParseObject skillParseObject = await GetSkillByName(skillName);
+
+            await AddSkillToUser(userParseObject, skillParseObject);
+        }
+
+        public static async Task<IEnumerable<ParseUser>> GetAllUsers()
+        {
+            ParseQuery<ParseUser> query = from item in ParseUser.Query
+                                          orderby item.CreatedAt
+                                          select item;
+
+            IEnumerable<ParseUser> allUsersList = await query.FindAsync();
+
+            return allUsersList;
+        }
+        public static async Task<ParseObject> GetSkillByName(string skillName)
+        {
+            ParseObject skillParseObject = await (from skill in ParseObject.GetQuery(OBJECT_SKILL)
+                                                  where skill.Get<string>(OBJECT_SKILL_NAME).Equals(skillName)
+                                                  select skill).FirstAsync();
+
+            return skillParseObject;
+        }
+
+        public static async Task<ParseUser> GetUserByName(string userName)
+        {
+            ParseUser userParseObject = await (from user in ParseUser.Query
+                                               where user.Username.Equals(userName)
+                                               select user).FirstAsync();
+            return userParseObject;
+
+        }
+
 
 
         /// <summary>
@@ -88,7 +134,7 @@ namespace PJA_Skills_032.ParseObjects
             ParseObject skill = await ParseObject.GetQuery(ParseHelper.OBJECT_SKILL).GetAsync(skillWritingId);
 
             // create a relation based on the users key
-            var relation = skill.GetRelation<ParseObject>("Users");
+            var relation = skill.GetRelation<ParseObject>(OBJECT_SKILL_USERS);
 
             // generate a query based on that relation
             var queryUsers = relation.Query;
@@ -99,6 +145,7 @@ namespace PJA_Skills_032.ParseObjects
                 string userName = user.Get<string>("Name");
             }
         }
+
 
         /// <summary>
         /// We have Bill Gates. Gets his skills
@@ -115,7 +162,7 @@ namespace PJA_Skills_032.ParseObjects
                                                 select user).FirstAsync();
 
             // first we will create a query on the Skill object
-            var querySkillTable = ParseObject.GetQuery("Skill");
+            var querySkillTable = ParseObject.GetQuery(OBJECT_SKILL);
 
             // now we will query the authors relation to see if the author object we have
             // is contained therein
@@ -136,7 +183,7 @@ namespace PJA_Skills_032.ParseObjects
             List<Skill> skillsResultList = new List<Skill>();
             foreach (ParseObject skill in skillsOfTieorange)
             {
-                string skillName = skill.Get<string>("Name");
+                string skillName = skill.Get<string>(OBJECT_SKILL);
                 Debug.WriteLine("tieorange skill = ", skillName);
                 skillsResultList.Add(new Skill(skill));
             }

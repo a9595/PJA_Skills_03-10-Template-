@@ -52,9 +52,9 @@ namespace PJA_Skills_032.ViewModel
         /// <returns></returns>
         private async Task<ObservableCollection<TestUser>> GetAllUsers()
         {
-            ParseQuery<ParseObject> query = from item in ParseObject.GetQuery(ParseHelper.OBJECT_TEST_USER)
-                                            orderby item.CreatedAt
-                                            select item;
+            ParseQuery<ParseUser> query = from item in ParseUser.Query
+                                          orderby item.CreatedAt
+                                          select item;
 
             IEnumerable<TestUser> allItems = from item in await query.FindAsync()
                                              select new TestUser(item);
@@ -73,7 +73,7 @@ namespace PJA_Skills_032.ViewModel
             var downloadedUsers = await GetAllUsers();
             foreach (var user in downloadedUsers)
             {
-                await user.GetSkillsL(); // get skills relationship items
+                await user.GetSkills(); // get skills relationship items
                 Users.Add(user);
             }
         }

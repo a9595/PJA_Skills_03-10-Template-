@@ -132,15 +132,17 @@ namespace PJA_Skills_032.Model
 
             // now we will query the authors relation to see if the author object we have
             // is contained therein
-            var queryTieorange = querySkillTable.WhereEqualTo("Users", this._backingObject);
-
-            IEnumerable<ParseObject> skillsOfTieorange = await queryTieorange.FindAsync();
-
-            foreach (ParseObject skill in skillsOfTieorange)
+            if (this._backingObject != null)
             {
-                this.SkillsWantToLearn.Add(new Skill(skill));
-            }
+                var queryTieorange = querySkillTable.WhereEqualTo("Users", this._backingObject);
 
+                IEnumerable<ParseObject> skillsOfTieorange = await queryTieorange.FindAsync();
+
+                foreach (ParseObject skill in skillsOfTieorange)
+                {
+                    this.SkillsWantToLearn.Add(new Skill(skill));
+                }
+            }
         }
         #endregion
 

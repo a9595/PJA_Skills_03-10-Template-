@@ -33,14 +33,31 @@ namespace PJA_Skills_032.Pages
         private async void HomePage_OnLoaded(object sender, RoutedEventArgs e)
         {
             await ViewModel.DownloadUsers(); // set downloaded users to viewModel
-            
+
+            // add skills
+            //await AddDummySkillsToUsers();
+        }
+
+        /// <summary>
+        /// add HTA skill to all of the user (data population)
+        /// </summary>
+        /// <returns></returns>
+        private static async Task AddDummySkillsToUsers()
+        {
+            IEnumerable<ParseUser> allUsersList = await ParseHelper.GetAllUsers();
+
+            var skill = await ParseHelper.GetSkillByName("HTA");
+            foreach (ParseUser parseUser in allUsersList)
+            {
+                await ParseHelper.AddSkillToUser(parseUser, skill);
+            }
         }
 
         #endregion
 
         #region methods
 
-    
+
 
 
         private async Task CreateBook()
