@@ -14,7 +14,8 @@ namespace PJA_Skills_032.Model
             {
                 return ParseHelper.GetParseObject(ParseHelper.OBJECT_SKILL_NAME, _backingObject);
             }
-            private set
+
+            set
             {
                 ParseHelper.SetParseObject(ParseHelper.OBJECT_SKILL_NAME, _backingObject, value);
             }

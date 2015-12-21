@@ -14,7 +14,29 @@ namespace PJA_Skills_032.Model
     {
         #region property
         private readonly ParseObject _backingObject;
-        public List<Skill> SkillsWantToLearn { get; set; }
+
+        public List<Skill> SkillsWantToLearn
+        {
+            //get
+            //{
+            //    var querySkillTable = ParseObject.GetQuery(ParseHelper.OBJECT_SKILL);
+            //    List<Skill> resultSkillsList = new List<Skill>();
+            //    if (this._backingObject != null)
+            //    {
+            //        var queryTieorange = querySkillTable.WhereEqualTo(ParseHelper.OBJECT_SKILL_USERS, this._backingObject);
+
+            //        IEnumerable<ParseObject> skillsOfTieorange = queryTieorange.FindAsync().Result;
+
+            //        foreach (ParseObject skill in skillsOfTieorange)
+            //        {
+            //            resultSkillsList.Add(new Skill(skill));
+            //        }
+            //    }
+            //    return resultSkillsList;
+            //}
+            get; set;
+        }
+
         public List<Skill> SkillsWantToTeach { get; set; }
 
         public string Name
@@ -128,13 +150,13 @@ namespace PJA_Skills_032.Model
         public async Task GetSkills()
         {
             // first we will create a query on the Skill object
-            var querySkillTable = ParseObject.GetQuery("Skill");
+            var querySkillTable = ParseObject.GetQuery(ParseHelper.OBJECT_SKILL);
 
             // now we will query the authors relation to see if the author object we have
             // is contained therein
             if (this._backingObject != null)
             {
-                var queryTieorange = querySkillTable.WhereEqualTo("Users", this._backingObject);
+                var queryTieorange = querySkillTable.WhereEqualTo(ParseHelper.OBJECT_SKILL_USERS, this._backingObject);
 
                 IEnumerable<ParseObject> skillsOfTieorange = await queryTieorange.FindAsync();
 

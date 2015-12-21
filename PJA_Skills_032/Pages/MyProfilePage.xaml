@@ -51,7 +51,7 @@
                        VerticalAlignment="Bottom"
                        FontWeight="Bold"
                        Style="{StaticResource TitleTextBlockStyle}"
-                       Text="{Binding CurrentUser.Name}" />
+                       Text="{x:Bind ViewModel.CurrentUser.Name}" />
             <TextBlock x:Name="UserFaculty"
                        Height="30"
                        Margin="15,40,0,0"
@@ -65,31 +65,6 @@
                 </TextBlock.Foreground>
             </TextBlock>
 
-            <!--  KORKING  -->
-            <!--
-            <StackPanel x:Name="StackPanelToKorking"
-                        Grid.Row="4"
-                        Grid.ColumnSpan="2"
-                        Style="{StaticResource ProfileCard}">
-                <TextBlock x:Name="textBlock3"
-                           Height="21"
-                           Margin="9,3,9,0"
-                           Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
-                           Text="Want to provide korking:"
-                           TextWrapping="Wrap" />
-                <GridView ItemContainerStyle="{StaticResource GridViewItemSkillStyle}">
-
-                    <GridViewItem Content="PRM" />
-                    <GridViewItem Content="PPJ" />
-                    <GridViewItem Content="PPJ" />
-                    <GridViewItem Content="PPJ" />
-                    <GridViewItem Content="PRM" />
-                    <GridViewItem Content="PRM" />
-                    <GridViewItem Content="PRM" />
-                    <GridViewItem Content="PPJ" />
-
-                </GridView>
-            </StackPanel>-->
 
             <!--  SOCIAL  -->
             <StackPanel x:Name="StackPanelSocial"
@@ -173,7 +148,7 @@
                            TextWrapping="Wrap" />
                 <GridView ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
                           ItemTemplate="{StaticResource SkillGridViewTemplate}"
-                          ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToLearn}" />
+                          ItemsSource="{x:Bind }" />
             </StackPanel>
 
         </Grid>
