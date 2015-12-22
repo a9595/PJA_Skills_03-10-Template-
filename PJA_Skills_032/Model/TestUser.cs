@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace PJA_Skills_032.Model
         #region property
         private readonly ParseObject _backingObject;
 
-        public List<Skill> SkillsWantToLearn
+        public ObservableCollection<Skill> SkillsWantToLearn
         {
             //get
             //{
@@ -79,7 +80,7 @@ namespace PJA_Skills_032.Model
         public TestUser(ParseObject backingParseObject)
         {
             this._backingObject = backingParseObject;
-            this.SkillsWantToLearn = new List<Skill>();
+            this.SkillsWantToLearn = new ObservableCollection<Skill>();
 
             //TODO: mock
             //this.SkillsWantToLearn = new List<Skill>();
@@ -98,17 +99,17 @@ namespace PJA_Skills_032.Model
 
         #region methods
 
-        public async Task GetSkillsL()
-        {
-            var relation = _backingObject.GetRelation<ParseObject>(ParseHelper.OBJECT_TEST_USER_SKILLS_WANT_TO_LEARN);
-            var querySkills = relation.Query;
+        //public async Task GetSkillsL()
+        //{
+        //    var relation = _backingObject.GetRelation<ParseObject>(ParseHelper.OBJECT_TEST_USER_SKILLS_WANT_TO_LEARN);
+        //    var querySkills = relation.Query;
 
-            var queryLinq = from item in await querySkills.FindAsync()
-                            select new Skill(item);
-            // Get Skills want to learn 
-            var skillsCollection = new List<Skill>(queryLinq);
-            SkillsWantToLearn = skillsCollection;
-        }
+        //    var queryLinq = from item in await querySkills.FindAsync()
+        //                    select new Skill(item);
+        //    // Get Skills want to learn 
+        //    var skillsCollection = new List<Skill>(queryLinq);
+        //    SkillsWantToLearn = skillsCollection;
+        //}
         //public void GetSkillsLdummy()
         //{
         //    // skills
@@ -166,6 +167,8 @@ namespace PJA_Skills_032.Model
                 }
             }
         }
+
+
         #endregion
 
 

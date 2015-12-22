@@ -125,11 +125,13 @@
                            Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
                            Text="Want to learn:"
                            TextWrapping="Wrap" />
-                <GridView x:Name="GridViewLearn" ItemContainerStyle="{StaticResource GridViewItemSkillStyle}">
+                <GridView x:Name="GridViewLearn"
+                          ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
+                          ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToLearn, Mode=OneWay}">
                     <GridView.ItemTemplate>
-                        <DataTemplate x:DataType="data:Skill">
+                        <DataTemplate>
                             <StackPanel>
-                                <TextBlock Text="{x:Bind Name}" />
+                                <TextBlock Text="{Binding Name}" />
                             </StackPanel>
                         </DataTemplate>
                     </GridView.ItemTemplate>

@@ -18,8 +18,9 @@ namespace PJA_Skills_032.Pages
         public MyProfileViewModel ViewModel { get; set; }
         public MyProfilePage()
         {
-            ViewModel = new MyProfileViewModel();
             this.InitializeComponent();
+            ViewModel = new MyProfileViewModel();
+
             //GridViewLearn.ItemsSource = ViewModel.CurrentUser.SkillsWantToLearn;
         }
 
@@ -27,6 +28,8 @@ namespace PJA_Skills_032.Pages
         private async void MyProfilePage_OnLoading(FrameworkElement sender, object args)
         {
             await ViewModel.CurrentUser.GetSkills();
+            //this.DataContext = ViewModel;
+            //GridViewLearn.ItemsSource = 
         }
 
 

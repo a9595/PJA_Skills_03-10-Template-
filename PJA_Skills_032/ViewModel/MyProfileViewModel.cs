@@ -23,7 +23,8 @@ namespace PJA_Skills_032.ViewModel
 
         public MyProfileViewModel()
         {
-            _currentUser = new TestUser(ParseUser.CurrentUser);
+            CurrentUser = new TestUser(ParseUser.CurrentUser);
+
         }
 
         #region methods
