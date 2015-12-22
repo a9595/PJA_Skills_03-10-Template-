@@ -5,9 +5,12 @@
       xmlns:data="using:PJA_Skills_032.Model"
       xmlns:local="using:PJA_Skills_032.Pages"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:viewModel="using:PJA_Skills_032.ViewModel"
+      xmlns:viewmodel="using:PJA_Skills_032.ViewModel"
       Loading="MyProfilePage_OnLoading"
       mc:Ignorable="d">
+    <Page.DataContext>
+        <viewmodel:MyProfileViewModel />
+    </Page.DataContext>
 
     <Page.Resources>
         <DataTemplate x:Key="SkillGridViewTemplate" x:DataType="data:Skill">
