@@ -8,14 +8,11 @@
       xmlns:viewmodel="using:PJA_Skills_032.ViewModel"
       Loading="MyProfilePage_OnLoading"
       mc:Ignorable="d">
-    <Page.DataContext>
-        <viewmodel:MyProfileViewModel />
-    </Page.DataContext>
 
     <Page.Resources>
-        <DataTemplate x:Key="SkillGridViewTemplate" x:DataType="data:Skill">
+        <DataTemplate x:Key="SkillGridViewTemplate">
             <StackPanel>
-                <TextBlock Text="{x:Bind Name, Mode=OneWay}" />
+                <TextBlock Text="{Binding Name}" />
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
@@ -127,14 +124,15 @@
                            TextWrapping="Wrap" />
                 <GridView x:Name="GridViewLearn"
                           ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
+                          ItemTemplate="{StaticResource SkillGridViewTemplate}"
                           ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToLearn, Mode=OneWay}">
-                    <GridView.ItemTemplate>
+                    <!--<GridView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock Text="{Binding Name}" />
                             </StackPanel>
                         </DataTemplate>
-                    </GridView.ItemTemplate>
+                    </GridView.ItemTemplate>-->
                 </GridView>
             </StackPanel>
 
@@ -149,7 +147,9 @@
                            Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
                            Text="Want to teach:"
                            TextWrapping="Wrap" />
-                <GridView ItemContainerStyle="{StaticResource GridViewItemSkillStyle}" ItemTemplate="{StaticResource SkillGridViewTemplate}" />
+                <GridView ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
+                          ItemTemplate="{StaticResource SkillGridViewTemplate}"
+                          ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToLearn, Mode=OneWay}" />
             </StackPanel>
 
         </Grid>
