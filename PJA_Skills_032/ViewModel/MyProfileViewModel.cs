@@ -27,6 +27,11 @@ namespace PJA_Skills_032.ViewModel
 
         }
 
+        public MyProfileViewModel(TestUser user)
+        {
+            CurrentUser = user;
+        }
+
         #region methods
 
 

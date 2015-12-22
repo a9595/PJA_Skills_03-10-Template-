@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Parse;
@@ -36,6 +37,14 @@ namespace PJA_Skills_032.Pages
 
             // add skills
             //await AddDummySkillsToUsers();
+        }
+        private void GridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //var selectedArticle = e.AddedItems;
+            var selectedUser = GridViewUsers.SelectedItem;
+
+            if (selectedUser == null) return;
+            Frame.Navigate(typeof(UserPage), selectedUser);
         }
 
         /// <summary>
@@ -154,8 +163,9 @@ namespace PJA_Skills_032.Pages
 
         }
 
-        #endregion
 
+
+        #endregion
 
 
     }
