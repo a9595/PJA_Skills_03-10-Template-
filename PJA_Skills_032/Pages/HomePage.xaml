@@ -37,9 +37,9 @@
             <StackPanel Orientation="Horizontal" />
         </ItemsPanelTemplate>
         <DataTemplate x:Name="ContactGridViewTemplate" x:DataType="data:TestUser">
-            <RelativePanel MaxWidth="250"
-                           Margin="5,20, 5, 20"
-                           HorizontalAlignment="Left">
+            <RelativePanel MaxWidth="290"
+                           Margin="20,20, 20, 20"
+                           HorizontalAlignment="Center">
                 <Image x:Name="userImage"
                        Width="100"
                        Height="100"
@@ -140,9 +140,9 @@
             <!--<pages:HomeUserCard Label="Width:" Value="{x:Bind ViewModel.Width}" />-->
             <!--<TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Home Page" />-->
             <GridView x:Name="GridViewUsers"
-                      HorizontalContentAlignment="Left"
+                      HorizontalContentAlignment="Center"
                       ItemTemplate="{StaticResource ContactGridViewTemplate}"
-                      ItemsSource="{x:Bind ViewModel.Users}"
+                      ItemsSource="{x:Bind ViewModel.UsersObservableCollection}"
                       SelectionChanged="GridView_SelectionChanged" />
         </StackPanel>
     </ScrollViewer>

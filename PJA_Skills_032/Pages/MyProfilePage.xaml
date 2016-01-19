@@ -52,9 +52,9 @@
                        FontWeight="Bold"
                        Style="{StaticResource TitleTextBlockStyle}"
                        Text="{x:Bind ViewModel.CurrentUser.Name}" />
-            <TextBlock x:Name="UserFaculty"
+            <!--<TextBlock x:Name="UserFaculty"
                        Height="30"
-                       Margin="15,40,0,0"
+
                        VerticalAlignment="Top"
                        FontSize="12"
                        FontStyle="Italic"
@@ -63,7 +63,7 @@
                 <TextBlock.Foreground>
                     <SolidColorBrush Color="{StaticResource app_bar_red}" />
                 </TextBlock.Foreground>
-            </TextBlock>
+            </TextBlock>-->
 
 
             <!--  SOCIAL  -->
@@ -116,8 +116,7 @@
                         Grid.Row="2"
                         Grid.ColumnSpan="2"
                         Style="{StaticResource ProfileCard}">
-                <TextBlock 
-                           Height="21"
+                <TextBlock Height="21"
                            Margin="9,3,9,0"
                            Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
                            Text="Want to learn:"
@@ -125,9 +124,7 @@
                 <GridView x:Name="GridViewLearn"
                           ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
                           ItemTemplate="{StaticResource SkillGridViewTemplate}"
-                          ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToLearn, Mode=OneWay}">
-                  
-                </GridView>
+                          ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToLearn, Mode=OneWay}" />
             </StackPanel>
 
             <!--  TEACH  -->
@@ -135,8 +132,7 @@
                         Grid.Row="3"
                         Grid.ColumnSpan="2"
                         Style="{StaticResource ProfileCard}">
-                <TextBlock
-                           Height="21"
+                <TextBlock Height="21"
                            Margin="9,3,9,0"
                            Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
                            Text="Want to teach:"

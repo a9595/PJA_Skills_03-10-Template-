@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
@@ -27,7 +28,9 @@ namespace PJA_Skills_032.Pages
 
         private async void MyProfilePage_OnLoading(FrameworkElement sender, object args)
         {
+            // Bind viemodel to view 
             await ViewModel.CurrentUser.GetSkills();
+            
             //this.DataContext = ViewModel;
             //GridViewLearn.ItemsSource = 
         }
@@ -44,9 +47,10 @@ namespace PJA_Skills_032.Pages
                 await TestUser.Login();
 
             ParseUser currentUser = Parse.ParseUser.CurrentUser;
-            string Name = currentUser.Get<string>(ParseHelper.OBJECT_TEST_USER_NAME);
-
-
+            if (currentUser != null)
+            {
+                string name = currentUser.Get<string>(ParseHelper.OBJECT_TEST_USER_NAME);
+            }
         }
 
         private async Task SignUpUser()

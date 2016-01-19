@@ -33,7 +33,7 @@ namespace PJA_Skills_032.Pages
 
         private async void HomePage_OnLoaded(object sender, RoutedEventArgs e)
         {
-            await ViewModel.DownloadUsers(); // set downloaded users to viewModel
+            await ViewModel.AddDownloadedUsers(); // set downloaded users to viewModel
 
             // add skills
             //await AddDummySkillsToUsers();
@@ -55,7 +55,7 @@ namespace PJA_Skills_032.Pages
         {
             IEnumerable<ParseUser> allUsersList = await ParseHelper.GetAllUsers();
 
-            var skill = await ParseHelper.GetSkillByName("HTA");
+            var skill = await ParseHelper.GetSkillByName("PRI");
             foreach (ParseUser parseUser in allUsersList)
             {
                 await ParseHelper.AddSkillToUser(parseUser, skill);
@@ -74,8 +74,8 @@ namespace PJA_Skills_032.Pages
 
             // now we create a book object
             //var book = new ParseObject("Book");
-            var bookQuery = ParseObject.GetQuery("TestUser");
-            var book = await bookQuery.GetAsync("AX1ADmYAMy"); // get bill gates object (TestUser)
+            var billGatesQuery = ParseObject.GetQuery("TestUser");
+            var billGatesUser = await billGatesQuery.GetAsync("AX1ADmYAMy"); // get bill gates object (TestUser)
 
             //ParseObject skillEnglish = await ParseObject.GetQuery(ParseHelper.OBJECT_SKILL).GetAsync("NampQ2zYFo");
             //ParseObject skillHTA = await ParseObject.GetQuery(ParseHelper.OBJECT_SKILL).GetAsync("mP0HQcXTIj");
@@ -83,14 +83,14 @@ namespace PJA_Skills_032.Pages
 
             // now let’s associate the authors with the book
             // remember, we created a "authors" relation on Book
-            var relation = book.GetRelation<ParseObject>("SkillsWantToLearn2");
+            var relation = billGatesUser.GetRelation<ParseObject>("SkillsWantToLearn2");
             //relation.Add(skillEnglish);
             //relation.Add(skillHTA);
             relation.Add(skillWriting);
             //relation.Add(authorThree;)
 
             // now save the book object
-            await book.SaveAsync();
+            await billGatesUser.SaveAsync();
         }
 
         private static async Task CreatePost()

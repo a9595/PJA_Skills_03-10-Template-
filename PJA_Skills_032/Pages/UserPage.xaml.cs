@@ -29,7 +29,7 @@ namespace PJA_Skills_032.Pages
         public UserPage()
         {
             this.InitializeComponent();
-            ViewModel = new MyProfileViewModel();
+            //ViewModel = new MyProfileViewModel();
         }
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {

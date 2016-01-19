@@ -15,36 +15,25 @@ namespace PJA_Skills_032.ViewModel
     public class HomeViewModel : BindableBase
     {
         // atom intrusion
-        private ObservableCollection<TestUser> _users = new ObservableCollection<TestUser>();
+        private ObservableCollection<TestUser> _usersObservableCollection = new ObservableCollection<TestUser>();
         public string Width { get; set; } = "777";
 
-        public ObservableCollection<TestUser> Users
+        public ObservableCollection<TestUser> UsersObservableCollection
         {
-            get { return this._users; }
-            set { this.SetProperty(ref this._users, value); }
+            get { return this._usersObservableCollection; }
+            set { this.SetProperty(ref this._usersObservableCollection, value); }
         }
 
         public HomeViewModel()
         {
-
-
             //TestUser testUser = new TestUser("Tim Cook", "Informatyka");
             //TestUser testUser2 = new TestUser("Richard Brenson", "SNM");
 
             //Users.Add(testUser);
             //Users.Add(testUser2);
-
         }
 
         #region methods
-        //public async Task<ObservableCollection<TestUser>> GetAllUsers()
-        //{
-        //    var allItems = await GetUsersParseObject();
-        //    var itemList = new ObservableCollection<TestUser>(allItems);
-
-        //    return itemList;
-        //}
-
 
         /// <summary>
         /// download ParseObject of all users
@@ -68,15 +57,30 @@ namespace PJA_Skills_032.ViewModel
         /// Add users to list after downloading
         /// </summary>
         /// <returns></returns>
-        public async Task DownloadUsers()
+        public async Task AddDownloadedUsers()
         {
             var downloadedUsers = await GetAllUsers();
-            foreach (var user in downloadedUsers)
+            foreach (TestUser user in downloadedUsers)
             {
-                await user.GetSkills(); // get skills relationship items
-                Users.Add(user);
+                //Don't show current user in "Home"
+                if (ParseUser.CurrentUser.ObjectId != user.BackingObject.ObjectId)
+                {
+                    await user.GetSkills(); // get skills relationship items
+                    UsersObservableCollection.Add(user);
+                }
             }
         }
+
+
+        //public async Task<ObservableCollection<TestUser>> GetAllUsers()
+        //{
+        //    var allItems = await GetUsersParseObject();
+        //    var itemList = new ObservableCollection<TestUser>(allItems);
+
+        //    return itemList;
+        //}
+
+
 
         #endregion
 
