@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using PJA_Skills_032.ViewModel;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -22,6 +23,7 @@ namespace PJA_Skills_032.Pages
     /// </summary>
     public sealed partial class EditMyProfilePage : Page
     {
+        public MyProfileViewModel ViewModel { get; set; }
         public EditMyProfilePage()
         {
             this.InitializeComponent();

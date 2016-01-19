@@ -31,7 +31,7 @@ namespace PJA_Skills_032.Pages
             this.InitializeComponent();
             //ViewModel = new MyProfileViewModel();
         }
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             _user = e.Parameter as TestUser;
             ViewModel = new MyProfileViewModel(_user);
@@ -39,7 +39,7 @@ namespace PJA_Skills_032.Pages
         }
 
 
-        private async void UserPage_OnLoading(FrameworkElement sender, object args)
+        private void UserPage_OnLoading(FrameworkElement sender, object args)
         {
             //await ViewModel.CurrentUser.GetSkills();
         }

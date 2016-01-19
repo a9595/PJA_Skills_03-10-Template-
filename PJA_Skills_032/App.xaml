@@ -109,7 +109,11 @@
             <Setter Property="UseSystemFocusVisuals" Value="True" />
 
         </Style>
-
+        <DataTemplate x:Key="SkillGridViewTemplate">
+            <StackPanel>
+                <TextBlock Text="{Binding Name}" />
+            </StackPanel>
+        </DataTemplate>
 
 
     </Application.Resources>

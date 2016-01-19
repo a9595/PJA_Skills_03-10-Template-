@@ -9,20 +9,13 @@
       Loading="MyProfilePage_OnLoading"
       mc:Ignorable="d">
 
-    <Page.Resources>
-        <DataTemplate x:Key="SkillGridViewTemplate">
-            <StackPanel>
-                <TextBlock Text="{Binding Name}" />
-            </StackPanel>
-        </DataTemplate>
-    </Page.Resources>
     <Page.BottomAppBar>
         <CommandBar Foreground="White">
             <CommandBar.Background>
                 <SolidColorBrush Color="{StaticResource app_bar_red}" />
             </CommandBar.Background>
             <AppBarButton x:Name="AppBarButtonEdit"
-                          Click=""
+                          Click="AppBarButtonEdit_OnClick"
                           Foreground="White"
                           Icon="Edit"
                           Label="Edit" />
