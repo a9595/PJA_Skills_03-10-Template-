@@ -23,8 +23,8 @@ namespace PJA_Skills_032.ViewModel
 
         public MyProfileViewModel()
         {
-            CurrentUser = new TestUser(ParseUser.CurrentUser);
-
+            if (ParseUser.CurrentUser != null)
+                CurrentUser = new TestUser(ParseUser.CurrentUser);
         }
 
         public MyProfileViewModel(TestUser user)

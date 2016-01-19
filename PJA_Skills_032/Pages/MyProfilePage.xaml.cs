@@ -69,6 +69,10 @@ namespace PJA_Skills_032.Pages
         }
 
 
+        private void AppBarButtonEdit_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(UserPage), ViewModel.CurrentUser);
 
+        }
     }
 }

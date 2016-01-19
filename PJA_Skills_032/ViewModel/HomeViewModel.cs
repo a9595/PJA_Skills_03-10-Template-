@@ -16,7 +16,6 @@ namespace PJA_Skills_032.ViewModel
     {
         // atom intrusion
         private ObservableCollection<TestUser> _usersObservableCollection = new ObservableCollection<TestUser>();
-        public string Width { get; set; } = "777";
 
         public ObservableCollection<TestUser> UsersObservableCollection
         {
@@ -39,7 +38,7 @@ namespace PJA_Skills_032.ViewModel
         /// download ParseObject of all users
         /// </summary>
         /// <returns></returns>
-        private async Task<ObservableCollection<TestUser>> GetAllUsers()
+        private async Task<ObservableCollection<TestUser>> DownloadUsersList()
         {
             ParseQuery<ParseUser> query = from item in ParseUser.Query
                                           orderby item.CreatedAt
@@ -48,7 +47,7 @@ namespace PJA_Skills_032.ViewModel
             IEnumerable<TestUser> allItems = from item in await query.FindAsync()
                                              select new TestUser(item);
 
-            var itemList = new ObservableCollection<TestUser>(allItems);
+            ObservableCollection<TestUser> itemList = new ObservableCollection<TestUser>(allItems);
             return itemList;
         }
 
@@ -59,7 +58,7 @@ namespace PJA_Skills_032.ViewModel
         /// <returns></returns>
         public async Task AddDownloadedUsers()
         {
-            var downloadedUsers = await GetAllUsers();
+            ObservableCollection<TestUser> downloadedUsers = await DownloadUsersList();
             foreach (TestUser user in downloadedUsers)
             {
                 //Don't show current user in "Home"

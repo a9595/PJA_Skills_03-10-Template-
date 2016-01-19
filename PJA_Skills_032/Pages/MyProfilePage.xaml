@@ -22,6 +22,7 @@
                 <SolidColorBrush Color="{StaticResource app_bar_red}" />
             </CommandBar.Background>
             <AppBarButton x:Name="AppBarButtonEdit"
+                          Click=""
                           Foreground="White"
                           Icon="Edit"
                           Label="Edit" />

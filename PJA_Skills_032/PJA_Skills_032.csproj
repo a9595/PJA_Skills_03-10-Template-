@@ -99,6 +99,9 @@
     </Compile>
     <Compile Include="Model\Skill.cs" />
     <Compile Include="Model\TestUser.cs" />
+    <Compile Include="Pages\EditMyProfilePage.xaml.cs">
+      <DependentUpon>EditMyProfilePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\HomeUserCard.xaml.cs">
       <DependentUpon>HomeUserCard.xaml</DependentUpon>
     </Compile>
@@ -154,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Pages\EditMyProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\HomeUserCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
