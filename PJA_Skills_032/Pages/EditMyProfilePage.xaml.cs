@@ -28,5 +28,23 @@ namespace PJA_Skills_032.Pages
         {
             this.InitializeComponent();
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            //MyProfileViewModel myProfileViewModel = e.Parameter as MyProfileViewModel;
+            ViewModel = new MyProfileViewModel();
+
+            base.OnNavigatedTo(e);
+        }
+
+        private async void EditMyProfilePage_OnLoading(FrameworkElement sender, object args)
+        {
+            // Bind viemodel to view 
+
+            await ViewModel.CurrentUser.GetSkills();
+
+            //this.DataContext = ViewModel;
+            //GridViewLearn.ItemsSource = 
+        }
     }
 }

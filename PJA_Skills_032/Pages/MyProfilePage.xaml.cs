@@ -30,7 +30,7 @@ namespace PJA_Skills_032.Pages
         {
             // Bind viemodel to view 
             await ViewModel.CurrentUser.GetSkills();
-            
+
             //this.DataContext = ViewModel;
             //GridViewLearn.ItemsSource = 
         }
@@ -71,7 +71,7 @@ namespace PJA_Skills_032.Pages
 
         private void AppBarButtonEdit_OnClick(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(UserPage), ViewModel.CurrentUser);
+            Frame.Navigate(typeof(EditMyProfilePage), ViewModel.CurrentUser);
 
         }
     }
