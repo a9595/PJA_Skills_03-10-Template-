@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 using Parse;
 using PJA_Skills_032.Model;
 using PJA_Skills_032.ParseObjects;
@@ -74,5 +75,6 @@ namespace PJA_Skills_032.Pages
             Frame.Navigate(typeof(EditMyProfilePage), ViewModel.CurrentUser);
 
         }
+        
     }
 }

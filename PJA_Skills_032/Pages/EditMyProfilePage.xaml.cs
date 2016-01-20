@@ -49,6 +49,9 @@ namespace PJA_Skills_032.Pages
 
         public ObservableCollection<Skill> SearchSuggestionsList = new ObservableCollection<Skill>();
         public ObservableCollection<Skill> ResultsSearchSuggestions = new ObservableCollection<Skill>();
+        public List<Skill> SkillsUserWantsToLearnAdded = new List<Skill>(); // keep added skills. saved after tapping "save changes"
+        public List<Skill> SkillsUserWantsToLearnRemoved = new List<Skill>();
+
         private List<Skill> _allSkillsList;
 
         public MyProfileViewModel ViewModel { get; set; }
@@ -122,6 +125,15 @@ namespace PJA_Skills_032.Pages
 
         private void GridViewLearn_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Skill selectedSkill = GridViewLearn.SelectedItem as Skill;
+            if (selectedSkill != null)
+            {
+                Skill tmpSkill = new Skill(selectedSkill.getBackingObject);
+                SkillsUserWantsToLearnRemoved.Add(tmpSkill);
+
+
+                ViewModel.CurrentUser.SkillsWantToLearn.Remove(selectedSkill);
+            }
 
 
         }
@@ -134,7 +146,7 @@ namespace PJA_Skills_032.Pages
             ResultsSearchSuggestions.Clear();
 
 
-           
+
 
             // Remove already added by users
             foreach (Skill resultsSearchSuggestion in searchSuggestions.ToList())
@@ -160,10 +172,45 @@ namespace PJA_Skills_032.Pages
             Skill selectedSearchSuggestionSkill = args.SelectedItem as Skill;
             if (selectedSearchSuggestionSkill != null)
             {
-
                 string id = selectedSearchSuggestionSkill.getBackingObject.ObjectId;
-                //await ParseHelper.AddSkillToUser(ParseUser.CurrentUser, selectedSearchSuggestionSkill.getBackingObject);
                 ViewModel.CurrentUser.SkillsWantToLearn.Add(selectedSearchSuggestionSkill);
+
+                SkillsUserWantsToLearnAdded.Add(selectedSearchSuggestionSkill);
+
+                //await ParseHelper.AddSkillToUser(ParseUser.CurrentUser, selectedSearchSuggestionSkill.getBackingObject); //Add to Parse
+
+            }
+
+        }
+
+        private async void ButtonSaveChanges_OnClick(object sender, RoutedEventArgs e)
+        {
+            // Add new Skills that user added
+            if (SkillsUserWantsToLearnAdded.Count > 0)
+            {
+                foreach (Skill skill in SkillsUserWantsToLearnAdded)
+                {
+                    await ParseHelper.AddSkillToUser(ParseUser.CurrentUser, skill.getBackingObject);
+                }
+            }
+
+
+
+            // Remove skills checked by user
+            if (SkillsUserWantsToLearnRemoved.Count > 0)
+            {
+                foreach (Skill skill in SkillsUserWantsToLearnRemoved)
+                {
+                    await ParseHelper.RemoveSkillFromUser(skill.getBackingObject);
+                }
+            }
+
+            // Go to the profile page
+            Frame rootFrame = Window.Current.Content as Frame;
+
+            if (Frame.CanGoBack)
+            {
+                Frame.GoBack();
             }
 
         }

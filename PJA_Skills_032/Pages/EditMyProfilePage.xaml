@@ -47,8 +47,14 @@
                       ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToLearn, Mode=OneWay}"
                       SelectionChanged="GridViewLearn_SelectionChanged" />
         </StackPanel>
-        <TextBlock x:Name="txtInfo" />
 
+        <Button x:Name="ButtonSaveChanges"
+                Width="400"
+                HorizontalAlignment="Stretch"
+                Background="#3330FF4D"
+                Click="ButtonSaveChanges_OnClick"
+                Content="Save changes"
+                RelativePanel.AlignBottomWithPanel="True" />
     </RelativePanel>
 </Page>
 
