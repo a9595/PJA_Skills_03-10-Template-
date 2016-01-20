@@ -4,6 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:PJA_Skills_032.Pages"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      Loaded="EditMyProfilePage_OnLoaded"
       Loading="EditMyProfilePage_OnLoading"
       mc:Ignorable="d">
 

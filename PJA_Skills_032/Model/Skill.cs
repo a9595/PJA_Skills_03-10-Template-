@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using Parse;
 using PJA_Skills_032.ParseObjects;
 
@@ -21,6 +23,28 @@ namespace PJA_Skills_032.Model
             }
         }
 
+        public bool IsEqualToOtherSkill(Skill skill)
+        {
+            if (this._backingObject.ObjectId.Equals(skill.getBackingObject.ObjectId))
+                return true;
+            else return false;
+        }
+
+        public bool isContainsInOtherList(IEnumerable<Skill> skillsList)
+        {
+            bool result = false;
+            foreach (Skill skill in skillsList)
+            {
+                if (this.Name.Equals(skill.Name))
+                {
+                    result = true;
+                }
+            }
+            return result;
+        }
+
+        public ParseObject getBackingObject => _backingObject;
+
         public Skill(ParseObject backingParseObject)
         {
             if (backingParseObject == null) throw new ArgumentNullException(nameof(backingParseObject));
@@ -29,7 +53,7 @@ namespace PJA_Skills_032.Model
 
         public Skill(string skillName)
         {
-            
+
         }
 
         /*

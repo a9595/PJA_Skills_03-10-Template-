@@ -26,6 +26,7 @@ namespace PJA_Skills_032.ParseObjects
         public static readonly string OBJECT_SKILL_NAME = "Name";
         public static readonly string OBJECT_SKILL_USERS = "Users";
 
+
         // General:
         public static readonly string OBJECT_ID = "ObjectId";
 
@@ -111,6 +112,19 @@ namespace PJA_Skills_032.ParseObjects
 
             return skillParseObject;
         }
+
+        public static async Task<List<Skill>> GetAllSkillsList()
+        {
+            List<ParseObject> skillsParseObjectList = new List<ParseObject>(await ParseObject.GetQuery(OBJECT_SKILL).FindAsync());
+            List<Skill> skillsList = new List<Skill>();
+            foreach (ParseObject skillParseObject in skillsParseObjectList)
+            {
+                skillsList.Add(new Skill(skillParseObject));
+            }
+
+            return skillsList;
+        }
+
 
         public static async Task<ParseUser> GetUserByName(string userName)
         {

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -46,33 +47,39 @@ namespace PJA_Skills_032.Pages
             //}
         }
 
-        public ObservableCollection<SearchSuggestion> FirstSearchSuggestions = new ObservableCollection<SearchSuggestion>();
-        public ObservableCollection<SearchSuggestion> ResultsSearchSuggestions = new ObservableCollection<SearchSuggestion>();
+        public ObservableCollection<Skill> SearchSuggestionsList = new ObservableCollection<Skill>();
+        public ObservableCollection<Skill> ResultsSearchSuggestions = new ObservableCollection<Skill>();
+        private List<Skill> _allSkillsList;
 
         public MyProfileViewModel ViewModel { get; set; }
         public EditMyProfilePage()
         {
             this.InitializeComponent();
 
-            PopulateSearchSuggestions();
+            //PopulateSearchSuggestions();
 
             AutoSuggestBox.ItemsSource = ResultsSearchSuggestions;
         }
-
-        public void PopulateSearchSuggestions()
+        private async void EditMyProfilePage_OnLoaded(object sender, RoutedEventArgs e)
         {
-            FirstSearchSuggestions.Add(
-                new SearchSuggestion("PRM", 1)
-                );
-
-            FirstSearchSuggestions.Add(
-                new SearchSuggestion("PRI", 2)
-                );
-
-            FirstSearchSuggestions.Add(
-                new SearchSuggestion("BSI", 3)
-                );
+            _allSkillsList = await ParseHelper.GetAllSkillsList();
+            SearchSuggestionsList = new ObservableCollection<Skill>(_allSkillsList);
         }
+
+        //public void PopulateSearchSuggestions()
+        //{
+        //    SearchSuggestionsList.Add(
+        //        new SearchSuggestion("PRM", 1)
+        //        );
+
+        //    SearchSuggestionsList.Add(
+        //        new SearchSuggestion("PRI", 2)
+        //        );
+
+        //    SearchSuggestionsList.Add(
+        //        new SearchSuggestion("BSI", 3)
+        //        );
+        //}
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -121,21 +128,46 @@ namespace PJA_Skills_032.Pages
 
         private void AutoSuggestBox_OnQuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
-            IEnumerable<SearchSuggestion> searchSuggestions =
-                FirstSearchSuggestions.Where(item => (item.Name).ToLower().Contains(args.QueryText.ToLower()));
+            List<Skill> searchSuggestions =
+                new List<Skill>(SearchSuggestionsList.Where(item => (item.Name).ToLower().Contains(args.QueryText.ToLower())));
 
             ResultsSearchSuggestions.Clear();
-            foreach (SearchSuggestion suggestion in searchSuggestions)
+
+
+           
+
+            // Remove already added by users
+            foreach (Skill resultsSearchSuggestion in searchSuggestions.ToList())
             {
-                ResultsSearchSuggestions.Add(suggestion);
+                if (resultsSearchSuggestion.isContainsInOtherList(ViewModel.CurrentUser.SkillsWantToLearn))
+                    searchSuggestions.Remove(resultsSearchSuggestion);
+            }
+
+            // Add all skills
+            foreach (Skill skill in searchSuggestions)
+            {
+                ResultsSearchSuggestions.Add(skill);
             }
         }
 
+        //public Boolean isContain(Skill skillA, Skill skillB)
+        //{
+
+        //}
+
         private void AutoSuggestBox_OnSuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
-            SearchSuggestion selectedSearchSuggestion = args.SelectedItem as SearchSuggestion;
-            if (selectedSearchSuggestion != null)
-                txtInfo.Text = selectedSearchSuggestion.Id + "  " + selectedSearchSuggestion.Name;
+            Skill selectedSearchSuggestionSkill = args.SelectedItem as Skill;
+            if (selectedSearchSuggestionSkill != null)
+            {
+
+                string id = selectedSearchSuggestionSkill.getBackingObject.ObjectId;
+                //await ParseHelper.AddSkillToUser(ParseUser.CurrentUser, selectedSearchSuggestionSkill.getBackingObject);
+                ViewModel.CurrentUser.SkillsWantToLearn.Add(selectedSearchSuggestionSkill);
+            }
+
         }
+
+
     }
 }
