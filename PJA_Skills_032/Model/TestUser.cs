@@ -151,13 +151,13 @@ namespace PJA_Skills_032.Model
         public async Task GetSkills()
         {
             // first we will create a query on the Skill object
-            var querySkillTable = ParseObject.GetQuery(ParseHelper.OBJECT_SKILL);
+            ParseQuery<ParseObject> querySkillTable = ParseObject.GetQuery(ParseHelper.OBJECT_SKILL);
 
             // now we will query the authors relation to see if the author object we have
             // is contained therein
             if (this._backingObject != null)
             {
-                var queryTieorange = querySkillTable.WhereEqualTo(ParseHelper.OBJECT_SKILL_USERS, this._backingObject);
+                ParseQuery<ParseObject> queryTieorange = querySkillTable.WhereEqualTo(ParseHelper.OBJECT_SKILL_USERS, this._backingObject);
 
                 IEnumerable<ParseObject> skillsOfTieorange = await queryTieorange.FindAsync();
 
@@ -166,6 +166,12 @@ namespace PJA_Skills_032.Model
                     this.SkillsWantToLearn.Add(new Skill(skill));
                 }
             }
+        }
+
+        public ParseRelation<ParseObject> GetSkillsParseRelation()
+        {
+            ParseRelation<ParseObject> billGatesSkillsWantToLearn = _backingObject.GetRelation<ParseObject>("SkillsWantToLearn2");
+            return billGatesSkillsWantToLearn;
         }
 
 

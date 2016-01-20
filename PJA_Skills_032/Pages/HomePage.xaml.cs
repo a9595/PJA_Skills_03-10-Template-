@@ -83,10 +83,10 @@ namespace PJA_Skills_032.Pages
 
             // now let’s associate the authors with the book
             // remember, we created a "authors" relation on Book
-            var relation = billGatesUser.GetRelation<ParseObject>("SkillsWantToLearn2");
+            var billGatesSkillsWantToLearn = billGatesUser.GetRelation<ParseObject>("SkillsWantToLearn2");
             //relation.Add(skillEnglish);
             //relation.Add(skillHTA);
-            relation.Add(skillWriting);
+            billGatesSkillsWantToLearn.Add(skillWriting);
             //relation.Add(authorThree;)
 
             // now save the book object

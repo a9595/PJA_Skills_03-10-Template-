@@ -8,37 +8,46 @@
       mc:Ignorable="d">
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="TextBlockFullName"
-                   Height="20"
-                   Text="Full Name"
-                   TextWrapping="Wrap" />
+
         <TextBox x:Name="TextBoxFullName"
                  Height="32"
-                 RelativePanel.Below="TextBlockFullName"
-                 Text="Bob Marley"
+                 Header="Full Name"
+                 Text="{x:Bind ViewModel.CurrentUser.Name, Mode=OneWay}"
                  TextWrapping="Wrap" />
 
-        <TextBlock x:Name="TextBlockWantLearn"
-                   Height="20"
-                   RelativePanel.Below="TextBoxFullName"
-                   Text="What do I want to learn:"
-                   TextWrapping="Wrap" />
+
 
         <StackPanel x:Name="StackPanelToLearn"
-                    Grid.Row="2"
-                    Grid.ColumnSpan="2"
-                    RelativePanel.Below="TextBlockWantLearn"
+                    RelativePanel.Below="TextBoxFullName"
                     Style="{StaticResource ProfileCard}">
-            <TextBlock Height="21"
-                       Margin="9,3,9,0"
-                       Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
-                       Text="Want to learn:"
-                       TextWrapping="Wrap" />
+
+            <StackPanel MinWidth="300" Orientation="Horizontal">
+                <AutoSuggestBox x:Name="AutoSuggestBox"
+                                MinWidth="300"
+                                DisplayMemberPath="{Binding Name}"
+                                Header="Type what you want to learn"
+                                PlaceholderText="type here..."
+                                QueryIcon="Accept"
+                                QuerySubmitted="AutoSuggestBox_OnQuerySubmitted"
+                                SuggestionChosen="AutoSuggestBox_OnSuggestionChosen"
+                                TextMemberPath="{Binding Id}">
+                    <AutoSuggestBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </AutoSuggestBox.ItemTemplate>
+                </AutoSuggestBox>
+            </StackPanel>
             <GridView x:Name="GridViewLearn"
                       ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
                       ItemTemplate="{StaticResource SkillGridViewTemplate}"
-                      ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToLearn, Mode=OneWay}" />
+                      ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToLearn, Mode=OneWay}"
+                      SelectionChanged="GridViewLearn_SelectionChanged" />
         </StackPanel>
+        <TextBlock x:Name="txtInfo" />
 
     </RelativePanel>
 </Page>
+

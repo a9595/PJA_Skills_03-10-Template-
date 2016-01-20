@@ -21,12 +21,20 @@ namespace PJA_Skills_032.ViewModel
             set { this.SetProperty(ref this._currentUser, value); }
         }
 
+        /// <summary>
+        /// Create My Profile View Model with the CURRENT USER
+        /// </summary>
         public MyProfileViewModel()
         {
             if (ParseUser.CurrentUser != null)
                 CurrentUser = new TestUser(ParseUser.CurrentUser);
         }
 
+
+        /// <summary>
+        /// Create with custom user (for UserPage)
+        /// </summary>
+        /// <param name="user"></param>
         public MyProfileViewModel(TestUser user)
         {
             CurrentUser = user;

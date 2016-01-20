@@ -27,6 +27,11 @@ namespace PJA_Skills_032.Model
             this._backingObject = backingParseObject;
         }
 
+        public Skill(string skillName)
+        {
+            
+        }
+
         /*
                 public Skill(string name)
                 {
