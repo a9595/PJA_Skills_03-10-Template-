@@ -17,18 +17,28 @@ namespace PJA_Skills_032.Model
             get
             {
                 return ParseHelper.GetParseObject(ParseHelper.OBJECT_OFFER_CONTENT, BackingObject);
-
             }
             set { ParseHelper.SetParseObject(ParseHelper.OBJECT_OFFER_CONTENT, BackingObject, value); }
         }
-        public TestUser User { get; set; }
+
+        public TestUser User
+        {
+            get
+            {
+                ParseObject userParseObject = ParseHelper.GetParseObjectObject(ParseHelper.OBJECT_OFFER_USER, BackingObject);
+                return new TestUser(userParseObject);
+            }
+            set
+            {
+                ParseHelper.SetParseObjectObject(ParseHelper.OBJECT_OFFER_USER, BackingObject, value.BackingObject);
+            }
+        }
 
 
         public Offer(ParseObject backingObject)
         {
             // TODO
             this.BackingObject = backingObject;
-            
         }
 
 

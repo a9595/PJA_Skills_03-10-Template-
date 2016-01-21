@@ -33,7 +33,7 @@ namespace PJA_Skills_032.ViewModel
 
         #region methods
 
-        private async Task<ObservableCollection<Offer>> DownloadAllOffers()
+        public async Task<ObservableCollection<Offer>> DownloadAllOffers()
         {
             ParseQuery<ParseObject> query =
                 from item in ParseObject.GetQuery(ParseHelper.OBJECT_OFFER)
@@ -45,6 +45,14 @@ namespace PJA_Skills_032.ViewModel
             return offersObservableCollection;
         }
 
+        public async Task AddDownloadedOffers()
+        {
+            ObservableCollection<Offer> downloadedOffers = await DownloadAllOffers();
+            foreach (Offer offer in downloadedOffers)
+            {
+                OffersObservableCollection.Add(offer);
+            }
+        }
         #endregion
 
     }

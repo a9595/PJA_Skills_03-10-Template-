@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using PJA_Skills_032.Model;
 using PJA_Skills_032.ViewModel;
 
 namespace PJA_Skills_032.Pages
@@ -9,11 +12,19 @@ namespace PJA_Skills_032.Pages
     /// </summary>
     public sealed partial class Offers : Page
     {
-        public OffersViewModel ViewModel = new OffersViewModel();
+        public OffersViewModel ViewModel { get; set; }
 
         public Offers()
         {
             this.InitializeComponent();
+            ViewModel = new OffersViewModel();
+        }
+
+
+        private async void Offers_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            // await download users of offers
+            await ViewModel.AddDownloadedOffers();
         }
     }
 }

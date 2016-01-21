@@ -42,6 +42,13 @@ namespace PJA_Skills_032.ParseObjects
         #endregion
 
         #region method
+
+        /// <summary>
+        /// get string from object (name from user)
+        /// </summary>
+        /// <param name="parseObjectKey"></param>
+        /// <param name="backingObject"></param>
+        /// <returns></returns>
         public static string GetParseObject(string parseObjectKey, ParseObject backingObject)
         {
             return backingObject != null
@@ -49,7 +56,22 @@ namespace PJA_Skills_032.ParseObjects
                     ? backingObject.Get<string>(parseObjectKey)
                     : null;
         }
+
+        public static ParseObject GetParseObjectObject(string parseObjectKey, ParseObject backingObject)
+        {
+            return backingObject != null
+                    && backingObject.ContainsKey(parseObjectKey)
+                    ? backingObject.Get<ParseObject>(parseObjectKey)
+                    : null;
+        }
         public static void SetParseObject(string parseObjectKey, ParseObject backingObject, string value)
+        {
+            if (backingObject != null
+                   && backingObject.ContainsKey(parseObjectKey))
+                backingObject[parseObjectKey] = value;
+        }
+
+        public static void SetParseObjectObject(string parseObjectKey, ParseObject backingObject, ParseObject value)
         {
             if (backingObject != null
                    && backingObject.ContainsKey(parseObjectKey))
