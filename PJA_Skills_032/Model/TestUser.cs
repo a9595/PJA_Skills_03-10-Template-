@@ -18,24 +18,7 @@ namespace PJA_Skills_032.Model
 
         public ObservableCollection<Skill> SkillsWantToLearn
         {
-            //get
-            //{
-            //    var querySkillTable = ParseObject.GetQuery(ParseHelper.OBJECT_SKILL);
-            //    List<Skill> resultSkillsList = new List<Skill>();
-            //    if (this._backingObject != null)
-            //    {
-            //        var queryTieorange = querySkillTable.WhereEqualTo(ParseHelper.OBJECT_SKILL_USERS, this._backingObject);
-
-            //        IEnumerable<ParseObject> skillsOfTieorange = queryTieorange.FindAsync().Result;
-
-            //        foreach (ParseObject skill in skillsOfTieorange)
-            //        {
-            //            resultSkillsList.Add(new Skill(skill));
-            //        }
-            //    }
-            //    return resultSkillsList;
-            //}
-            get; set;
+           get; set;
         }
 
         public List<Skill> SkillsWantToTeach { get; set; }
@@ -99,28 +82,6 @@ namespace PJA_Skills_032.Model
 
         #region methods
 
-        //public async Task GetSkillsL()
-        //{
-        //    var relation = _backingObject.GetRelation<ParseObject>(ParseHelper.OBJECT_TEST_USER_SKILLS_WANT_TO_LEARN);
-        //    var querySkills = relation.Query;
-
-        //    var queryLinq = from item in await querySkills.FindAsync()
-        //                    select new Skill(item);
-        //    // Get Skills want to learn 
-        //    var skillsCollection = new List<Skill>(queryLinq);
-        //    SkillsWantToLearn = skillsCollection;
-        //}
-        //public void GetSkillsLdummy()
-        //{
-        //    // skills
-        //    Skill skillPRM = new Skill("PRM");
-        //    Skill skillBSI = new Skill("BSI");
-        //    Skill skillUKO = new Skill("UKO");
-
-        //    SkillsWantToLearn.Add(skillPRM);
-        //    SkillsWantToLearn.Add(skillBSI);
-        //    SkillsWantToLearn.Add(skillUKO);
-        //}
 
         public static async Task Login()
         {
@@ -174,6 +135,28 @@ namespace PJA_Skills_032.Model
             return billGatesSkillsWantToLearn;
         }
 
+        //public async Task GetSkillsL()
+        //{
+        //    var relation = _backingObject.GetRelation<ParseObject>(ParseHelper.OBJECT_TEST_USER_SKILLS_WANT_TO_LEARN);
+        //    var querySkills = relation.Query;
+
+        //    var queryLinq = from item in await querySkills.FindAsync()
+        //                    select new Skill(item);
+        //    // Get Skills want to learn 
+        //    var skillsCollection = new List<Skill>(queryLinq);
+        //    SkillsWantToLearn = skillsCollection;
+        //}
+        //public void GetSkillsLdummy()
+        //{
+        //    // skills
+        //    Skill skillPRM = new Skill("PRM");
+        //    Skill skillBSI = new Skill("BSI");
+        //    Skill skillUKO = new Skill("UKO");
+
+        //    SkillsWantToLearn.Add(skillPRM);
+        //    SkillsWantToLearn.Add(skillBSI);
+        //    SkillsWantToLearn.Add(skillUKO);
+        //}
 
         #endregion
 

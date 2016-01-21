@@ -26,6 +26,11 @@ namespace PJA_Skills_032.ParseObjects
         public static readonly string OBJECT_SKILL_NAME = "Name";
         public static readonly string OBJECT_SKILL_USERS = "Users";
 
+        //OFFER:
+        public static readonly string OBJECT_OFFER = "Offer";
+        public static readonly string OBJECT_OFFER_CONTENT = "Content";
+        public static readonly string OBJECT_OFFER_USER = "User";
+
 
         // General:
         public static readonly string OBJECT_ID = "ObjectId";

@@ -97,6 +97,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Offer.cs" />
     <Compile Include="Model\Skill.cs" />
     <Compile Include="Model\TestUser.cs" />
     <Compile Include="Pages\EditMyProfilePage.xaml.cs">
@@ -135,6 +136,7 @@
     <Compile Include="Presentation\ShellViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\MyProfileViewModel.cs" />
+    <Compile Include="ViewModel\OffersViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

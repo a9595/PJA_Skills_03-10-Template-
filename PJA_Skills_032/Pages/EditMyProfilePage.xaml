@@ -8,23 +8,23 @@
       Loading="EditMyProfilePage_OnLoading"
       mc:Ignorable="d">
 
-    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="16,26,0,0">
 
         <TextBox x:Name="TextBoxFullName"
-                 Height="32"
+                 Width="300"
                  Header="Full Name"
-                 Text="{x:Bind ViewModel.CurrentUser.Name, Mode=OneWay}"
+                 Text="{x:Bind ViewModel.CurrentUser.Name, Mode=TwoWay}"
                  TextWrapping="Wrap" />
 
 
 
         <StackPanel x:Name="StackPanelToLearn"
-                    RelativePanel.Below="TextBoxFullName"
+                    Margin="10,10,0,0"
                     Style="{StaticResource ProfileCard}">
 
             <StackPanel MinWidth="300" Orientation="Horizontal">
                 <AutoSuggestBox x:Name="AutoSuggestBox"
-                                MinWidth="300"
+                                Width="300"
                                 DisplayMemberPath="{Binding Name}"
                                 Header="Type what you want to learn"
                                 PlaceholderText="type here..."
@@ -47,14 +47,12 @@
                       ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToLearn, Mode=OneWay}"
                       SelectionChanged="GridViewLearn_SelectionChanged" />
         </StackPanel>
-
         <Button x:Name="ButtonSaveChanges"
-                Width="400"
                 HorizontalAlignment="Stretch"
+                VerticalAlignment="Bottom"
                 Background="#3330FF4D"
                 Click="ButtonSaveChanges_OnClick"
-                Content="Save changes"
-                RelativePanel.AlignBottomWithPanel="True" />
-    </RelativePanel>
+                Content="Save changes" />
+    </StackPanel>
 </Page>
 

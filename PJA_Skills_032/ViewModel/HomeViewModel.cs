@@ -15,6 +15,9 @@ namespace PJA_Skills_032.ViewModel
     public class HomeViewModel : BindableBase
     {
         // atom intrusion
+
+        #region props
+
         private ObservableCollection<TestUser> _usersObservableCollection = new ObservableCollection<TestUser>();
 
         public ObservableCollection<TestUser> UsersObservableCollection
@@ -31,6 +34,9 @@ namespace PJA_Skills_032.ViewModel
             //Users.Add(testUser);
             //Users.Add(testUser2);
         }
+
+        #endregion
+
 
         #region methods
 

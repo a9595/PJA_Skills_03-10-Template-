@@ -7,97 +7,14 @@
       mc:Ignorable="d">
 
 
+    <Page.Resources>
+        <DataTemplate x:Key="OffersGridViewTemplate" />
+    </Page.Resources>
     <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
-        <StackPanel>
-            <RelativePanel Margin="0,10, 0, 20">
-                <Image x:Name="userImage"
-                       Width="100"
-                       Height="100"
-                       Source="ms-appx:///Assets/LockScreenLogo.png" />
-                <TextBlock x:Name="userName"
-                           Margin="4,4,0,4"
-                           RelativePanel.RightOf="userImage"
-                           Style="{ThemeResource BodyTextBlockStyle}"
-                           Text="Andrii Kovalchuk" />
-                <TextBlock x:Name="userPosition"
-                           Margin="4,4,0,4"
-                           FontSize="12"
-                           Foreground="Gray"
-                           RelativePanel.AlignLeftWith="userName"
-                           RelativePanel.Below="userName"
-                           Style="{ThemeResource BodyTextBlockStyle}"
-                           Text="Informatyka" />
-
-                <TextBlock x:Name="iconToLearn"
-                           Margin="10,20,5,0"
-                           FontFamily="Segoe MDL2 Assets"
-                           RelativePanel.Below="userImage"
-                           Text="&#xE8AB;" />
-
-                <!--  HORIZONTAL LIST VIEW LEARN  -->
-                <ListBox x:Name="SkillsWantToLearn"
-                         ItemContainerStyle="{StaticResource HomeUserSkillHorizontallPanel}"
-                         RelativePanel.AlignTopWith="iconToLearn"
-                         RelativePanel.RightOf="iconToLearn"
-                         ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                         ScrollViewer.HorizontalScrollMode="Enabled"
-                         ScrollViewer.IsHorizontalRailEnabled="True"
-                         ScrollViewer.VerticalScrollMode="Disabled">
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal" />
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem Width="44"
-                                 Height="39"
-                                 FontSize="9.333" />
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                </ListBox>
-
-
-
-                <TextBlock x:Name="iconToTeach"
-                           Margin="10,20,5,0"
-                           FontFamily="Segoe MDL2 Assets"
-                           RelativePanel.Below="iconToLearn"
-                           Text="&#xE899;" />
-                <ListBox x:Name="SkillsWantToTeach"
-                         Margin="0,10,0,0"
-                         ItemContainerStyle="{StaticResource HomeUserSkillHorizontallPanel}"
-                         RelativePanel.AlignTopWith="iconToTeach"
-                         RelativePanel.RightOf="iconToTeach"
-                         ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                         ScrollViewer.HorizontalScrollMode="Enabled"
-                         ScrollViewer.IsHorizontalRailEnabled="True"
-                         ScrollViewer.VerticalScrollMode="Disabled">
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal" />
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                    <ListBoxItem>PPJ</ListBoxItem>
-                </ListBox>
-            </RelativePanel>
-
-
-
+        <StackPanel Orientation="Vertical">
+            <GridView x:Name="GridViewOffers"
+                      ItemTemplate="{StaticResource OffersGridViewTemplate}"
+                      ItemsSource="{x:Bind ViewModel.OffersObservableCollection}" />
         </StackPanel>
 
 

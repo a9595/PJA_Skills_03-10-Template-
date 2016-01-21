@@ -185,7 +185,7 @@ namespace PJA_Skills_032.Pages
 
         private async void ButtonSaveChanges_OnClick(object sender, RoutedEventArgs e)
         {
-            // Add new Skills that user added
+            // 1. Add new Skills that user added
             if (SkillsUserWantsToLearnAdded.Count > 0)
             {
                 foreach (Skill skill in SkillsUserWantsToLearnAdded)
@@ -196,7 +196,10 @@ namespace PJA_Skills_032.Pages
 
 
 
-            // Remove skills checked by user
+
+
+
+            // 2. Remove skills checked by user
             if (SkillsUserWantsToLearnRemoved.Count > 0)
             {
                 foreach (Skill skill in SkillsUserWantsToLearnRemoved)
@@ -205,9 +208,16 @@ namespace PJA_Skills_032.Pages
                 }
             }
 
-            // Go to the profile page
-            Frame rootFrame = Window.Current.Content as Frame;
+            // 3. Change name
+            if (!ViewModel.CurrentUser.Name.Equals(TextBoxFullName.Text))
+            {
+                // if text changed
+                ViewModel.CurrentUser.Name = TextBoxFullName.Text;
+                await ViewModel.CurrentUser.BackingObject.SaveAsync();
+            }
 
+
+            // 4. Go to the profile page
             if (Frame.CanGoBack)
             {
                 Frame.GoBack();
