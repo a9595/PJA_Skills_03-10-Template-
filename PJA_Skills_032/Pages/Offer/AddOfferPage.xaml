@@ -1,0 +1,19 @@
+﻿<Page x:Class="PJA_Skills_032.Pages.Offers.AddOfferPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:PJA_Skills_032.Pages.Offers"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+        <TextBox x:Name="txtContent"
+                 Header="Offer Content"
+                 InputScope="Text"
+                 PlaceholderText="Type your offer..." />
+        <Button x:Name="btnAddNewOffer"
+                HorizontalAlignment="Stretch"
+                Content="Publish this offer" />
+    </StackPanel>
+</Page>
+

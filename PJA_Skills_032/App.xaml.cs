@@ -28,7 +28,6 @@ namespace PJA_Skills_032
 
             // Parse.com: 
             ParseClient.Initialize("URh5AXPg6WxCoJxcb73ILKsj7QNlQK528u00lANx", "tZ3qNCJsCzMn7Zpd0XI7ztSq1NjCOyQK2gLLPPQm");
-
         }
 
         /// <summary>

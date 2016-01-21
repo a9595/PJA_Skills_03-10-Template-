@@ -30,7 +30,11 @@ namespace PJA_Skills_032.Pages
         private async void MyProfilePage_OnLoading(FrameworkElement sender, object args)
         {
             // Bind viemodel to view 
-            await ViewModel.CurrentUser.GetSkills();
+            if (ViewModel.CurrentUser != null)
+
+                await ViewModel.CurrentUser.GetSkills();
+                        
+
 
             //this.DataContext = ViewModel;
             //GridViewLearn.ItemsSource = 
