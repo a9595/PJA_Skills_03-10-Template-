@@ -19,7 +19,7 @@
                           Click="AppBarButtonAddNewOffer_OnClick"
                           Foreground="White"
                           Icon="Add"
-                          Label="Edit" />
+                          Label="Add" />
         </CommandBar>
     </Page.BottomAppBar>
 
@@ -27,11 +27,11 @@
         <!--  DATATEMPLATE OF OFFER  -->
         <DataTemplate x:Key="OffersGridViewTemplate" x:DataType="data:Offer">
             <StackPanel Orientation="Vertical">
-                <StackPanel>
+                <StackPanel Orientation="Horizontal">
                     <TextBlock x:Name="TextBlockUserName" Text="{x:Bind User.Name}" />
                 </StackPanel>
                 <TextBlock x:Name="TextBlockContent" Text="{x:Bind Content}" />
-                
+
             </StackPanel>
         </DataTemplate>
     </Page.Resources>

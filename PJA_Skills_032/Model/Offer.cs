@@ -21,18 +21,7 @@ namespace PJA_Skills_032.Model
             set { ParseHelper.SetParseObject(ParseHelper.OBJECT_OFFER_CONTENT, BackingObject, value); }
         }
 
-        public TestUser User
-        {
-            get
-            {
-                ParseObject userParseObject = ParseHelper.GetParseObjectObject(ParseHelper.OBJECT_OFFER_USER, BackingObject);
-                return new TestUser(userParseObject);
-            }
-            set
-            {
-                ParseHelper.SetParseObjectObject(ParseHelper.OBJECT_OFFER_USER, BackingObject, value.BackingObject);
-            }
-        }
+        public TestUser User { get; set; }
 
 
         public Offer(ParseObject backingObject)
@@ -41,6 +30,13 @@ namespace PJA_Skills_032.Model
             this.BackingObject = backingObject;
         }
 
+        public async Task GetUser()
+        {
+            ParseObject parseUser = BackingObject.Get<ParseObject>(ParseHelper.OBJECT_OFFER_USER);
+            string objectId = parseUser.ObjectId;
+            ParseUser user = await ParseHelper.GetUserById(objectId);
 
+            User = new TestUser(user);
+        }
     }
 }

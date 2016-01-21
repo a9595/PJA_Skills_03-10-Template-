@@ -140,6 +140,7 @@ namespace PJA_Skills_032.ParseObjects
             return skillParseObject;
         }
 
+
         public static async Task<List<Skill>> GetAllSkillsList()
         {
             List<ParseObject> skillsParseObjectList = new List<ParseObject>(await ParseObject.GetQuery(OBJECT_SKILL).FindAsync());
@@ -160,6 +161,10 @@ namespace PJA_Skills_032.ParseObjects
                                                select user).FirstAsync();
             return userParseObject;
 
+        }
+        public static async Task<ParseUser> GetUserById(string id)
+        {
+            return await ParseUser.Query.GetAsync(id);
         }
 
 

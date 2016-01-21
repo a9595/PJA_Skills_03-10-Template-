@@ -50,6 +50,7 @@ namespace PJA_Skills_032.ViewModel
             ObservableCollection<Offer> downloadedOffers = await DownloadAllOffers();
             foreach (Offer offer in downloadedOffers)
             {
+                await offer.GetUser();
                 OffersObservableCollection.Add(offer);
             }
         }
