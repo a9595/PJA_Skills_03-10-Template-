@@ -26,5 +26,10 @@ namespace PJA_Skills_032.Pages
             // await download users of offers
             await ViewModel.AddDownloadedOffers();
         }
+
+        private void AppBarButtonAddNewOffer_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(OfferAddNewPage));
+        }
     }
 }

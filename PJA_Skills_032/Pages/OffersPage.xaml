@@ -9,6 +9,19 @@
 
 
 
+    <Page.BottomAppBar>
+        <CommandBar Foreground="White">
+            <CommandBar.Background>
+                <SolidColorBrush Color="{StaticResource app_bar_red}" />
+            </CommandBar.Background>
+            <AppBarButton x:Name="AppBarButtonAddNewOffer"
+                          Click="AppBarButtonAddNewOffer_OnClick"
+                          Foreground="White"
+                          Icon="Edit"
+                          Label="Edit" />
+        </CommandBar>
+    </Page.BottomAppBar>
+    
     <Page.Resources>
         <DataTemplate x:Key="OffersGridViewTemplate" x:DataType="data:Offer">
             <StackPanel Orientation="Vertical">

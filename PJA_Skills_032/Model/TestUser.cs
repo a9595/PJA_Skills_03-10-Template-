@@ -88,7 +88,7 @@ namespace PJA_Skills_032.Model
             try
             {
                 await ParseUser.LogInAsync(ParseHelper.DEFAULT_LOGIN, ParseHelper.DEFAULT_PASSWORD);
-                // Login was successful.
+                // Login was successful
             }
             catch (Exception e)
             {
