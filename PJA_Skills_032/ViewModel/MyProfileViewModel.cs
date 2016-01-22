@@ -37,7 +37,8 @@ namespace PJA_Skills_032.ViewModel
         /// <param name="user"></param>
         public MyProfileViewModel(TestUser user)
         {
-            CurrentUser = user;
+            //CurrentUser = user;
+            CurrentUser = new TestUser(user.BackingObject);
         }
 
         #region methods

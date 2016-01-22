@@ -39,9 +39,9 @@ namespace PJA_Skills_032.Pages
         }
 
 
-        private void UserPage_OnLoading(FrameworkElement sender, object args)
+        private async void UserPage_OnLoading(FrameworkElement sender, object args)
         {
-            //await ViewModel.CurrentUser.GetSkills();
+            await ViewModel.CurrentUser.GetSkills();
         }
     }
 }

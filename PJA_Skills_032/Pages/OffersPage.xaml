@@ -42,7 +42,6 @@
                            Text="{x:Bind User.Faculty}" />
                 <StackPanel RelativePanel.Below="userImage">
                     <TextBlock x:Name="TextBlockContent"
-                               Foreground="Blue"
                                Text="{x:Bind Content}"
                                TextWrapping="Wrap" />
                 </StackPanel>
@@ -54,7 +53,7 @@
 
     <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
         <StackPanel Orientation="Vertical">
-            <GridView x:Name="GridViewOffers"
+            <GridView x:Name="GridViewOffers" SelectionChanged="GridViewOffers_OnSelectionChanged"
                       ItemTemplate="{StaticResource OffersGridViewTemplate}"
                       ItemsSource="{x:Bind ViewModel.OffersObservableCollection}" />
         </StackPanel>

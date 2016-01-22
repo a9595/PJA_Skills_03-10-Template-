@@ -16,18 +16,7 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-    <Page.BottomAppBar>
-        <CommandBar Foreground="White">
-            <CommandBar.Background>
-                <SolidColorBrush Color="{StaticResource app_bar_red}" />
-            </CommandBar.Background>
-            <AppBarButton x:Name="AppBarButtonEdit"
-                          Foreground="White"
-                          Icon="Edit"
-                          Label="Edit" />
-        </CommandBar>
-    </Page.BottomAppBar>
-
+  
     <ScrollViewer Grid.RowSpan="2" Style="{StaticResource PageScrollViewerStyle}">
 
         <Grid Height="630"

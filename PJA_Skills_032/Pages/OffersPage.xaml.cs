@@ -33,5 +33,16 @@ namespace PJA_Skills_032.Pages
         {
             Frame.Navigate(typeof(OfferAddNewPage));
         }
+
+        private void GridViewOffers_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Offer selectedOffer = GridViewOffers.SelectedItem as Offer;
+            if (selectedOffer != null)
+            {
+                TestUser user = selectedOffer.User;
+                Frame.Navigate(typeof (UserPage), user);
+
+            }
+        }
     }
 }
