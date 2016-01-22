@@ -21,6 +21,9 @@ namespace PJA_Skills_032.Pages
     {
         //private ObservableCollection<GroupInfoList> source;
         public HomeViewModel ViewModel { get; set; }
+        public ObservableCollection<TestUser> SearchSuggestionList = new ObservableCollection<TestUser>();
+        public ObservableCollection<TestUser> SearchResults = new ObservableCollection<TestUser>();
+
 
         #region page events
 
@@ -29,14 +32,17 @@ namespace PJA_Skills_032.Pages
             this.InitializeComponent();
             ViewModel = new HomeViewModel();
 
+            AutoSuggestBoxSearch.ItemsSource = SearchResults;
+
         }
 
         private async void HomePage_OnLoaded(object sender, RoutedEventArgs e)
         {
             await ViewModel.AddDownloadedUsers(); // set downloaded users to viewModel
 
-            // add skills
-            //await AddDummySkillsToUsers();
+            // search
+            List<TestUser> usersList = await ParseHelper.GetAllUsersList();
+            SearchSuggestionList = new ObservableCollection<TestUser>(usersList);
         }
         private void GridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -61,7 +67,29 @@ namespace PJA_Skills_032.Pages
                 await ParseHelper.AddSkillToUser(parseUser, skill);
             }
         }
+        private void AutoSuggestBoxSearch_OnQuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            List<TestUser> searchSuggestions =
+                new List<TestUser>(SearchSuggestionList
+                .Where(item => item.Name.ToLower()
+                .Contains(args.QueryText.ToLower())));
 
+            SearchResults.Clear();
+            foreach (TestUser user in searchSuggestions)
+            {
+                SearchResults.Add(user);
+            }
+        }
+
+
+        private void AutoSuggestBoxSearch_OnSuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+            TestUser selectedUser = args.SelectedItem as TestUser;
+            if (selectedUser != null)
+            {
+                Frame.Navigate(typeof(UserPage), selectedUser);
+            }
+        }
         #endregion
 
         #region methods
@@ -167,6 +195,21 @@ namespace PJA_Skills_032.Pages
 
         #endregion
 
+        private void AutoSuggestBoxSearch_OnTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (SearchSuggestionList != null)
+            {
+                List<TestUser> searchSuggestions =
+                    new List<TestUser>(SearchSuggestionList
+                        .Where(item => item.Name.ToLower()
+                            .Contains(AutoSuggestBoxSearch.Text.ToLower())));
 
+                SearchResults.Clear();
+                foreach (TestUser user in searchSuggestions)
+                {
+                    SearchResults.Add(user);
+                }
+            }
+        }
     }
 }

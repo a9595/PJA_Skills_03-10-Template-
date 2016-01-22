@@ -52,7 +52,7 @@ namespace PJA_Skills_032.Pages
         public List<Skill> SkillsUserWantsToLearnAdded = new List<Skill>(); // keep added skills. saved after tapping "save changes"
         public List<Skill> SkillsUserWantsToLearnRemoved = new List<Skill>();
 
-        private List<Skill> _allSkillsList;
+        //private  _allSkillsList;
 
         public MyProfileViewModel ViewModel { get; set; }
         public EditMyProfilePage()
@@ -65,8 +65,8 @@ namespace PJA_Skills_032.Pages
         }
         private async void EditMyProfilePage_OnLoaded(object sender, RoutedEventArgs e)
         {
-            _allSkillsList = await ParseHelper.GetAllSkillsList();
-            SearchSuggestionsList = new ObservableCollection<Skill>(_allSkillsList);
+            List<Skill> allSkillsList = await ParseHelper.GetAllSkillsList();
+            SearchSuggestionsList = new ObservableCollection<Skill>(allSkillsList);
         }
 
         //public void PopulateSearchSuggestions()
@@ -141,7 +141,9 @@ namespace PJA_Skills_032.Pages
         private void AutoSuggestBox_OnQuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             List<Skill> searchSuggestions =
-                new List<Skill>(SearchSuggestionsList.Where(item => (item.Name).ToLower().Contains(args.QueryText.ToLower())));
+                new List<Skill>(SearchSuggestionsList.
+                Where(item => (item.Name).ToLower().Contains
+                (args.QueryText.ToLower())));
 
             ResultsSearchSuggestions.Clear();
 
@@ -213,6 +215,7 @@ namespace PJA_Skills_032.Pages
             {
                 // if text changed
                 ViewModel.CurrentUser.Name = TextBoxFullName.Text;
+                ViewModel.CurrentUser.BackingObject[ParseHelper.OBJECT_TEST_USER_NAME] = TextBoxFullName.Text;
                 await ViewModel.CurrentUser.BackingObject.SaveAsync();
             }
 

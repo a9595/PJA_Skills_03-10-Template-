@@ -36,6 +36,8 @@
         <ItemsPanelTemplate x:Key="SkillListViewPanelTemplate">
             <StackPanel Orientation="Horizontal" />
         </ItemsPanelTemplate>
+
+        <!--  USERS GRID_VIEW  -->
         <DataTemplate x:Name="ContactGridViewTemplate" x:DataType="data:TestUser">
             <RelativePanel MaxWidth="290"
                            Margin="20,20, 20, 20"
@@ -137,6 +139,22 @@
 
     <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
         <StackPanel Orientation="Vertical">
+            <AutoSuggestBox x:Name="AutoSuggestBoxSearch"
+                            Width="300"
+                            HorizontalAlignment="Right"
+                            PlaceholderText="Search..."
+                            QueryIcon="Find"
+                            QuerySubmitted="AutoSuggestBoxSearch_OnQuerySubmitted"
+                            SuggestionChosen="AutoSuggestBoxSearch_OnSuggestionChosen"
+                            TextChanged="AutoSuggestBoxSearch_OnTextChanged">
+                <AutoSuggestBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </DataTemplate>
+                </AutoSuggestBox.ItemTemplate>
+            </AutoSuggestBox>
             <!--<pages:HomeUserCard Label="Width:" Value="{x:Bind ViewModel.Width}" />-->
             <!--<TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Home Page" />-->
             <GridView x:Name="GridViewUsers"
@@ -148,3 +166,10 @@
     </ScrollViewer>
 
 </Page>
+
+
+
+
+
+
+

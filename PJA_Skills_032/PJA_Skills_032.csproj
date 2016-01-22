@@ -106,6 +106,9 @@
     <Compile Include="Pages\HomeUserCard.xaml.cs">
       <DependentUpon>HomeUserCard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\OfferAddNewPage.xaml.cs">
       <DependentUpon>OfferAddNewPage.xaml</DependentUpon>
     </Compile>
@@ -167,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\HomeUserCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

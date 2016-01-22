@@ -152,7 +152,18 @@ namespace PJA_Skills_032.ParseObjects
 
             return skillsList;
         }
+        public static async Task<List<TestUser>> GetAllUsersList()
+        {
+            List<ParseUser> skillsParseObjectList = new List<ParseUser>(await GetAllUsers());
+            List<TestUser> usersList = new List<TestUser>();
+            foreach (ParseUser parseUser in skillsParseObjectList)
+            {
+                usersList.Add(
+                    new TestUser(parseUser));
+            }
 
+            return usersList;
+        }
 
         public static async Task<ParseUser> GetUserByName(string userName)
         {

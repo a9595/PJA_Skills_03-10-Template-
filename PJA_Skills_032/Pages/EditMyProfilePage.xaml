@@ -11,7 +11,7 @@
     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="16,26,0,0">
 
         <TextBox x:Name="TextBoxFullName"
-                 Width="300"
+                 Width="300" 
                  Header="Full Name"
                  Text="{x:Bind ViewModel.CurrentUser.Name, Mode=TwoWay}"
                  TextWrapping="Wrap" />
