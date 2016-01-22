@@ -26,9 +26,6 @@ namespace PJA_Skills_032.Pages
             // await download users of offers
             await ViewModel.AddDownloadedOffers();
 
-            // Let's test if we have a user downloaded:
-            await ViewModel.OffersObservableCollection[3].GetUser();
-            Offer offersObservable = ViewModel.OffersObservableCollection[3];
 
         }
 

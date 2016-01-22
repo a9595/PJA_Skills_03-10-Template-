@@ -29,6 +29,7 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock x:Name="TextBlockUserName" Text="{x:Bind User.Name}" />
+                    <TextBlock x:Name="TextBlockUserFaculty" Text="{x:Bind User.Faculty}" />
                 </StackPanel>
                 <TextBlock x:Name="TextBlockContent" Text="{x:Bind Content}" />
 
