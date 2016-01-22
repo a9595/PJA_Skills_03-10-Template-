@@ -8,10 +8,15 @@
 
 
     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBox x:Name="txtContent"
+        <TextBox x:Name="TxtContent"
+                 AcceptsReturn="True"
                  Header="Offer content"
-                 PlaceholderText="Type your offer here.." />
-        <Button x:Name="btnSave" Content="Publish" Click="BtnSave_OnClick" />
+                 MaxLength="10"
+                 PlaceholderText="Type your offer here.."
+                 TextWrapping="Wrap" />
+        <Button x:Name="BtnSave"
+                Click="BtnSave_OnClick"
+                Content="Publish" />
 
 
     </StackPanel>

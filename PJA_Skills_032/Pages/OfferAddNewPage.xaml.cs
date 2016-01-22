@@ -34,7 +34,7 @@ namespace PJA_Skills_032.Pages
             // TODO: Validation of content validity 
 
             ParseObject offer = new ParseObject(ParseHelper.OBJECT_OFFER);
-            offer[ParseHelper.OBJECT_OFFER_CONTENT] = txtContent.Text;
+            offer[ParseHelper.OBJECT_OFFER_CONTENT] = TxtContent.Text;
             offer[ParseHelper.OBJECT_OFFER_USER] = ParseUser.CurrentUser;
             await offer.SaveAsync();
 

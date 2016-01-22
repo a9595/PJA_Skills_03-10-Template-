@@ -26,14 +26,28 @@
     <Page.Resources>
         <!--  DATATEMPLATE OF OFFER  -->
         <DataTemplate x:Key="OffersGridViewTemplate" x:DataType="data:Offer">
-            <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock x:Name="TextBlockUserName" Text="{x:Bind User.Name}" />
-                    <TextBlock x:Name="TextBlockUserFaculty" Text="{x:Bind User.Faculty}" />
-                </StackPanel>
-                <TextBlock x:Name="TextBlockContent" Text="{x:Bind Content}" />
+            <RelativePanel Height="200" MinWidth="300">
+                <Image x:Name="userImage"
+                       Width="100"
+                       Height="100"
+                       HorizontalAlignment="Left"
+                       Source="ms-appx:///Assets/LockScreenLogo.png" />
 
-            </StackPanel>
+                <TextBlock x:Name="TextBlockUserName"
+                           RelativePanel.RightOf="userImage"
+                           Text="{x:Bind User.Name}" />
+                <TextBlock x:Name="TextBlockUserFaculty"
+                           RelativePanel.AlignLeftWith="TextBlockUserName"
+                           RelativePanel.Below="TextBlockUserName"
+                           Text="{x:Bind User.Faculty}" />
+                <StackPanel RelativePanel.Below="userImage">
+                    <TextBlock x:Name="TextBlockContent"
+                               Foreground="Blue"
+                               Text="{x:Bind Content}"
+                               TextWrapping="Wrap" />
+                </StackPanel>
+
+            </RelativePanel>
         </DataTemplate>
     </Page.Resources>
 
