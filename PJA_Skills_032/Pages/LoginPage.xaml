@@ -2,16 +2,64 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="using:PJA_Skills_032.Pages" Loaded="LoginPage_OnLoaded"
+      xmlns:local="using:PJA_Skills_032.Pages"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      Loaded="LoginPage_OnLoaded"
       mc:Ignorable="d">
+    <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
+        <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <StackPanel x:Name="StackPanelLoginFields" Orientation="Vertical">
 
-    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBox x:Name="TxtLogin" PlaceholderText="Login..." />
-        <TextBox x:Name="TxtPassword" PlaceholderText="Password..." />
-        <Button x:Name="BtnLogin" Content="Login" Click="BtnLogin_OnClick" />
-    </StackPanel>
+
+                <TextBox x:Name="TxtLogin" PlaceholderText="Login..." />
+                <PasswordBox x:Name="TxtPassword" PlaceholderText="Password" />
+
+                <Button x:Name="BtnLogin"
+                        Click="BtnLogin_OnClick"
+                        Content="Login" />
+                <Button x:Name="BtnFacebook"
+                        Click="BtnFacebook_OnClick"
+                        Content="Connect with Facebook" />
+                <Button x:Name="BtnSignup"
+                        Click="BtnSignup_OnClick"
+                        Content="Sign up with email" />
+            </StackPanel>
+
+            <WebView x:Name="WebView"
+                     MinWidth="400"
+                     MinHeight="600"
+                     Visibility="Collapsed" />
+        </StackPanel>
+    </ScrollViewer>
 </Page>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

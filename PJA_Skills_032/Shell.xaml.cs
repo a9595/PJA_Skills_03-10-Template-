@@ -22,7 +22,7 @@ namespace PJA_Skills_032
 
             //
             // select the first menu item
-            vm.SelectedMenuItem = vm.MenuItems.First();
+            vm.SelectedMenuItem = vm.MenuItems.Last();
 
             this.ViewModel = vm;
         }

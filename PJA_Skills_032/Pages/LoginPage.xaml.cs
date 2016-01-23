@@ -30,15 +30,15 @@ namespace PJA_Skills_032.Pages
 
         }
 
-        private async void LoginPage_OnLoaded(object sender, RoutedEventArgs e)
+        private void LoginPage_OnLoaded(object sender, RoutedEventArgs e)
         {
-            await ParseUser.LogOutAsync();
+            ParseUser.LogOut();
         }
 
         private async void BtnLogin_OnClick(object sender, RoutedEventArgs e)
         {
             string login = TxtLogin.Text;
-            string password = TxtPassword.Text;
+            string password = TxtPassword.Password;
 
             try
             {
@@ -53,6 +53,33 @@ namespace PJA_Skills_032.Pages
             }
 
             Frame.Navigate(typeof(MyProfilePage));
+        }
+
+        private async void BtnFacebook_OnClick(object sender, RoutedEventArgs e)
+        {
+            StackPanelLoginFields.Visibility = Visibility.Collapsed;
+            WebView.Visibility = Visibility.Visible;
+
+            ParseUser user = await ParseFacebookUtils.LogInAsync(WebView, null);
+
+            WebView.Visibility = Visibility.Collapsed;
+            StackPanelLoginFields.Visibility = Visibility.Visible;
+
+            ParseUser currentUser = ParseUser.CurrentUser;
+
+
+        }
+
+       
+
+        private void WebView_OnDOMContentLoaded(WebView sender, WebViewDOMContentLoadedEventArgs args)
+        {
+            
+        }
+
+        private void BtnSignup_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof (SignupPage));
         }
     }
 }

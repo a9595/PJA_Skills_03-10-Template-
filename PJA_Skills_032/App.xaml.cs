@@ -16,7 +16,8 @@ namespace PJA_Skills_032
     /// </summary>
     sealed partial class App : Application
     {
-        private string _api_key_parse = "api_key";
+        private string _facebookApplicationId = "1503729486589913";
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -28,6 +29,7 @@ namespace PJA_Skills_032
 
             // Parse.com: 
             ParseClient.Initialize("URh5AXPg6WxCoJxcb73ILKsj7QNlQK528u00lANx", "tZ3qNCJsCzMn7Zpd0XI7ztSq1NjCOyQK2gLLPPQm");
+            ParseFacebookUtils.Initialize(_facebookApplicationId);
         }
 
         /// <summary>
@@ -81,8 +83,8 @@ namespace PJA_Skills_032
             // Ensure the current window is active
             Window.Current.Activate();
             // Login
-            if (ParseUser.CurrentUser == null) // check if user sesions is in cache
-                await TestUser.Login();
+            //if (ParseUser.CurrentUser == null) // check if user sesions is in cache
+            //    await TestUser.Login();
         }
 
         // handle hardware back button press
