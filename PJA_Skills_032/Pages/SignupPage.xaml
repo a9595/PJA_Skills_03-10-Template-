@@ -7,60 +7,85 @@
       Loaded="SignupPage_OnLoaded"
       mc:Ignorable="d">
 
-    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBox x:Name="TxtEmail" PlaceholderText="Email" />
-        <PasswordBox x:Name="TxtPassword" PlaceholderText="Password" />
-        <TextBox x:Name="TxtFullName" PlaceholderText="Full name" />
+    <ScrollViewer Background="White">
+        <StackPanel>
+            <TextBox x:Name="TxtEmail" PlaceholderText="Email" />
+            <PasswordBox x:Name="TxtPassword" PlaceholderText="Password" />
+            <TextBox x:Name="TxtFullName" PlaceholderText="Full name" />
 
-        
-        <!--LEARN-->
-        <StackPanel MinWidth="300" Orientation="Horizontal">
-            <AutoSuggestBox x:Name="AutoSuggestBoxLearn"
-                            Width="300"
-                            Header="What subjects would you like to learn?"
-                            PlaceholderText="type here..."
-                            QueryIcon="Accept"
-                            SuggestionChosen="AutoSuggestBoxLearn_OnSuggestionChosen"
-                            TextChanged="AutoSuggestBoxLearn_OnTextChanged">
-                <AutoSuggestBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" />
-                        </StackPanel>
-                    </DataTemplate>
-                </AutoSuggestBox.ItemTemplate>
-            </AutoSuggestBox>
+
+            <!--  LEARN  -->
+            <StackPanel MinWidth="300" Orientation="Horizontal">
+                <AutoSuggestBox x:Name="AutoSuggestBoxLearn"
+                                Width="300"
+                                Header="What subjects would you like to learn?"
+                                PlaceholderText="type here..."
+                                QueryIcon="Accept"
+                                SuggestionChosen="AutoSuggestBoxLearn_OnSuggestionChosen"
+                                TextChanged="AutoSuggestBoxLearn_OnTextChanged">
+                    <AutoSuggestBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </AutoSuggestBox.ItemTemplate>
+                </AutoSuggestBox>
+            </StackPanel>
+            <GridView x:Name="GridViewLearn"
+                      ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
+                      ItemTemplate="{StaticResource SkillGridViewTemplate}" />
+
+            <!--  TEACH  -->
+            <StackPanel MinWidth="300" Orientation="Horizontal">
+                <AutoSuggestBox x:Name="AutoSuggestBoxTeach"
+                                Width="300"
+                                Header="What subjects would you like to teach others?"
+                                PlaceholderText="type here..."
+                                QueryIcon="Accept"
+                                SuggestionChosen="AutoSuggestBoxTeach_OnSuggestionChosen"
+                                TextChanged="AutoSuggestBoxTeach_OnTextChanged">
+                    <AutoSuggestBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </AutoSuggestBox.ItemTemplate>
+                </AutoSuggestBox>
+            </StackPanel>
+            <GridView x:Name="GridViewTeach"
+                      ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
+                      ItemTemplate="{StaticResource SkillGridViewTemplate}" />
+
+            <!--  KORKING  -->
+            <StackPanel MinWidth="300" Orientation="Horizontal">
+                <AutoSuggestBox x:Name="AutoSuggestBoxKorking"
+                                Width="300"
+                                Header="What subjects would you like to teach others?"
+                                PlaceholderText="type here..."
+                                QueryIcon="Accept"
+                                SuggestionChosen="AutoSuggestBoxKorking_OnSuggestionChosen"
+                                TextChanged="AutoSuggestBoxKorking_OnTextChanged">
+                    <AutoSuggestBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </AutoSuggestBox.ItemTemplate>
+                </AutoSuggestBox>
+            </StackPanel>
+            <GridView x:Name="GridViewKorking"
+                      ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
+                      ItemTemplate="{StaticResource SkillGridViewTemplate}" />
+
+
+            <Button x:Name="ButtonSignUp"
+                    Click="ButtonSignUp_OnClick"
+                    Content="Sign Up" />
         </StackPanel>
-        
-        <!--TEACH-->
-        <GridView x:Name="GridViewLearn"
-                  ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
-                  ItemTemplate="{StaticResource SkillGridViewTemplate}" />
-
-        <StackPanel MinWidth="300" Orientation="Horizontal">
-            <AutoSuggestBox x:Name="AutoSuggestBoxTeach"
-                            Width="300"
-                            Header="What subjects would you like to teach others?"
-                            PlaceholderText="type here..."
-                            QueryIcon="Accept"
-                            SuggestionChosen="AutoSuggestBoxTeach_OnSuggestionChosen"
-                            TextChanged="AutoSuggestBoxTeach_OnTextChanged">
-                <AutoSuggestBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" />
-                        </StackPanel>
-                    </DataTemplate>
-                </AutoSuggestBox.ItemTemplate>
-            </AutoSuggestBox>
-        </StackPanel>
-        <GridView x:Name="GridViewTeach"
-                  ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
-                  ItemTemplate="{StaticResource SkillGridViewTemplate}" />
-
-        <Button x:Name="ButtonSignUp" Content="Sign Up" Click="ButtonSignUp_OnClick" />
-    </StackPanel>
-
+    </ScrollViewer>
 
 </Page>
 

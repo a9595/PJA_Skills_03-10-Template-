@@ -135,6 +135,19 @@
                           ItemTemplate="{StaticResource SkillGridViewTemplate}"
                           ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToTeach, Mode=OneWay}" />
             </StackPanel>
+            <StackPanel x:Name="StackPanelKorking"
+                        Grid.Row="4"
+                        Grid.ColumnSpan="2"
+                        Style="{StaticResource ProfileCard}">
+                <TextBlock Height="21"
+                           Margin="9,3,9,0"
+                           Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
+                           Text="Want to provide korking (teach for money):"
+                           TextWrapping="Wrap" />
+                <GridView ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
+                          ItemTemplate="{StaticResource SkillGridViewTemplate}"
+                          ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToKorking, Mode=OneWay}" />
+            </StackPanel>
 
         </Grid>
 

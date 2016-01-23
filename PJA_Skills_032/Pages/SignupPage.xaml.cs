@@ -44,9 +44,11 @@ namespace PJA_Skills_032.Pages
 
             AutoSuggestBoxLearn.ItemsSource = ResultsSearchSuggestions;
             AutoSuggestBoxTeach.ItemsSource = ResultsSearchSuggestions;
+            AutoSuggestBoxKorking.ItemsSource = ResultsSearchSuggestions;
 
             GridViewLearn.ItemsSource = UserLearnList;
             GridViewTeach.ItemsSource = UserTeachList;
+            GridViewKorking.ItemsSource = UserKorkingList;
         }
 
         private async void SignupPage_OnLoaded(object sender, RoutedEventArgs e)
@@ -116,6 +118,10 @@ namespace PJA_Skills_032.Pages
             }
 
             // Add korking skills
+            foreach (Skill skill in UserKorkingList)
+            {
+                await ParseHelper.AddSkillKorkingToUser(_user, skill.getBackingObject);
+            }
         }
 
 
@@ -140,6 +146,15 @@ namespace PJA_Skills_032.Pages
             AutoSuggestionChosen(args, UserTeachList, AutoSuggestBoxTeach);
         }
 
+        // Korking
+        private void AutoSuggestBoxKorking_OnTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            AutoSuggestionBoxTextChanged(AutoSuggestBoxKorking, UserKorkingList);
+        }
+        private void AutoSuggestBoxKorking_OnSuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+            AutoSuggestionChosen(args, UserKorkingList, AutoSuggestBoxKorking);
+        }
 
         private void AutoSuggestionBoxTextChanged(AutoSuggestBox autoSuggestBox, ObservableCollection<Skill> userSkillsList)
         {
