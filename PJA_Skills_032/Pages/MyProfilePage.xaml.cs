@@ -31,9 +31,10 @@ namespace PJA_Skills_032.Pages
         {
             // Bind viemodel to view 
             if (ViewModel.CurrentUser != null)
-
                 await ViewModel.CurrentUser.GetSkills();
-                        
+            else
+                Frame.Navigate(typeof (LoginPage));
+            
 
 
             //this.DataContext = ViewModel;
