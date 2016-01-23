@@ -63,7 +63,7 @@ namespace PJA_Skills_032.Pages
 
 
             // other fields can be set just like with ParseObject
-            _user[ParseHelper.OBJECT_TEST_USER_FACULTY] = "Informatyka"; // TODO: mock
+            _user[ParseHelper.OBJECT_TEST_USER_FACULTY] = "Inwformatyka"; // TODO: mock
             _user[ParseHelper.OBJECT_TEST_USER_NAME] = TxtFullName.Text;
 
 
@@ -110,7 +110,10 @@ namespace PJA_Skills_032.Pages
             }
 
             // Add teach skills
-
+            foreach (Skill skill in UserTeachList)
+            {
+                await ParseHelper.AddSkillTeachToUser(_user, skill.getBackingObject);
+            }
 
             // Add korking skills
         }
@@ -137,7 +140,7 @@ namespace PJA_Skills_032.Pages
             AutoSuggestionChosen(args, UserTeachList, AutoSuggestBoxTeach);
         }
 
-        
+
         private void AutoSuggestionBoxTextChanged(AutoSuggestBox autoSuggestBox, ObservableCollection<Skill> userSkillsList)
         {
             List<Skill> searchSuggestions =

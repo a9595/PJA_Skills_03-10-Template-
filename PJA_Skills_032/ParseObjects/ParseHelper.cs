@@ -25,6 +25,8 @@ namespace PJA_Skills_032.ParseObjects
         public static readonly string OBJECT_SKILL = "Skill";
         public static readonly string OBJECT_SKILL_NAME = "Name";
         public static readonly string OBJECT_SKILL_USERS = "Users";
+        public static readonly string OBJECT_SKILL_USERS_TEACH = "UsersTeach";
+        public static readonly string OBJECT_SKILL_USERS_KORKING = "UsersKorking";
 
         //OFFER:
         public static readonly string OBJECT_OFFER = "Offer";
@@ -108,6 +110,18 @@ namespace PJA_Skills_032.ParseObjects
         public static async Task AddSkillToUser(ParseUser user, ParseObject skill)
         {
             var skillUsersRelationship = skill.GetRelation<ParseObject>(OBJECT_SKILL_USERS);
+            skillUsersRelationship.Add(user);
+            await skill.SaveAsync();
+        }
+        public static async Task AddSkillTeachToUser(ParseUser user, ParseObject skill)
+        {
+            var skillUsersRelationship = skill.GetRelation<ParseObject>(OBJECT_SKILL_USERS_TEACH);
+            skillUsersRelationship.Add(user);
+            await skill.SaveAsync();
+        }
+        public static async Task AddSkillKorkingToUser(ParseUser user, ParseObject skill)
+        {
+            var skillUsersRelationship = skill.GetRelation<ParseObject>(OBJECT_SKILL_USERS_KORKING);
             skillUsersRelationship.Add(user);
             await skill.SaveAsync();
         }
@@ -258,5 +272,7 @@ namespace PJA_Skills_032.ParseObjects
             skillUsersRelationship.Remove(ParseUser.CurrentUser);
             await skill.SaveAsync();
         }
+
+
     }
 }

@@ -16,12 +16,9 @@ namespace PJA_Skills_032.Model
         #region property
         private readonly ParseObject _backingObject;
 
-        public ObservableCollection<Skill> SkillsWantToLearn
-        {
-           get; set;
-        }
+        public ObservableCollection<Skill> SkillsWantToLearn { get; set; }
 
-        public List<Skill> SkillsWantToTeach { get; set; }
+        public ObservableCollection<Skill> SkillsWantToTeach { get; set; }
 
         public string Name
         {
@@ -64,6 +61,7 @@ namespace PJA_Skills_032.Model
         {
             this._backingObject = backingParseObject;
             this.SkillsWantToLearn = new ObservableCollection<Skill>();
+            this.SkillsWantToTeach = new ObservableCollection<Skill>();
 
             //TODO: mock
             //this.SkillsWantToLearn = new List<Skill>();
@@ -125,6 +123,27 @@ namespace PJA_Skills_032.Model
                 foreach (ParseObject skill in skillsOfTieorange)
                 {
                     this.SkillsWantToLearn.Add(new Skill(skill));
+                }
+            }
+
+            await GetTeachSkills();
+        }
+
+        public async Task GetTeachSkills()
+        {
+            ParseQuery<ParseObject> querySkillTable = ParseObject.GetQuery(ParseHelper.OBJECT_SKILL);
+
+            // now we will query the authors relation to see if the author object we have
+            // is contained therein
+            if (this._backingObject != null)
+            {
+                ParseQuery<ParseObject> querySkills = querySkillTable.WhereEqualTo(ParseHelper.OBJECT_SKILL_USERS_TEACH, this._backingObject);
+
+                IEnumerable<ParseObject> skillsUser = await querySkills.FindAsync();
+
+                foreach (ParseObject skill in skillsUser)
+                {
+                    this.SkillsWantToTeach.Add(new Skill(skill));
                 }
             }
         }

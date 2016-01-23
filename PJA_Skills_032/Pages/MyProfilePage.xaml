@@ -133,7 +133,7 @@
                            TextWrapping="Wrap" />
                 <GridView ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
                           ItemTemplate="{StaticResource SkillGridViewTemplate}"
-                          ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToLearn, Mode=OneWay}" />
+                          ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToTeach, Mode=OneWay}" />
             </StackPanel>
 
         </Grid>
