@@ -151,10 +151,10 @@ namespace PJA_Skills_032.Pages
 
 
             // Remove already added by users
-            foreach (Skill resultsSearchSuggestion in searchSuggestions.ToList())
+            foreach (Skill skill in searchSuggestions.ToList())
             {
-                if (resultsSearchSuggestion.isContainsInOtherList(ViewModel.CurrentUser.SkillsWantToLearn))
-                    searchSuggestions.Remove(resultsSearchSuggestion);
+                if (skill.IsContainsInOtherList(ViewModel.CurrentUser.SkillsWantToLearn))
+                    searchSuggestions.Remove(skill);
             }
 
             // Add all skills

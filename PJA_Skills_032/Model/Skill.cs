@@ -30,7 +30,7 @@ namespace PJA_Skills_032.Model
             else return false;
         }
 
-        public bool isContainsInOtherList(IEnumerable<Skill> skillsList)
+        public bool IsContainsInOtherList(IEnumerable<Skill> skillsList)
         {
             bool result = false;
             foreach (Skill skill in skillsList)

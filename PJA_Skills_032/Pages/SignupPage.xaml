@@ -4,15 +4,38 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:PJA_Skills_032.Pages"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      Loaded="SignupPage_OnLoaded"
       mc:Ignorable="d">
 
     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBox x:Name="TxtEmail" PlaceholderText="Email" />
         <PasswordBox x:Name="TxtPassword" PlaceholderText="Password" />
         <TextBox x:Name="TxtFullName" PlaceholderText="Full name" />
-        
-        <Button x:Name="ButtonSignUp" Content="Sign up" Click="ButtonSignUp_OnClick"/>
+
+        <StackPanel MinWidth="300" Orientation="Horizontal">
+            <AutoSuggestBox x:Name="AutoSuggestBoxLearn"
+                            Width="300"
+                            Header="What subjects would you like to learn?"
+                            PlaceholderText="type here..."
+                            QueryIcon="Accept"
+                            SuggestionChosen="AutoSuggestBoxLearn_OnSuggestionChosen"
+                            TextChanged="AutoSuggestBoxLearn_OnTextChanged">
+                <AutoSuggestBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </DataTemplate>
+                </AutoSuggestBox.ItemTemplate>
+            </AutoSuggestBox>
+        </StackPanel>
+        <GridView x:Name="GridViewLearn"
+                  ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
+                  ItemTemplate="{StaticResource SkillGridViewTemplate}" />
+        <Button x:Name="ButtonSignUp" Content="Sign Up" Click="ButtonSignUp_OnClick" />
     </StackPanel>
+
+
 </Page>
 
 

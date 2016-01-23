@@ -27,13 +27,7 @@ namespace PJA_Skills_032.ViewModel
         }
 
         public HomeViewModel()
-        {
-            //TestUser testUser = new TestUser("Tim Cook", "Informatyka");
-            //TestUser testUser2 = new TestUser("Richard Brenson", "SNM");
-
-            //Users.Add(testUser);
-            //Users.Add(testUser2);
-        }
+        { }
 
         #endregion
 
