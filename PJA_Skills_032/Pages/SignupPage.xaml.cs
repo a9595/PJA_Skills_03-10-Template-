@@ -43,8 +43,10 @@ namespace PJA_Skills_032.Pages
             this.InitializeComponent();
 
             AutoSuggestBoxLearn.ItemsSource = ResultsSearchSuggestions;
+            AutoSuggestBoxTeach.ItemsSource = ResultsSearchSuggestions;
 
             GridViewLearn.ItemsSource = UserLearnList;
+            GridViewTeach.ItemsSource = UserTeachList;
         }
 
         private async void SignupPage_OnLoaded(object sender, RoutedEventArgs e)
@@ -113,19 +115,42 @@ namespace PJA_Skills_032.Pages
             // Add korking skills
         }
 
+
+        // Learn
         private void AutoSuggestBoxLearn_OnTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            AutoSuggestionBoxTextChanged(AutoSuggestBoxLearn, UserLearnList);
+        }
+        private void AutoSuggestBoxLearn_OnSuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+            AutoSuggestionChosen(args, UserLearnList, AutoSuggestBoxLearn);
+        }
+
+
+        // Teach
+        private void AutoSuggestBoxTeach_OnTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            AutoSuggestionBoxTextChanged(AutoSuggestBoxTeach, UserTeachList);
+        }
+        private void AutoSuggestBoxTeach_OnSuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+            AutoSuggestionChosen(args, UserTeachList, AutoSuggestBoxTeach);
+        }
+
+        
+        private void AutoSuggestionBoxTextChanged(AutoSuggestBox autoSuggestBox, ObservableCollection<Skill> userSkillsList)
         {
             List<Skill> searchSuggestions =
                 new List<Skill>(SearchSuggestionsList.
-                Where(item => (item.Name).ToLower().Contains
-                (AutoSuggestBoxLearn.Text.ToLower())));
+                    Where(item => (item.Name).ToLower().Contains
+                        (autoSuggestBox.Text.ToLower())));
 
             ResultsSearchSuggestions.Clear();
 
             // Remove already added by user (to avoid dublicates)
             foreach (Skill skill in searchSuggestions.ToList())
             {
-                if (skill.IsContainsInOtherList(UserLearnList))
+                if (skill.IsContainsInOtherList(userSkillsList))
                     searchSuggestions.Remove(skill);
             }
 
@@ -136,16 +161,15 @@ namespace PJA_Skills_032.Pages
             }
         }
 
-        private void AutoSuggestBoxLearn_OnSuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        private void AutoSuggestionChosen(AutoSuggestBoxSuggestionChosenEventArgs args, ObservableCollection<Skill> userLearnList, AutoSuggestBox autoSuggestBox)
         {
             Skill selectedSkill = args.SelectedItem as Skill;
             if (selectedSkill != null)
             {
-                UserLearnList.Add(selectedSkill);
-
+                userLearnList.Add(selectedSkill);
             }
 
-            AutoSuggestBoxLearn.Text = "";
+            autoSuggestBox.Text = "";
         }
 
     }
