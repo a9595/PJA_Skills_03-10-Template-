@@ -56,6 +56,7 @@ namespace PJA_Skills_032.Pages
 
             AutoSuggestBox.ItemsSource = ResultsSearchSuggestions;
             AutoSuggestBoxTeach.ItemsSource = ResultsSearchSuggestions;
+            AutoSuggestBoxKorking.ItemsSource = ResultsSearchSuggestions;
         }
         private async void EditMyProfilePage_OnLoaded(object sender, RoutedEventArgs e)
         {
@@ -101,6 +102,10 @@ namespace PJA_Skills_032.Pages
         {
             GridViewSkillSelected(GridViewTeach.SelectedItem, UserRemoveTeachList, ViewModel.CurrentUser.SkillsWantToTeach);
         }
+        private void GridViewKorking_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GridViewSkillSelected(GridViewKorking.SelectedItem, UserRemoveKorkingList, ViewModel.CurrentUser.SkillsWantToKorking);
+        }
 
         // Remove skill on tap
         private void GridViewSkillSelected(object selectedItem, List<Skill> userRemoveList, ObservableCollection<Skill> viewModelSkillsList)
@@ -134,6 +139,14 @@ namespace PJA_Skills_032.Pages
                     await ParseHelper.AddSkillTeachToUser(ParseUser.CurrentUser, skill.getBackingObject);
                 }
             }
+            //KORKING
+            if (UserKorkingList.Count > 0)
+            {
+                foreach (Skill skill in UserKorkingList)
+                {
+                    await ParseHelper.AddSkillKorkingToUser(ParseUser.CurrentUser, skill.getBackingObject);
+                }
+            }
 
             // 2. Remove skills checked by user
             // LEARN
@@ -152,15 +165,21 @@ namespace PJA_Skills_032.Pages
                     await ParseHelper.RemoveSkillTeachFromUser(skill.getBackingObject);
                 }
             }
+            // KORKING
+            if (UserRemoveKorkingList.Count > 0)
+            {
+                foreach (Skill skill in UserRemoveKorkingList)
+                {
+                    await ParseHelper.RemoveSkillKorkingFromUser(skill.getBackingObject);
+                }
+            }
 
             // 3. Change name
-            if (!ViewModel.CurrentUser.Name.Equals(TextBoxFullName.Text))
+            if (!ViewModel.CurrentUser.Name.Equals(TextBoxFullName.Text) && !string.IsNullOrWhiteSpace(TextBoxFullName.Text))
             {
-                // if text changed
-                ViewModel.CurrentUser.Name = TextBoxFullName.Text;
-                ViewModel.CurrentUser.BackingObject[ParseHelper.OBJECT_TEST_USER_NAME] = TextBoxFullName.Text;
                 ParseUser.CurrentUser[ParseHelper.OBJECT_TEST_USER_NAME] = TextBoxFullName.Text;
-                await ViewModel.CurrentUser.BackingObject.SaveAsync();
+                ViewModel.CurrentUser.Name = TextBoxFullName.Text;
+                await ParseUser.CurrentUser.SaveAsync();
             }
 
             // 4. Go to the profile page
@@ -191,6 +210,17 @@ namespace PJA_Skills_032.Pages
         {
             AutoSuggestionBoxTextChanged(AutoSuggestBoxTeach, ViewModel.CurrentUser.SkillsWantToTeach);
         }
+
+        // KORKING
+        private void AutoSuggestBoxKorking_OnSuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+            AutoSuggestionChosen(args, ViewModel.CurrentUser.SkillsWantToKorking, UserKorkingList, AutoSuggestBoxKorking);
+        }
+        private void AutoSuggestBoxKorking_OnTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            AutoSuggestionBoxTextChanged(AutoSuggestBoxKorking, ViewModel.CurrentUser.SkillsWantToKorking);
+        }
+
 
         // My listeners: 
         private void AutoSuggestionBoxTextChanged(AutoSuggestBox autoSuggestBox, ObservableCollection<Skill> userSkillsList)
@@ -226,6 +256,7 @@ namespace PJA_Skills_032.Pages
 
             autoSuggestBox.Text = "";
         }
+
 
 
     }

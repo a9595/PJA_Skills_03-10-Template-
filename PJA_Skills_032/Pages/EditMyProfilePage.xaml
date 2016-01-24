@@ -13,7 +13,7 @@
         <TextBox x:Name="TextBoxFullName"
                  Width="300"
                  Header="Full Name"
-                 Text="{x:Bind ViewModel.CurrentUser.Name, Mode=TwoWay}"
+                 Text="{x:Bind ViewModel.CurrentUser.Name, Mode=OneWay}"
                  TextWrapping="Wrap" />
 
 
@@ -66,6 +66,30 @@
                   ItemTemplate="{StaticResource SkillGridViewTemplate}"
                   SelectionChanged="GridViewTeach_OnSelectionChanged"
                   ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToTeach, Mode=OneWay}" />
+
+        <!--  KORKING  -->
+        <StackPanel MinWidth="300" Orientation="Horizontal">
+            <AutoSuggestBox x:Name="AutoSuggestBoxKorking"
+                            Width="300"
+                            Header="What would you like to teach others for an extra pay $ ?"
+                            PlaceholderText="type name of the subject here..."
+                            QueryIcon="Add"
+                            SuggestionChosen="AutoSuggestBoxKorking_OnSuggestionChosen"
+                            TextChanged="AutoSuggestBoxKorking_OnTextChanged">
+                <AutoSuggestBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </DataTemplate>
+                </AutoSuggestBox.ItemTemplate>
+            </AutoSuggestBox>
+        </StackPanel>
+        <GridView x:Name="GridViewKorking"
+                  ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
+                  ItemTemplate="{StaticResource SkillGridViewTemplate}"
+                  SelectionChanged="GridViewKorking_OnSelectionChanged"
+                  ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToKorking, Mode=OneWay}" />
 
         <Button x:Name="ButtonSaveChanges"
                 HorizontalAlignment="Stretch"

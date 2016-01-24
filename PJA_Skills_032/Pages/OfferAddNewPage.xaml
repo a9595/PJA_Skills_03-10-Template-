@@ -11,8 +11,8 @@
         <TextBox x:Name="TxtContent"
                  AcceptsReturn="True"
                  Header="Offer content"
-                 MaxLength="10"
-                 PlaceholderText="Type your offer here.."
+                 MaxLength="140"
+                 PlaceholderText="Type your offer here..."
                  TextWrapping="Wrap" />
         <Button x:Name="BtnSave"
                 Click="BtnSave_OnClick"
