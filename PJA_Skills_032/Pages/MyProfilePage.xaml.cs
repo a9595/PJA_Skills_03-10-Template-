@@ -26,31 +26,47 @@ namespace PJA_Skills_032.Pages
         public MyProfilePage()
         {
             this.InitializeComponent();
-
-            
-
-            //ViewModel = new MyProfileViewModel();
-
+            ViewModel = new MyProfileViewModel();
             //GridViewLearn.ItemsSource = ViewModel.CurrentUser.SkillsWantToLearn;
         }
 
 
-        private async void MyProfilePage_OnLoading(FrameworkElement sender, object args)
+        private void MyProfilePage_OnLoading(FrameworkElement sender, object args)
+        {
+            //// Bind viemodel to view 
+            ////if (ParseUser.CurrentUser == null)
+            //if (ViewModel.CurrentUser == null)
+            //{
+            //    Frame.Navigate(typeof(LoginPage));
+            //}
+            //else
+            //{
+            //    //ViewModel = new MyProfileViewModel();
+            //    await ViewModel.CurrentUser.GetSkills();
+            //    if (ParseUser.CurrentUser.ContainsKey(ParseHelper.OBJECT_TEST_USER_AVATAR))
+            //    {
+            //        ParseFile avatarFile = ParseUser.CurrentUser.Get<ParseFile>(ParseHelper.OBJECT_TEST_USER_AVATAR);
+            //        if (avatarFile.Url != null) UserAvatar.Source = new BitmapImage(avatarFile.Url);
+            //    }
+            //}
+        }
+        private async void MyProfilePage_OnLoaded(object sender, RoutedEventArgs e)
         {
             // Bind viemodel to view 
-            //if (ViewModel.CurrentUser == null)
-            if (ParseUser.CurrentUser == null)
+            //if (ParseUser.CurrentUser == null)
+            if (ViewModel.CurrentUser == null)
             {
                 Frame.Navigate(typeof(LoginPage));
-                return;
             }
-
-            ViewModel = new MyProfileViewModel();
-            await ViewModel.CurrentUser.GetSkills();
-            if (ParseUser.CurrentUser.ContainsKey(ParseHelper.OBJECT_TEST_USER_AVATAR))
+            else
             {
-                ParseFile avatarFile = ParseUser.CurrentUser.Get<ParseFile>(ParseHelper.OBJECT_TEST_USER_AVATAR);
-                if (avatarFile.Url != null) UserAvatar.Source = new BitmapImage(avatarFile.Url);
+                //ViewModel = new MyProfileViewModel();
+                await ViewModel.CurrentUser.GetSkills();
+                if (ParseUser.CurrentUser.ContainsKey(ParseHelper.OBJECT_TEST_USER_AVATAR))
+                {
+                    ParseFile avatarFile = ParseUser.CurrentUser.Get<ParseFile>(ParseHelper.OBJECT_TEST_USER_AVATAR);
+                    if (avatarFile.Url != null) UserAvatar.Source = new BitmapImage(avatarFile.Url);
+                }
             }
         }
 
@@ -103,5 +119,7 @@ namespace PJA_Skills_032.Pages
             ParseHelper.ComposeEmail(email, "Hi, found you in the app PJA Skills. Nice to meet you, mate :)", null);
 
         }
+
+
     }
 }
