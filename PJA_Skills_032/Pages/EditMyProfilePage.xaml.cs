@@ -182,7 +182,7 @@ namespace PJA_Skills_032.Pages
             }
 
             // 4. Avatar
-            if (_avatarBytesArray != null)
+            if (_avatarBytesArray != null && _avatarFile != null)
             {
                 // save to Parse
                 _avatarParseFile = new ParseFile("avatar" + _avatarFile.FileType, _avatarBytesArray);
@@ -190,7 +190,7 @@ namespace PJA_Skills_032.Pages
                 ParseUser.CurrentUser[ParseHelper.OBJECT_TEST_USER_AVATAR] = _avatarParseFile;
                 await ParseUser.CurrentUser.SaveAsync();
             }
-            
+
 
             // 4. Go to the profile page
             if (Frame.CanGoBack)

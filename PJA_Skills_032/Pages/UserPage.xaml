@@ -95,10 +95,10 @@
                         Content="F"
                         Foreground="White" />
             </StackPanel>
-            <Image x:Name="image"
+            <Image x:Name="userAvatar"
                    Grid.Column="1"
                    Margin="10"
-                   Source="ms-appx:///Assets/LockScreenLogo.png" />
+                   Source="{x:Bind ViewModel.CurrentUser.AvatarBitmapImage}" />
 
             <!--  TO LEARN  -->
             <StackPanel x:Name="StackPanelToLearn"

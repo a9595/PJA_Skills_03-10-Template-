@@ -89,10 +89,10 @@ namespace PJA_Skills_032.Pages
             RadioButton buttons = radioList
                            .FirstOrDefault(n => n.IsChecked != null && (bool)n.IsChecked);
             if (buttons != null)
-                _user[ParseHelper.OBJECT_TEST_USER_FACULTY] = buttons.Content?.ToString(); 
+                _user[ParseHelper.OBJECT_TEST_USER_FACULTY] = buttons.Content?.ToString();
 
             // Avatar
-            if (_avatarBytesArray != null)
+            if (_avatarBytesArray != null && _avatarFile != null)
             {
                 // save to Parse
                 _avatarParseFile = new ParseFile("avatar" + _avatarFile.FileType, _avatarBytesArray);

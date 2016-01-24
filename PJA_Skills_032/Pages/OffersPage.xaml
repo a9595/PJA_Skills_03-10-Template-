@@ -31,7 +31,7 @@
                        Width="100"
                        Height="100"
                        HorizontalAlignment="Left"
-                       Source="ms-appx:///Assets/LockScreenLogo.png" />
+                       Source="{x:Bind User.AvatarBitmapImage}" />
 
                 <TextBlock x:Name="TextBlockUserName"
                            RelativePanel.RightOf="userImage"
@@ -53,9 +53,10 @@
 
     <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
         <StackPanel Orientation="Vertical">
-            <GridView x:Name="GridViewOffers" SelectionChanged="GridViewOffers_OnSelectionChanged"
+            <GridView x:Name="GridViewOffers"
                       ItemTemplate="{StaticResource OffersGridViewTemplate}"
-                      ItemsSource="{x:Bind ViewModel.OffersObservableCollection}" />
+                      ItemsSource="{x:Bind ViewModel.OffersObservableCollection}"
+                      SelectionChanged="GridViewOffers_OnSelectionChanged" />
         </StackPanel>
 
 
