@@ -44,6 +44,39 @@ namespace PJA_Skills_032.Model
                 ParseHelper.SetParseObject(ParseHelper.OBJECT_TEST_USER_FACULTY, _backingObject, value);
             }
         }
+        public string FacebookLink
+        {
+            get
+            {
+                return ParseHelper.GetParseObject(ParseHelper.OBJECT_TEST_USER_FACEBOOK, _backingObject);
+            }
+            set
+            {
+                ParseHelper.SetParseObject(ParseHelper.OBJECT_TEST_USER_FACEBOOK, _backingObject, value);
+            }
+        }
+        public string GooglePlusLink
+        {
+            get
+            {
+                return ParseHelper.GetParseObject(ParseHelper.OBJECT_TEST_USER_GOOGLE_PLUS, _backingObject);
+            }
+            set
+            {
+                ParseHelper.SetParseObject(ParseHelper.OBJECT_TEST_USER_GOOGLE_PLUS, _backingObject, value);
+            }
+        }
+        public string SkypeLink
+        {
+            get
+            {
+                return ParseHelper.GetParseObject(ParseHelper.OBJECT_TEST_USER_SKYPE, _backingObject);
+            }
+            set
+            {
+                ParseHelper.SetParseObject(ParseHelper.OBJECT_TEST_USER_SKYPE, _backingObject, value);
+            }
+        }
 
         public ParseObject BackingObject
         {

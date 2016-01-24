@@ -73,11 +73,11 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Stretch"
                         Background="#FF3B5998"
-                        Content="F"
+                        Content="F" Click="FacebookBtn_OnClick"
                         Foreground="White" />
                 <Button x:Name="GplusBtn"
                         Width="61"
-                        Margin="10,5,0,5"
+                        Margin="10,5,0,5" Click="GplusBtn_OnClick"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Stretch"
                         Background="#FFDD4B39"
@@ -85,7 +85,7 @@
                         Foreground="White" />
                 <Button x:Name="SkypeBtn"
                         Width="61"
-                        Margin="10,5,0,5"
+                        Margin="10,5,0,5" Click="SkypeBtn_OnClick"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Stretch"
                         Background="#FF12A5F4"

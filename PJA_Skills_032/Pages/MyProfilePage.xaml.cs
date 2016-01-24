@@ -2,6 +2,10 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.System;
+using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -33,8 +37,8 @@ namespace PJA_Skills_032.Pages
             if (ViewModel.CurrentUser != null)
                 await ViewModel.CurrentUser.GetSkills();
             else
-                Frame.Navigate(typeof (LoginPage));
-            
+                Frame.Navigate(typeof(LoginPage));
+
 
 
             //this.DataContext = ViewModel;
@@ -80,6 +84,40 @@ namespace PJA_Skills_032.Pages
             Frame.Navigate(typeof(EditMyProfilePage), ViewModel.CurrentUser);
 
         }
-        
+
+        private async void FacebookBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            Uri articleLinkUri = new Uri(uriString: ViewModel.CurrentUser.FacebookLink, uriKind: UriKind.Absolute);
+
+            await Launcher.LaunchUriAsync(articleLinkUri);
+        }
+
+        private async void GplusBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.CurrentUser.GooglePlusLink != null)
+            {
+                Uri articleLinkUri = new Uri(ViewModel.CurrentUser.GooglePlusLink, UriKind.Absolute);
+
+                await Launcher.LaunchUriAsync(articleLinkUri);
+            }
+        }
+
+
+        private async void SkypeBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.CurrentUser.SkypeLink == null)
+                return;
+
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                        () =>
+                        {
+                            var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+                            dataPackage.SetText(ViewModel.CurrentUser.SkypeLink);
+                            Clipboard.SetContent(dataPackage);
+                        });
+
+            var dialog = new MessageDialog(content: ViewModel.CurrentUser.SkypeLink, title: "Skype nick is copied to clipboard");
+            await dialog.ShowAsync();
+        }
     }
 }

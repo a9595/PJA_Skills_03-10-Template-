@@ -13,6 +13,14 @@
             <PasswordBox x:Name="TxtPassword" PlaceholderText="Password" />
             <TextBox x:Name="TxtFullName" PlaceholderText="Full name" />
 
+            <StackPanel x:Name="StackPanelRadioButtons">
+                <RadioButton x:Name="RadioFacultyInformatics" Content="Computer Science" />
+                <RadioButton x:Name="RadioFacultyArts" Content="New Media Arts" />
+                <RadioButton x:Name="RadioFacultyInterior" Content="Interior Design" />
+                <RadioButton x:Name="RadioFacultyManagement" Content="Information Management" />
+                <RadioButton x:Name="RadioFacultyJapan" Content="Culture of Japan" />
+            </StackPanel>
+
 
             <!--  LEARN  -->
             <StackPanel MinWidth="300" Orientation="Horizontal">
@@ -62,7 +70,7 @@
             <StackPanel MinWidth="300" Orientation="Horizontal">
                 <AutoSuggestBox x:Name="AutoSuggestBoxKorking"
                                 Width="300"
-                                Header="What subjects would you like to teach others?"
+                                Header="What subjects would you like to teach others for an extra pay?"
                                 PlaceholderText="type here..."
                                 QueryIcon="Accept"
                                 SuggestionChosen="AutoSuggestBoxKorking_OnSuggestionChosen"
@@ -80,6 +88,9 @@
                       ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
                       ItemTemplate="{StaticResource SkillGridViewTemplate}" />
 
+            <TextBox x:Name="TxtFacebook" PlaceholderText="Facebook profile link" />
+            <TextBox x:Name="TxtGooglePlus" PlaceholderText="G+ profile link" />
+            <TextBox x:Name="TxtSkype" PlaceholderText="Skype" />
 
             <Button x:Name="ButtonSignUp"
                     Click="ButtonSignUp_OnClick"
@@ -88,6 +99,10 @@
     </ScrollViewer>
 
 </Page>
+
+
+
+
 
 
 

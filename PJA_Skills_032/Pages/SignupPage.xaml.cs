@@ -65,8 +65,26 @@ namespace PJA_Skills_032.Pages
 
 
             // other fields can be set just like with ParseObject
-            _user[ParseHelper.OBJECT_TEST_USER_FACULTY] = "Inwformatyka"; // TODO: mock
             _user[ParseHelper.OBJECT_TEST_USER_NAME] = TxtFullName.Text;
+
+            // Social links:
+            _user[ParseHelper.OBJECT_TEST_USER_FACEBOOK] = TxtFacebook.Text;
+            _user[ParseHelper.OBJECT_TEST_USER_GOOGLE_PLUS] = TxtGooglePlus.Text;
+            _user[ParseHelper.OBJECT_TEST_USER_SKYPE] = TxtSkype.Text;
+
+            // Set faculty
+            List<RadioButton> radioList = new List<RadioButton>();
+            radioList.Add(RadioFacultyArts);
+            radioList.Add(RadioFacultyInformatics);
+            radioList.Add(RadioFacultyInterior);
+            radioList.Add(RadioFacultyJapan);
+            radioList.Add(RadioFacultyManagement);
+
+            RadioButton buttons = radioList
+                           .FirstOrDefault(n => n.IsChecked != null && (bool) n.IsChecked);
+
+            _user[ParseHelper.OBJECT_TEST_USER_FACULTY] = buttons.Content?.ToString(); // TODO: mock
+
 
 
             // Sign up
