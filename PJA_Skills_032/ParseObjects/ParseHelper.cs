@@ -18,6 +18,7 @@ namespace PJA_Skills_032.ParseObjects
         public static readonly string OBJECT_TEST_USER = "User";
         public static readonly string OBJECT_TEST_USER_NAME = "Name";
         public static readonly string OBJECT_TEST_USER_FACULTY = "Faculty";
+        public static readonly string OBJECT_TEST_USER_AVATAR = "Avatar";
         public static readonly string OBJECT_TEST_USER_FACEBOOK = "FacebookLink";
         public static readonly string OBJECT_TEST_USER_GOOGLE_PLUS = "GooglePlusLink";
         public static readonly string OBJECT_TEST_USER_SKYPE = "SkypeLink";

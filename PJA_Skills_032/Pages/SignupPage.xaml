@@ -9,6 +9,13 @@
 
     <ScrollViewer Background="White">
         <StackPanel>
+            <Image x:Name="userImage"
+                   Width="100"
+                   Height="100"
+                   HorizontalAlignment="Left"
+                   Source="ms-appx:///Assets/LockScreenLogo.png" />
+            <Button x:Name="btnChangeAvatar" Content="Change avatar" Click="BtnChangeAvatar_OnClick"/>
+
             <TextBox x:Name="TxtEmail" PlaceholderText="Email" />
             <PasswordBox x:Name="TxtPassword" PlaceholderText="Password" />
             <TextBox x:Name="TxtFullName" PlaceholderText="Full name" />

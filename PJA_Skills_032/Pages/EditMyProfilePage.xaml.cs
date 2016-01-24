@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Parse;
 using PJA_Skills_032.Model;
@@ -43,6 +38,7 @@ namespace PJA_Skills_032.Pages
         // Korking
         public List<Skill> UserKorkingList = new List<Skill>();
         public List<Skill> UserRemoveKorkingList = new List<Skill>();
+        private ParseFile _avatarParseFile;
 
 
         //private  _allSkillsList;
@@ -50,7 +46,7 @@ namespace PJA_Skills_032.Pages
         public MyProfileViewModel ViewModel { get; set; }
         public EditMyProfilePage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             //PopulateSearchSuggestions();
 
@@ -258,6 +254,58 @@ namespace PJA_Skills_032.Pages
         }
 
 
+        private async void BtnChangeAvatar_OnClick(object sender, RoutedEventArgs e)
+        {
+            // Set up the file picker.
+            FileOpenPicker openPicker =
+                new FileOpenPicker();
+            openPicker.SuggestedStartLocation =
+                PickerLocationId.PicturesLibrary;
+            openPicker.ViewMode =
+                PickerViewMode.Thumbnail;
 
+            // Filter to include a sample subset of file types.
+            openPicker.FileTypeFilter.Clear();
+            openPicker.FileTypeFilter.Add(".bmp");
+            openPicker.FileTypeFilter.Add(".png");
+            openPicker.FileTypeFilter.Add(".jpeg");
+            openPicker.FileTypeFilter.Add(".jpg");
+
+            // Open the file picker.
+            StorageFile file =
+                await openPicker.PickSingleFileAsync();
+
+            // 'file' is null if user cancels the file picker.
+            if (file != null)
+            {
+                // Open a stream for the selected file.
+                // The 'using' block ensures the stream is disposed
+                // after the image is loaded.
+                using (IRandomAccessStream fileStream =
+                    await file.OpenAsync(FileAccessMode.Read))
+                {
+                    // Set the image source to the selected bitmap.
+                    BitmapImage bitmapImage =
+                        new BitmapImage();
+
+                    bitmapImage.SetSource(fileStream);
+                    userImage.Source = bitmapImage;
+
+
+                    // stream to []byte
+                    DataReader reader = new DataReader(fileStream.GetInputStreamAt(0));
+                    byte[] bytes = new byte[fileStream.Size];
+                    await reader.LoadAsync((uint)fileStream.Size);
+                    reader.ReadBytes(bytes);
+
+                    // save to Parse
+                    _avatarParseFile = new ParseFile("avatar" + file.FileType, bytes);
+
+                    ParseUser.CurrentUser[ParseHelper.OBJECT_TEST_USER_AVATAR] = _avatarParseFile;
+                    await ParseUser.CurrentUser.SaveAsync();
+
+                }
+            }
+        }
     }
 }
