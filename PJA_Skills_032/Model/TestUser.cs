@@ -4,8 +4,10 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media.Imaging;
 using Parse;
 using PJA_Skills_032.ParseObjects;
 
@@ -76,6 +78,33 @@ namespace PJA_Skills_032.Model
             {
                 ParseHelper.SetParseObject(ParseHelper.OBJECT_TEST_USER_SKYPE, _backingObject, value);
             }
+        }
+        public Uri AvatarLink
+        {
+            get
+            {
+                if (_backingObject.ContainsKey(ParseHelper.OBJECT_TEST_USER_AVATAR))
+                {
+                    ParseFile avatarParseFile = _backingObject.Get<ParseFile>(ParseHelper.OBJECT_TEST_USER_AVATAR);
+                    return avatarParseFile.Url;
+                }
+                //return new Uri("http://walyou.com/wp-content/uploads//2010/12/facebook-profile-picture-no-pic-avatar.jpg", UriKind.Absolute);
+                return new Uri(
+                    "http://3.bp.blogspot.com/-p4JvM7rWNG4/T6ZcU5eKqTI/AAAAAAAACGM/K0DB35A5brE/s1600/facebook.gif",
+                    UriKind.Absolute);
+
+            }
+        }
+        public BitmapImage AvatarBitmapImage => new BitmapImage(AvatarLink);
+
+        public Uri GetAvatarUrl()
+        {
+            if (this._backingObject.ContainsKey(ParseHelper.OBJECT_TEST_USER_AVATAR))
+            {
+                ParseFile avatarFile = ParseUser.CurrentUser.Get<ParseFile>(ParseHelper.OBJECT_TEST_USER_AVATAR);
+                return avatarFile.Url;
+            }
+            return null;
         }
 
         public ParseObject BackingObject

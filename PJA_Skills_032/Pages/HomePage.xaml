@@ -46,7 +46,7 @@
                        Width="100"
                        Height="100"
                        HorizontalAlignment="Left"
-                       Source="ms-appx:///Assets/LockScreenLogo.png" />
+                       Source="{x:Bind AvatarBitmapImage, Mode=OneWay}" />
                 <TextBlock x:Name="userName"
                            Margin="4,4,0,4"
                            RelativePanel.RightOf="userImage"
