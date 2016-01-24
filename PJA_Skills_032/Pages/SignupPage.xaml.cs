@@ -243,10 +243,10 @@ namespace PJA_Skills_032.Pages
                         new Windows.UI.Xaml.Media.Imaging.BitmapImage();
 
                     bitmapImage.SetSource(fileStream);
-                    
+                    UserImage.Source = bitmapImage;
 
                     
-                    userImage.Source = bitmapImage;
+                    UserImage.Source = bitmapImage;
                 }
             }
         }

@@ -39,6 +39,9 @@ namespace PJA_Skills_032.Pages
         public List<Skill> UserKorkingList = new List<Skill>();
         public List<Skill> UserRemoveKorkingList = new List<Skill>();
         private ParseFile _avatarParseFile;
+        private BitmapImage _avatarBitmapImage;
+        private byte[] _avatarBytesArray;
+        private StorageFile _avatarFile;
 
 
         //private  _allSkillsList;
@@ -178,6 +181,17 @@ namespace PJA_Skills_032.Pages
                 await ParseUser.CurrentUser.SaveAsync();
             }
 
+            // 4. Avatar
+            if (_avatarBytesArray != null)
+            {
+                // save to Parse
+                _avatarParseFile = new ParseFile("avatar" + _avatarFile.FileType, _avatarBytesArray);
+
+                ParseUser.CurrentUser[ParseHelper.OBJECT_TEST_USER_AVATAR] = _avatarParseFile;
+                await ParseUser.CurrentUser.SaveAsync();
+            }
+            
+
             // 4. Go to the profile page
             if (Frame.CanGoBack)
             {
@@ -272,37 +286,35 @@ namespace PJA_Skills_032.Pages
             openPicker.FileTypeFilter.Add(".jpg");
 
             // Open the file picker.
-            StorageFile file =
-                await openPicker.PickSingleFileAsync();
+            _avatarFile = await openPicker.PickSingleFileAsync();
 
             // 'file' is null if user cancels the file picker.
-            if (file != null)
+            if (_avatarFile != null)
             {
                 // Open a stream for the selected file.
                 // The 'using' block ensures the stream is disposed
                 // after the image is loaded.
                 using (IRandomAccessStream fileStream =
-                    await file.OpenAsync(FileAccessMode.Read))
+                    await _avatarFile.OpenAsync(FileAccessMode.Read))
                 {
                     // Set the image source to the selected bitmap.
-                    BitmapImage bitmapImage =
-                        new BitmapImage();
+                    _avatarBitmapImage = new BitmapImage();
 
-                    bitmapImage.SetSource(fileStream);
-                    userImage.Source = bitmapImage;
+                    _avatarBitmapImage.SetSource(fileStream);
+                    userImage.Source = _avatarBitmapImage;
 
 
                     // stream to []byte
                     DataReader reader = new DataReader(fileStream.GetInputStreamAt(0));
-                    byte[] bytes = new byte[fileStream.Size];
+                    _avatarBytesArray = new byte[fileStream.Size];
                     await reader.LoadAsync((uint)fileStream.Size);
-                    reader.ReadBytes(bytes);
+                    reader.ReadBytes(_avatarBytesArray);
 
-                    // save to Parse
-                    _avatarParseFile = new ParseFile("avatar" + file.FileType, bytes);
+                    //// save to Parse
+                    //_avatarParseFile = new ParseFile("avatar" + file.FileType, _avatarBytesArray);
 
-                    ParseUser.CurrentUser[ParseHelper.OBJECT_TEST_USER_AVATAR] = _avatarParseFile;
-                    await ParseUser.CurrentUser.SaveAsync();
+                    //ParseUser.CurrentUser[ParseHelper.OBJECT_TEST_USER_AVATAR] = _avatarParseFile;
+                    //await ParseUser.CurrentUser.SaveAsync();
 
                 }
             }
