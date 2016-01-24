@@ -9,105 +9,107 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-    <StackPanel Margin="16,26,0,0" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Margin="16,26,0,0" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-        <Image x:Name="userImage"
+            <Image x:Name="userImage"
                    Width="200"
                    Height="200"
                    HorizontalAlignment="Left"
                    Source="ms-appx:///Assets/LockScreenLogo.png" />
-        
-        <Button x:Name="btnChangeAvatar" Content="Change avatar" Click="BtnChangeAvatar_OnClick"/>
-        
-        <TextBox x:Name="TextBoxFullName"
-                 Width="300"
-                 Header="Full Name"
-                 Text="{x:Bind ViewModel.CurrentUser.Name, Mode=OneWay}"
-                 TextWrapping="Wrap" />
-        
+
+            <Button x:Name="btnChangeAvatar"
+                    Click="BtnChangeAvatar_OnClick"
+                    Content="Change avatar" />
+
+            <TextBox x:Name="TextBoxFullName"
+                     Width="300"
+                     Header="Full Name"
+                     Text="{x:Bind ViewModel.CurrentUser.Name, Mode=OneWay}"
+                     TextWrapping="Wrap" />
 
 
 
 
-        <!--  LEARN  -->
-        <StackPanel MinWidth="300" Orientation="Horizontal">
-            <AutoSuggestBox x:Name="AutoSuggestBox"
-                            Width="300"
-                            Header="Type what you want to learn"
-                            PlaceholderText="type here..."
-                            QueryIcon="Accept"
-                            SuggestionChosen="AutoSuggestBox_OnSuggestionChosen"
-                            TextChanged="AutoSuggestBox_OnTextChanged">
-                <AutoSuggestBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" />
-                        </StackPanel>
-                    </DataTemplate>
-                </AutoSuggestBox.ItemTemplate>
-            </AutoSuggestBox>
+
+            <!--  LEARN  -->
+            <StackPanel MinWidth="300" Orientation="Horizontal">
+                <AutoSuggestBox x:Name="AutoSuggestBox"
+                                Width="300"
+                                Header="Type what you want to learn"
+                                PlaceholderText="type here..."
+                                QueryIcon="Accept"
+                                SuggestionChosen="AutoSuggestBox_OnSuggestionChosen"
+                                TextChanged="AutoSuggestBox_OnTextChanged">
+                    <AutoSuggestBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </AutoSuggestBox.ItemTemplate>
+                </AutoSuggestBox>
+            </StackPanel>
+            <GridView x:Name="GridViewLearn"
+                      ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
+                      ItemTemplate="{StaticResource SkillGridViewTemplate}"
+                      ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToLearn, Mode=OneWay}"
+                      SelectionChanged="GridViewLearn_SelectionChanged" />
+
+            <!--  TEACH  -->
+            <StackPanel MinWidth="300" Orientation="Horizontal">
+                <AutoSuggestBox x:Name="AutoSuggestBoxTeach"
+                                Width="300"
+                                Header="What would you like to teach others?"
+                                PlaceholderText="type name of the subject here..."
+                                QueryIcon="Accept"
+                                SuggestionChosen="AutoSuggestBoxTeach_OnSuggestionChosen"
+                                TextChanged="AutoSuggestBoxTeach_OnTextChanged">
+                    <AutoSuggestBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </AutoSuggestBox.ItemTemplate>
+                </AutoSuggestBox>
+            </StackPanel>
+            <GridView x:Name="GridViewTeach"
+                      ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
+                      ItemTemplate="{StaticResource SkillGridViewTemplate}"
+                      ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToTeach, Mode=OneWay}"
+                      SelectionChanged="GridViewTeach_OnSelectionChanged" />
+
+            <!--  KORKING  -->
+            <StackPanel MinWidth="300" Orientation="Horizontal">
+                <AutoSuggestBox x:Name="AutoSuggestBoxKorking"
+                                Width="300"
+                                Header="What would you like to teach others for an extra pay $ ?"
+                                PlaceholderText="type name of the subject here..."
+                                QueryIcon="Add"
+                                SuggestionChosen="AutoSuggestBoxKorking_OnSuggestionChosen"
+                                TextChanged="AutoSuggestBoxKorking_OnTextChanged">
+                    <AutoSuggestBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </AutoSuggestBox.ItemTemplate>
+                </AutoSuggestBox>
+            </StackPanel>
+            <GridView x:Name="GridViewKorking"
+                      ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
+                      ItemTemplate="{StaticResource SkillGridViewTemplate}"
+                      ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToKorking, Mode=OneWay}"
+                      SelectionChanged="GridViewKorking_OnSelectionChanged" />
+
+            <Button x:Name="ButtonSaveChanges"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom"
+                    Background="#3330FF4D"
+                    Click="ButtonSaveChanges_OnClick"
+                    Content="Save changes" />
         </StackPanel>
-        <GridView x:Name="GridViewLearn"
-                  ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
-                  ItemTemplate="{StaticResource SkillGridViewTemplate}"
-                  ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToLearn, Mode=OneWay}"
-                  SelectionChanged="GridViewLearn_SelectionChanged" />
-
-        <!--  TEACH  -->
-        <StackPanel MinWidth="300" Orientation="Horizontal">
-            <AutoSuggestBox x:Name="AutoSuggestBoxTeach"
-                            Width="300"
-                            Header="What would you like to teach others?"
-                            PlaceholderText="type name of the subject here..."
-                            QueryIcon="Accept"
-                            SuggestionChosen="AutoSuggestBoxTeach_OnSuggestionChosen"
-                            TextChanged="AutoSuggestBoxTeach_OnTextChanged">
-                <AutoSuggestBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" />
-                        </StackPanel>
-                    </DataTemplate>
-                </AutoSuggestBox.ItemTemplate>
-            </AutoSuggestBox>
-        </StackPanel>
-        <GridView x:Name="GridViewTeach"
-                  ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
-                  ItemTemplate="{StaticResource SkillGridViewTemplate}"
-                  SelectionChanged="GridViewTeach_OnSelectionChanged"
-                  ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToTeach, Mode=OneWay}" />
-
-        <!--  KORKING  -->
-        <StackPanel MinWidth="300" Orientation="Horizontal">
-            <AutoSuggestBox x:Name="AutoSuggestBoxKorking"
-                            Width="300"
-                            Header="What would you like to teach others for an extra pay $ ?"
-                            PlaceholderText="type name of the subject here..."
-                            QueryIcon="Add"
-                            SuggestionChosen="AutoSuggestBoxKorking_OnSuggestionChosen"
-                            TextChanged="AutoSuggestBoxKorking_OnTextChanged">
-                <AutoSuggestBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" />
-                        </StackPanel>
-                    </DataTemplate>
-                </AutoSuggestBox.ItemTemplate>
-            </AutoSuggestBox>
-        </StackPanel>
-        <GridView x:Name="GridViewKorking"
-                  ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
-                  ItemTemplate="{StaticResource SkillGridViewTemplate}"
-                  SelectionChanged="GridViewKorking_OnSelectionChanged"
-                  ItemsSource="{x:Bind ViewModel.CurrentUser.SkillsWantToKorking, Mode=OneWay}" />
-
-        <Button x:Name="ButtonSaveChanges"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Bottom"
-                Background="#3330FF4D"
-                Click="ButtonSaveChanges_OnClick"
-                Content="Save changes" />
-    </StackPanel>
     </ScrollViewer>
 </Page>
 

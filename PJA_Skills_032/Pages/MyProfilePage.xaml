@@ -73,22 +73,25 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Stretch"
                         Background="#FF3B5998"
-                        Content="F" Click="FacebookBtn_OnClick"
+                        Click="FacebookBtn_OnClick"
+                        Content="F"
                         Foreground="White" />
                 <Button x:Name="GplusBtn"
                         Width="61"
-                        Margin="10,5,0,5" Click="GplusBtn_OnClick"
+                        Margin="10,5,0,5"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Stretch"
                         Background="#FFDD4B39"
+                        Click="GplusBtn_OnClick"
                         Content="G+"
                         Foreground="White" />
                 <Button x:Name="SkypeBtn"
                         Width="61"
-                        Margin="10,5,0,5" Click="SkypeBtn_OnClick"
+                        Margin="10,5,0,5"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Stretch"
                         Background="#FF12A5F4"
+                        Click="SkypeBtn_OnClick"
                         Content="S"
                         Foreground="White" />
                 <Button x:Name="button_Copy2"
@@ -100,7 +103,7 @@
                         Content="F"
                         Foreground="White" />
             </StackPanel>
-            <Image x:Name="image"
+            <Image x:Name="userAvatar"
                    Grid.Column="1"
                    Margin="10"
                    Source="ms-appx:///Assets/LockScreenLogo.png" />

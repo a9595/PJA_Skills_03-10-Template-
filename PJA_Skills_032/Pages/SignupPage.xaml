@@ -14,7 +14,9 @@
                    Height="100"
                    HorizontalAlignment="Left"
                    Source="ms-appx:///Assets/LockScreenLogo.png" />
-            <Button x:Name="btnChangeAvatar" Content="Change avatar" Click="BtnChangeAvatar_OnClick"/>
+            <Button x:Name="btnChangeAvatar"
+                    Click="BtnChangeAvatar_OnClick"
+                    Content="Change avatar" />
 
             <TextBox x:Name="TxtEmail" PlaceholderText="Email" />
             <PasswordBox x:Name="TxtPassword" PlaceholderText="Password" />

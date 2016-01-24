@@ -3,12 +3,15 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage.Streams;
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using Windows.Web.Http;
 using Parse;
 using PJA_Skills_032.Model;
 using PJA_Skills_032.ParseObjects;
@@ -39,10 +42,11 @@ namespace PJA_Skills_032.Pages
             else
                 Frame.Navigate(typeof(LoginPage));
 
-
-
-            //this.DataContext = ViewModel;
-            //GridViewLearn.ItemsSource = 
+            if (ParseUser.CurrentUser.ContainsKey(ParseHelper.OBJECT_TEST_USER_AVATAR))
+            {
+                ParseFile avatarFile = ParseUser.CurrentUser.Get<ParseFile>(ParseHelper.OBJECT_TEST_USER_AVATAR);
+                if (avatarFile.Url != null) userAvatar.Source = new BitmapImage(avatarFile.Url);
+            }
         }
 
 
