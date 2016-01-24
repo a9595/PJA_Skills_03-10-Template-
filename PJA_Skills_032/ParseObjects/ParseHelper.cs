@@ -274,6 +274,18 @@ namespace PJA_Skills_032.ParseObjects
             skillUsersRelationship.Remove(ParseUser.CurrentUser);
             await skill.SaveAsync();
         }
+        public static async Task RemoveSkillTeachFromUser(ParseObject skill)
+        {
+            var skillUsersRelationship = skill.GetRelation<ParseObject>(OBJECT_SKILL_USERS_TEACH);
+            skillUsersRelationship.Remove(ParseUser.CurrentUser);
+            await skill.SaveAsync();
+        }
+        public static async Task RemoveSkillKorkingFromUser(ParseObject skill)
+        {
+            var skillUsersRelationship = skill.GetRelation<ParseObject>(OBJECT_SKILL_USERS_KORKING);
+            skillUsersRelationship.Remove(ParseUser.CurrentUser);
+            await skill.SaveAsync();
+        }
 
 
     }
