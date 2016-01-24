@@ -7,6 +7,8 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -37,6 +39,9 @@ namespace PJA_Skills_032.Pages
         public ObservableCollection<Skill> SearchSuggestionsList = new ObservableCollection<Skill>();
         public ObservableCollection<Skill> ResultsSearchSuggestions = new ObservableCollection<Skill>();
         private ParseUser _user = new ParseUser();
+        private StorageFile _avatarFile;
+        private byte[] _avatarBytesArray;
+        private ParseFile _avatarParseFile;
 
         public SignupPage()
         {
@@ -73,18 +78,27 @@ namespace PJA_Skills_032.Pages
             _user[ParseHelper.OBJECT_TEST_USER_SKYPE] = TxtSkype.Text;
 
             // Set faculty
-            List<RadioButton> radioList = new List<RadioButton>();
-            radioList.Add(RadioFacultyArts);
-            radioList.Add(RadioFacultyInformatics);
-            radioList.Add(RadioFacultyInterior);
-            radioList.Add(RadioFacultyJapan);
-            radioList.Add(RadioFacultyManagement);
-
+            List<RadioButton> radioList = new List<RadioButton>
+            {
+                RadioFacultyArts,
+                RadioFacultyInformatics,
+                RadioFacultyInterior,
+                RadioFacultyJapan,
+                RadioFacultyManagement
+            };
             RadioButton buttons = radioList
                            .FirstOrDefault(n => n.IsChecked != null && (bool)n.IsChecked);
+            if (buttons != null)
+                _user[ParseHelper.OBJECT_TEST_USER_FACULTY] = buttons.Content?.ToString(); 
 
-            _user[ParseHelper.OBJECT_TEST_USER_FACULTY] = buttons.Content?.ToString(); // TODO: mock
-
+            // Avatar
+            if (_avatarBytesArray != null)
+            {
+                // save to Parse
+                _avatarParseFile = new ParseFile("avatar" + _avatarFile.FileType, _avatarBytesArray);
+                await _avatarParseFile.SaveAsync();
+                _user[ParseHelper.OBJECT_TEST_USER_AVATAR] = _avatarParseFile;
+            }
 
 
             // Sign up
@@ -92,8 +106,9 @@ namespace PJA_Skills_032.Pages
             {
                 await _user.SignUpAsync();
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                string ex = exception.ToString();
                 var dialog = new MessageDialog("Please, fill all forms or try another email");
                 await dialog.ShowAsync();
                 return;
@@ -226,17 +241,16 @@ namespace PJA_Skills_032.Pages
             openPicker.FileTypeFilter.Add(".jpg");
 
             // Open the file picker.
-            Windows.Storage.StorageFile file =
-                await openPicker.PickSingleFileAsync();
+            _avatarFile = await openPicker.PickSingleFileAsync();
 
             // 'file' is null if user cancels the file picker.
-            if (file != null)
+            if (_avatarFile != null)
             {
                 // Open a stream for the selected file.
                 // The 'using' block ensures the stream is disposed
                 // after the image is loaded.
                 using (Windows.Storage.Streams.IRandomAccessStream fileStream =
-                    await file.OpenAsync(Windows.Storage.FileAccessMode.Read))
+                    await _avatarFile.OpenAsync(Windows.Storage.FileAccessMode.Read))
                 {
                     // Set the image source to the selected bitmap.
                     Windows.UI.Xaml.Media.Imaging.BitmapImage bitmapImage =
@@ -245,8 +259,12 @@ namespace PJA_Skills_032.Pages
                     bitmapImage.SetSource(fileStream);
                     UserImage.Source = bitmapImage;
 
-                    
-                    UserImage.Source = bitmapImage;
+                    // stream to []byte
+                    DataReader reader = new DataReader(fileStream.GetInputStreamAt(0));
+                    _avatarBytesArray = new byte[fileStream.Size];
+                    await reader.LoadAsync((uint)fileStream.Size);
+                    reader.ReadBytes(_avatarBytesArray);
+
                 }
             }
         }

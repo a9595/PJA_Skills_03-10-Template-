@@ -1,7 +1,6 @@
 ﻿
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage.Streams;
 using Windows.System;
@@ -13,7 +12,6 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Windows.Web.Http;
 using Parse;
-using PJA_Skills_032.Model;
 using PJA_Skills_032.ParseObjects;
 using PJA_Skills_032.ViewModel;
 
@@ -50,39 +48,6 @@ namespace PJA_Skills_032.Pages
         }
 
 
-        private async Task ParseUserCreate()
-        {
-            // TODO: move login user to App.cs and add the login screen
-            // Test SignUp
-            //await SignUpUser();
-
-            // Login
-            if (ParseUser.CurrentUser == null) // check if user sesions is in cache
-                await TestUser.Login();
-
-            ParseUser currentUser = Parse.ParseUser.CurrentUser;
-            if (currentUser != null)
-            {
-                string name = currentUser.Get<string>(ParseHelper.OBJECT_TEST_USER_NAME);
-            }
-        }
-
-        private async Task SignUpUser()
-        {
-            var user = new ParseUser()
-            {
-                Username = "my name",
-                Password = "my pass",
-                Email = "email@example.com"
-            };
-
-            // other fields can be set just like with ParseObject
-            //user["phone"] = "415-392-0202";
-
-            await user.SignUpAsync();
-        }
-
-
         private void AppBarButtonEdit_OnClick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(EditMyProfilePage), ViewModel.CurrentUser);
@@ -91,17 +56,18 @@ namespace PJA_Skills_032.Pages
 
         private async void FacebookBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            Uri articleLinkUri = new Uri(uriString: ViewModel.CurrentUser.FacebookLink, uriKind: UriKind.Absolute);
-
-            await Launcher.LaunchUriAsync(articleLinkUri);
+            if (!string.IsNullOrWhiteSpace(ViewModel.CurrentUser.FacebookLink))
+            {
+                Uri articleLinkUri = new Uri(uriString: ViewModel.CurrentUser.FacebookLink, uriKind: UriKind.Absolute);
+                await Launcher.LaunchUriAsync(articleLinkUri);
+            }
         }
 
         private async void GplusBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            if (ViewModel.CurrentUser.GooglePlusLink != null)
+            if (String.IsNullOrWhiteSpace(ViewModel.CurrentUser.GooglePlusLink))
             {
                 Uri articleLinkUri = new Uri(ViewModel.CurrentUser.GooglePlusLink, UriKind.Absolute);
-
                 await Launcher.LaunchUriAsync(articleLinkUri);
             }
         }
@@ -109,7 +75,7 @@ namespace PJA_Skills_032.Pages
 
         private async void SkypeBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            if (ViewModel.CurrentUser.SkypeLink == null)
+            if (String.IsNullOrWhiteSpace(ViewModel.CurrentUser.SkypeLink))
                 return;
 
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
