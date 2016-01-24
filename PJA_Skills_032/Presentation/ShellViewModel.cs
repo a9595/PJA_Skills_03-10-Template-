@@ -33,7 +33,7 @@ namespace PJA_Skills_032.Presentation
                 if (Set(ref this.selectedMenuItem, value)) {
                     OnPropertyChanged("SelectedPageType");
 
-                    if (selectedMenuItem.Title.Equals("Logout"))
+                    if (selectedMenuItem != null && selectedMenuItem.Title.Equals("Logout"))
                     {
                         //dissable all other buttons from hamburger
                         foreach (MenuItem menuItem in menuItems)

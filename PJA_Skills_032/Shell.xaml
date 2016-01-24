@@ -50,7 +50,7 @@
                    Grid.Row="1"
                    IsPaneOpen="{x:Bind ViewModel.IsSplitViewPaneOpen, Mode=TwoWay}">
             <SplitView.Pane>
-                <ListView Background="#FFF44336"
+                <ListView Background="#EB232F"
                           ItemsSource="{x:Bind ViewModel.MenuItems}"
                           SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay, Converter={StaticResource ObjectToMenuItemConverter}}">
                     <ListView.ItemContainerStyle>

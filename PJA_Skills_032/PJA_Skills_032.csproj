@@ -7,8 +7,8 @@
     <ProjectGuid>{A89EB9B0-BEDC-4970-AD2C-9B74C7C3274B}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PJA_Skills_032</RootNamespace>
-    <AssemblyName>PJA_Skills_032</AssemblyName>
+    <RootNamespace>PJA_Skills</RootNamespace>
+    <AssemblyName>PJA_Skills</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
