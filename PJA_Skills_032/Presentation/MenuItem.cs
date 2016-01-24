@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.UI.Xaml;
 
 namespace PJA_Skills_032.Presentation
 {
@@ -7,6 +8,7 @@ namespace PJA_Skills_032.Presentation
         private string icon;
         private string title;
         private Type pageType;
+        private Visibility visibility;
 
 
         public string Icon
@@ -25,6 +27,11 @@ namespace PJA_Skills_032.Presentation
         {
             get { return this.pageType; }
             set { Set(ref this.pageType, value); }
+        }
+        public Visibility Visibility
+        {
+            get { return this.visibility; }
+            set { Set(ref this.visibility, value); }
         }
     }
 }

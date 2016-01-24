@@ -68,7 +68,8 @@ namespace PJA_Skills_032.Model
                 ParseHelper.SetParseObject(ParseHelper.OBJECT_TEST_USER_GOOGLE_PLUS, _backingObject, value);
             }
         }
-        public string Email {
+        public string Email
+        {
             get
             {
                 return ParseHelper.GetParseObject(ParseHelper.OBJECT_TEST_USER_EMAIL, _backingObject);
@@ -99,8 +100,12 @@ namespace PJA_Skills_032.Model
                     return avatarParseFile.Url;
                 }
                 //return new Uri("http://walyou.com/wp-content/uploads//2010/12/facebook-profile-picture-no-pic-avatar.jpg", UriKind.Absolute);
+                //return new Uri(
+                //    "http://3.bp.blogspot.com/-p4JvM7rWNG4/T6ZcU5eKqTI/AAAAAAAACGM/K0DB35A5brE/s1600/facebook.gif",
+                //    UriKind.Absolute);
+
                 return new Uri(
-                    "http://3.bp.blogspot.com/-p4JvM7rWNG4/T6ZcU5eKqTI/AAAAAAAACGM/K0DB35A5brE/s1600/facebook.gif",
+                    "ms-appx:///Assets/facebook.gif",
                     UriKind.Absolute);
 
             }
@@ -125,7 +130,7 @@ namespace PJA_Skills_032.Model
             }
         }
 
-        
+
 
         #endregion
 
@@ -229,7 +234,7 @@ namespace PJA_Skills_032.Model
             ParseQuery<ParseObject> querySkillTable = ParseObject.GetQuery(ParseHelper.OBJECT_SKILL);
 
             // now we will query the authors relation to see if the author object we have
-            // is contained therein
+            // is contained therein 
             if (this._backingObject != null)
             {
                 ParseQuery<ParseObject> querySkills = querySkillTable.WhereEqualTo(ParseHelper.OBJECT_SKILL_USERS_KORKING, this._backingObject);

@@ -11,16 +11,27 @@
             <StackPanel x:Name="StackPanelLoginFields" Orientation="Vertical">
 
 
-                <TextBox x:Name="TxtLogin" PlaceholderText="Login..." />
-                <PasswordBox x:Name="TxtPassword" PlaceholderText="Password" />
+                <TextBox x:Name="TxtLogin"
+                         Width="280"
+                         Margin="10, 10, 10, 10"
+                         HorizontalAlignment="Center"
+                         PlaceholderText="Login..." />
+                <PasswordBox x:Name="TxtPassword"
+                             Width="280"
+                             Margin="10, 10, 10, 10"
+                             HorizontalAlignment="Center"
+                             PlaceholderText="Password" />
 
                 <Button x:Name="BtnLogin"
+                        Width="280"
+                        Margin="10, 10, 10, 10"
+                        HorizontalAlignment="Center"
                         Click="BtnLogin_OnClick"
                         Content="Login" />
-                <Button x:Name="BtnFacebook"
-                        Click="BtnFacebook_OnClick"
-                        Content="Connect with Facebook" />
                 <Button x:Name="BtnSignup"
+                        Width="280"
+                        Margin="10, 10, 10, 10"
+                        HorizontalAlignment="Center"
                         Click="BtnSignup_OnClick"
                         Content="Sign up with email" />
             </StackPanel>

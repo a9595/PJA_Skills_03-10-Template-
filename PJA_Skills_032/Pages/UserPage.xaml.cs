@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using PJA_Skills_032.Model;
+using PJA_Skills_032.ParseObjects;
 using PJA_Skills_032.ViewModel;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -88,35 +89,11 @@ namespace PJA_Skills_032.Pages
         private void EmailBtn_OnClick(object sender, RoutedEventArgs e)
         {
             string email = ViewModel.CurrentUser.Email;
-            ComposeEmail(email, "Hi, found you in the app PJA Skills. Nice to meet you, mate :)", null);
+            ParseHelper.ComposeEmail(email, "Hi, found you in the app PJA Skills. Nice to meet you, mate :)", null);
 
         }
 
-        private async void ComposeEmail(string emailAdress,string messageBody,StorageFile attachmentFile)
-        {
-            var emailMessage = new Windows.ApplicationModel.Email.EmailMessage();
-            emailMessage.Body = messageBody;
-
-            if (attachmentFile != null)
-            {
-                var stream = Windows.Storage.Streams.RandomAccessStreamReference.CreateFromFile(attachmentFile);
-
-                var attachment = new Windows.ApplicationModel.Email.EmailAttachment(
-                    attachmentFile.Name,
-                    stream);
-
-                emailMessage.Attachments.Add(attachment);
-            }
-
-            if (emailAdress != null)
-            {
-                var emailRecipient = new Windows.ApplicationModel.Email.EmailRecipient(emailAdress);
-                emailMessage.To.Add(emailRecipient);
-            }
-
-            await Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(emailMessage);
-
-        }
+        
 
     }
 }

@@ -12,17 +12,35 @@
             <Image x:Name="UserImage"
                    Width="200"
                    Height="200"
-                   HorizontalAlignment="Left"
+                   HorizontalAlignment="Center"
                    Source="ms-appx:///Assets/LockScreenLogo.png" />
             <Button x:Name="BtnChangeAvatar"
+                    Width="300"
+                    Margin="10, 10, 10, 10"
+                    HorizontalAlignment="Center"
                     Click="BtnChangeAvatar_OnClick"
                     Content="Change avatar" />
 
-            <TextBox x:Name="TxtEmail" PlaceholderText="Email" />
-            <PasswordBox x:Name="TxtPassword" PlaceholderText="Password" />
-            <TextBox x:Name="TxtFullName" PlaceholderText="Full name" />
+            <TextBox x:Name="TxtEmail"
+                     Width="300"
+                     Margin="10, 10, 10, 10"
+                     HorizontalAlignment="Center"
+                     PlaceholderText="Email" />
+            <PasswordBox x:Name="TxtPassword"
+                         Width="300"
+                         Margin="10, 10, 10, 10"
+                         HorizontalAlignment="Center"
+                         PlaceholderText="Password" />
+            <TextBox x:Name="TxtFullName"
+                     Width="300"
+                     Margin="10, 10, 10, 10"
+                     HorizontalAlignment="Center"
+                     PlaceholderText="Full name" />
 
-            <StackPanel x:Name="StackPanelRadioButtons">
+            <StackPanel x:Name="StackPanelRadioButtons"
+                        Width="300"
+                        Margin="10, 10, 10, 10"
+                        HorizontalAlignment="Center">
                 <RadioButton x:Name="RadioFacultyInformatics" Content="Computer Science" />
                 <RadioButton x:Name="RadioFacultyArts" Content="New Media Arts" />
                 <RadioButton x:Name="RadioFacultyInterior" Content="Interior Design" />
@@ -32,9 +50,14 @@
 
 
             <!--  LEARN  -->
-            <StackPanel MinWidth="300" Orientation="Horizontal">
+            <StackPanel MinWidth="300"
+                        Margin="10,10,10,10"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
                 <AutoSuggestBox x:Name="AutoSuggestBoxLearn"
                                 Width="300"
+                                Margin="10, 10, 10, 10"
+                                HorizontalAlignment="Center"
                                 Header="What subjects would you like to learn?"
                                 PlaceholderText="type here..."
                                 QueryIcon="Accept"
@@ -50,13 +73,21 @@
                 </AutoSuggestBox>
             </StackPanel>
             <GridView x:Name="GridViewLearn"
+                      Width="300"
+                      Margin="10, 10, 10, 10"
+                      HorizontalAlignment="Center"
                       ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
                       ItemTemplate="{StaticResource SkillGridViewTemplate}" />
 
             <!--  TEACH  -->
-            <StackPanel MinWidth="300" Orientation="Horizontal">
+            <StackPanel MinWidth="300"
+                        Margin="10,10,10,10"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
                 <AutoSuggestBox x:Name="AutoSuggestBoxTeach"
                                 Width="300"
+                                Margin="10, 10, 10, 10"
+                                HorizontalAlignment="Center"
                                 Header="What subjects would you like to teach others?"
                                 PlaceholderText="type here..."
                                 QueryIcon="Accept"
@@ -76,9 +107,13 @@
                       ItemTemplate="{StaticResource SkillGridViewTemplate}" />
 
             <!--  KORKING  -->
-            <StackPanel MinWidth="300" Orientation="Horizontal">
+            <StackPanel MinWidth="300"
+                        Margin="10,10,10,10"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
                 <AutoSuggestBox x:Name="AutoSuggestBoxKorking"
                                 Width="300"
+                                HorizontalAlignment="Center"
                                 Header="What subjects would you like to teach others for an extra pay?"
                                 PlaceholderText="type here..."
                                 QueryIcon="Accept"
@@ -97,11 +132,26 @@
                       ItemContainerStyle="{StaticResource GridViewItemSkillStyle}"
                       ItemTemplate="{StaticResource SkillGridViewTemplate}" />
 
-            <TextBox x:Name="TxtFacebook" PlaceholderText="Facebook profile link" />
-            <TextBox x:Name="TxtGooglePlus" PlaceholderText="G+ profile link" />
-            <TextBox x:Name="TxtSkype" PlaceholderText="Skype" />
+            <TextBox x:Name="TxtFacebook"
+                     Width="300"
+                     Margin="10, 10, 10, 10"
+                     HorizontalAlignment="Center"
+                     PlaceholderText="Facebook profile link" />
+            <TextBox x:Name="TxtGooglePlus"
+                     Width="300"
+                     Margin="10, 10, 10, 10"
+                     HorizontalAlignment="Center"
+                     PlaceholderText="G+ profile link" />
+            <TextBox x:Name="TxtSkype"
+                     Width="300"
+                     Margin="10, 10, 10, 10"
+                     HorizontalAlignment="Center"
+                     PlaceholderText="Skype" />
 
             <Button x:Name="ButtonSignUp"
+                    Width="300"
+                    Margin="10, 10, 10, 10"
+                    HorizontalAlignment="Center"
                     Click="ButtonSignUp_OnClick"
                     Content="Sign Up" />
         </StackPanel>

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 using Parse;
 using PJA_Skills_032.Model;
 
@@ -289,6 +290,31 @@ namespace PJA_Skills_032.ParseObjects
             await skill.SaveAsync();
         }
 
+        public static async void ComposeEmail(string emailAdress, string messageBody, StorageFile attachmentFile)
+        {
+            var emailMessage = new Windows.ApplicationModel.Email.EmailMessage();
+            emailMessage.Body = messageBody;
+
+            if (attachmentFile != null)
+            {
+                var stream = Windows.Storage.Streams.RandomAccessStreamReference.CreateFromFile(attachmentFile);
+
+                var attachment = new Windows.ApplicationModel.Email.EmailAttachment(
+                    attachmentFile.Name,
+                    stream);
+
+                emailMessage.Attachments.Add(attachment);
+            }
+
+            if (emailAdress != null)
+            {
+                var emailRecipient = new Windows.ApplicationModel.Email.EmailRecipient(emailAdress);
+                emailMessage.To.Add(emailRecipient);
+            }
+
+            await Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(emailMessage);
+
+        }
 
     }
 }

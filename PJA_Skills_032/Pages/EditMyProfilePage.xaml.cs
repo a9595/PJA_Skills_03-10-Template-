@@ -301,7 +301,7 @@ namespace PJA_Skills_032.Pages
                     _avatarBitmapImage = new BitmapImage();
 
                     _avatarBitmapImage.SetSource(fileStream);
-                    userImage.Source = _avatarBitmapImage;
+                    UserImage.Source = _avatarBitmapImage;
 
 
                     // stream to []byte

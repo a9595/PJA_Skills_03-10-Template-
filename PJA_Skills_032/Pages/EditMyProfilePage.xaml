@@ -9,20 +9,24 @@
       mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="16,26,0,0" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Margin="16,26,0,0"
+                    HorizontalAlignment="Center"
+                    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-            <Image x:Name="userImage"
+            <Image x:Name="UserImage"
                    Width="200"
                    Height="200"
                    HorizontalAlignment="Left"
                    Source="ms-appx:///Assets/LockScreenLogo.png" />
 
             <Button x:Name="btnChangeAvatar"
+                    Width="300"
                     Click="BtnChangeAvatar_OnClick"
                     Content="Change avatar" />
 
             <TextBox x:Name="TextBoxFullName"
                      Width="300"
+                     Margin="0, 20, 0, 0"
                      Header="Full Name"
                      Text="{x:Bind ViewModel.CurrentUser.Name, Mode=OneWay}"
                      TextWrapping="Wrap" />
@@ -32,11 +36,13 @@
 
 
             <!--  LEARN  -->
-            <StackPanel MinWidth="300" Orientation="Horizontal">
+            <StackPanel MinWidth="300"
+                        Margin="0, 10, 0, 0"
+                        Orientation="Horizontal">
                 <AutoSuggestBox x:Name="AutoSuggestBox"
                                 Width="300"
-                                Header="Type what you want to learn"
-                                PlaceholderText="type here..."
+                                Header="What subjects would you like to learn?"
+                                PlaceholderText="type name of the subject here..."
                                 QueryIcon="Accept"
                                 SuggestionChosen="AutoSuggestBox_OnSuggestionChosen"
                                 TextChanged="AutoSuggestBox_OnTextChanged">
@@ -56,7 +62,9 @@
                       SelectionChanged="GridViewLearn_SelectionChanged" />
 
             <!--  TEACH  -->
-            <StackPanel MinWidth="300" Orientation="Horizontal">
+            <StackPanel MinWidth="300"
+                        Margin="0, 10, 0, 0"
+                        Orientation="Horizontal">
                 <AutoSuggestBox x:Name="AutoSuggestBoxTeach"
                                 Width="300"
                                 Header="What would you like to teach others?"
@@ -80,7 +88,9 @@
                       SelectionChanged="GridViewTeach_OnSelectionChanged" />
 
             <!--  KORKING  -->
-            <StackPanel MinWidth="300" Orientation="Horizontal">
+            <StackPanel MinWidth="300"
+                        Margin="0, 10, 0, 0"
+                        Orientation="Horizontal">
                 <AutoSuggestBox x:Name="AutoSuggestBoxKorking"
                                 Width="300"
                                 Header="What would you like to teach others for an extra pay $ ?"
@@ -104,9 +114,9 @@
                       SelectionChanged="GridViewKorking_OnSelectionChanged" />
 
             <Button x:Name="ButtonSaveChanges"
-                    HorizontalAlignment="Stretch"
+                    Width="300"
+                    Margin="0, 10, 0, 10"
                     VerticalAlignment="Bottom"
-                    Background="#3330FF4D"
                     Click="ButtonSaveChanges_OnClick"
                     Content="Save changes" />
         </StackPanel>

@@ -17,12 +17,12 @@ namespace PJA_Skills_032
             vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Home", PageType = typeof(HomePage) });
             vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Offers", PageType = typeof(Offers) });
             //vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Search", PageType = typeof(SearchPage) });
-            vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Settings", PageType = typeof(SettingsPage) });
+            //vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Settings", PageType = typeof(SettingsPage) });
             vm.MenuItems.Add(new MenuItem { Icon = "", Title = "Logout", PageType = typeof(LoginPage) });
 
             //
             // select the first menu item
-            vm.SelectedMenuItem = vm.MenuItems.Last();
+            vm.SelectedMenuItem = vm.MenuItems.First();
 
             this.ViewModel = vm;
         }

@@ -94,16 +94,17 @@
                         Click="SkypeBtn_OnClick"
                         Content="S"
                         Foreground="White" />
-                <Button x:Name="button_Copy2"
+                <Button x:Name="EmailBtn"
                         Width="55"
                         Margin="10,6,0,6"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Stretch"
-                        Background="#FF3B5998"
-                        Content="F"
+                        Background="Gray"
+                        Click="EmailBtn_OnClick"
+                        Content="@"
                         Foreground="White" />
             </StackPanel>
-            <Image x:Name="userAvatar"
+            <Image x:Name="UserAvatar"
                    Grid.Column="1"
                    Margin="10"
                    Source="ms-appx:///Assets/LockScreenLogo.png" />

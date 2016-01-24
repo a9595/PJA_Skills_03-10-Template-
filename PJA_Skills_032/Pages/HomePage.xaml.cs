@@ -53,26 +53,15 @@ namespace PJA_Skills_032.Pages
             Frame.Navigate(typeof(UserPage), selectedUser);
         }
 
-        /// <summary>
-        /// add HTA skill to all of the user (data population)
-        /// </summary>
-        /// <returns></returns>
-        private static async Task AddDummySkillsToUsers()
-        {
-            IEnumerable<ParseUser> allUsersList = await ParseHelper.GetAllUsers();
-
-            var skill = await ParseHelper.GetSkillByName("PRI");
-            foreach (ParseUser parseUser in allUsersList)
-            {
-                await ParseHelper.AddSkillToUser(parseUser, skill);
-            }
-        }
         private void AutoSuggestBoxSearch_OnQuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             List<TestUser> searchSuggestions =
                 new List<TestUser>(SearchSuggestionList
-                .Where(item => item.Name.ToLower()
-                .Contains(args.QueryText.ToLower())));
+                .Where(item =>
+                {
+                    return item.Name != null && item.Name.ToLower()
+                        .Contains(args.QueryText.ToLower());
+                }));
 
             SearchResults.Clear();
             foreach (TestUser user in searchSuggestions)
@@ -201,8 +190,11 @@ namespace PJA_Skills_032.Pages
             {
                 List<TestUser> searchSuggestions =
                     new List<TestUser>(SearchSuggestionList
-                        .Where(item => item.Name.ToLower()
-                            .Contains(AutoSuggestBoxSearch.Text.ToLower())));
+                        .Where(item =>
+                        {
+                            return item.Name != null && item.Name.ToLower()
+                                .Contains(AutoSuggestBoxSearch.Text.ToLower());
+                        }));
 
                 SearchResults.Clear();
                 foreach (TestUser user in searchSuggestions)

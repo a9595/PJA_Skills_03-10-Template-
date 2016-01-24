@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using Windows.UI.Xaml;
 
 namespace PJA_Skills_032.Presentation
 {
@@ -31,6 +32,23 @@ namespace PJA_Skills_032.Presentation
             {
                 if (Set(ref this.selectedMenuItem, value)) {
                     OnPropertyChanged("SelectedPageType");
+
+                    if (selectedMenuItem.Title.Equals("Logout"))
+                    {
+                        //dissable all other buttons from hamburger
+                        foreach (MenuItem menuItem in menuItems)
+                        {
+                            menuItem.Visibility = Visibility.Collapsed;
+                        }
+                    }
+                    else
+                    {
+                        //enable all btns
+                        foreach (MenuItem menuItem in menuItems)
+                        {
+                            menuItem.Visibility = Visibility.Visible;
+                        }
+                    }
 
                     // auto-close split view pane
                     this.IsSplitViewPaneOpen = false;

@@ -92,7 +92,8 @@
                         Margin="10,6,0,6"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Stretch"
-                        Background="Gray" Click="EmailBtn_OnClick"
+                        Background="Gray"
+                        Click="EmailBtn_OnClick"
                         Content="@"
                         Foreground="White" />
             </StackPanel>

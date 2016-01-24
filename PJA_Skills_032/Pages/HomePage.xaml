@@ -97,6 +97,23 @@
                          ScrollViewer.HorizontalScrollMode="Enabled"
                          ScrollViewer.IsHorizontalRailEnabled="True"
                          ScrollViewer.VerticalScrollMode="Disabled" />
+                <!--  KORKING  --><!--
+                <TextBlock x:Name="iconToKorking"
+                           Margin="10,20,5,0"
+                           RelativePanel.Below="iconToTeach"
+                           Text="$" />
+                <ListBox x:Name="SkillsWantToKorking"
+                         Margin="0,10,0,0"
+                         ItemContainerStyle="{StaticResource HomeUserSkillHorizontallPanel}"
+                         ItemTemplate="{StaticResource SkillLearnListViewTemplate}"
+                         ItemsPanel="{StaticResource SkillListViewPanelTemplate}"
+                         ItemsSource="{x:Bind SkillsWantToKorking}"
+                         RelativePanel.AlignTopWith="iconToKorking"
+                         RelativePanel.RightOf="iconToKorking"
+                         ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                         ScrollViewer.HorizontalScrollMode="Enabled"
+                         ScrollViewer.IsHorizontalRailEnabled="True"
+                         ScrollViewer.VerticalScrollMode="Disabled" />-->
             </RelativePanel>
 
 
@@ -141,6 +158,7 @@
         <StackPanel Orientation="Vertical">
             <AutoSuggestBox x:Name="AutoSuggestBoxSearch"
                             Width="300"
+                            Margin="0, 0, 0, 10"
                             HorizontalAlignment="Right"
                             PlaceholderText="Search..."
                             QueryIcon="Find"

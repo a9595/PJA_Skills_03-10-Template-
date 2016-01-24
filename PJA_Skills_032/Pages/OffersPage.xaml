@@ -34,14 +34,19 @@
                        Source="{x:Bind User.AvatarBitmapImage}" />
 
                 <TextBlock x:Name="TextBlockUserName"
+                           Margin="10, 30, 0, 0"
                            RelativePanel.RightOf="userImage"
                            Text="{x:Bind User.Name}" />
                 <TextBlock x:Name="TextBlockUserFaculty"
+                           Margin="10, 10, 0, 0"
+                           FontSize="12"
+                           Foreground="Gray"
                            RelativePanel.AlignLeftWith="TextBlockUserName"
                            RelativePanel.Below="TextBlockUserName"
                            Text="{x:Bind User.Faculty}" />
-                <StackPanel RelativePanel.Below="userImage">
+                <StackPanel Margin="0, 10, 0, 0" RelativePanel.Below="userImage">
                     <TextBlock x:Name="TextBlockContent"
+                               FontStyle="Oblique"
                                Text="{x:Bind Content}"
                                TextWrapping="Wrap" />
                 </StackPanel>
