@@ -65,7 +65,7 @@ namespace PJA_Skills_032.Pages
 
         private async void GplusBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(ViewModel.CurrentUser.GooglePlusLink))
+            if (string.IsNullOrWhiteSpace(ViewModel.CurrentUser.GooglePlusLink))
             {
                 Uri articleLinkUri = new Uri(ViewModel.CurrentUser.GooglePlusLink, UriKind.Absolute);
                 await Launcher.LaunchUriAsync(articleLinkUri);
@@ -75,7 +75,7 @@ namespace PJA_Skills_032.Pages
 
         private async void SkypeBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(ViewModel.CurrentUser.SkypeLink))
+            if (string.IsNullOrWhiteSpace(ViewModel.CurrentUser.SkypeLink))
                 return;
 
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal,

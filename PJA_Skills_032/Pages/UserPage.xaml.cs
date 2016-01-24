@@ -3,8 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Contacts;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.System;
+using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -43,5 +49,74 @@ namespace PJA_Skills_032.Pages
         {
             await ViewModel.CurrentUser.GetSkills();
         }
+
+        private async void FacebookBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(ViewModel.CurrentUser.FacebookLink))
+            {
+                Uri articleLinkUri = new Uri(uriString: ViewModel.CurrentUser.FacebookLink, uriKind: UriKind.Absolute);
+                await Launcher.LaunchUriAsync(articleLinkUri);
+            }
+        }
+
+        private async void GplusBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(ViewModel.CurrentUser.FacebookLink))
+            {
+                Uri articleLinkUri = new Uri(uriString: ViewModel.CurrentUser.GooglePlusLink, uriKind: UriKind.Absolute);
+                await Launcher.LaunchUriAsync(articleLinkUri);
+            }
+        }
+
+        private async void SkypeBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(ViewModel.CurrentUser.SkypeLink))
+                return;
+
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                        () =>
+                        {
+                            var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+                            dataPackage.SetText(ViewModel.CurrentUser.SkypeLink);
+                            Clipboard.SetContent(dataPackage);
+                        });
+
+            var dialog = new MessageDialog(content: ViewModel.CurrentUser.SkypeLink, title: "Skype nick is copied to clipboard");
+            await dialog.ShowAsync();
+        }
+
+        private void EmailBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            string email = ViewModel.CurrentUser.Email;
+            ComposeEmail(email, "Hi, found you in the app PJA Skills. Nice to meet you, mate :)", null);
+
+        }
+
+        private async void ComposeEmail(string emailAdress,string messageBody,StorageFile attachmentFile)
+        {
+            var emailMessage = new Windows.ApplicationModel.Email.EmailMessage();
+            emailMessage.Body = messageBody;
+
+            if (attachmentFile != null)
+            {
+                var stream = Windows.Storage.Streams.RandomAccessStreamReference.CreateFromFile(attachmentFile);
+
+                var attachment = new Windows.ApplicationModel.Email.EmailAttachment(
+                    attachmentFile.Name,
+                    stream);
+
+                emailMessage.Attachments.Add(attachment);
+            }
+
+            if (emailAdress != null)
+            {
+                var emailRecipient = new Windows.ApplicationModel.Email.EmailRecipient(emailAdress);
+                emailMessage.To.Add(emailRecipient);
+            }
+
+            await Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(emailMessage);
+
+        }
+
     }
 }

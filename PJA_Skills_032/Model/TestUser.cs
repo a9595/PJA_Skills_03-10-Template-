@@ -68,6 +68,16 @@ namespace PJA_Skills_032.Model
                 ParseHelper.SetParseObject(ParseHelper.OBJECT_TEST_USER_GOOGLE_PLUS, _backingObject, value);
             }
         }
+        public string Email {
+            get
+            {
+                return ParseHelper.GetParseObject(ParseHelper.OBJECT_TEST_USER_EMAIL, _backingObject);
+            }
+            set
+            {
+                ParseHelper.SetParseObject(ParseHelper.OBJECT_TEST_USER_EMAIL, _backingObject, value);
+            }
+        }
         public string SkypeLink
         {
             get
@@ -114,6 +124,8 @@ namespace PJA_Skills_032.Model
                 return _backingObject;
             }
         }
+
+        
 
         #endregion
 
